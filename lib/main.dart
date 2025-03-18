@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'flutter bloc clean architecture',
+        title: 'Helo testing ne',
         theme: themeLight(context),
         darkTheme: themeDark(context),
         themeMode: ThemeMode.system,
