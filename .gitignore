@@ -46,9 +46,11 @@ app.*.map.json
 
 # Generated files
 *.g.dart
+*.gr.dart
 *.freezed.dart
 
 # Generated plugin registrant file
 generated_plugin_registrant.cc
 generated_plugin_registrant.h
 GeneratedPluginRegistrant.swift
+generated_plugins.cmake
