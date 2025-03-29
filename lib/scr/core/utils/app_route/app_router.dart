@@ -10,5 +10,8 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(page: LoginRoute.page, initial: true),
     AutoRoute(page: SignUpRoute.page),
+    AutoRoute(page: ForgotPasswordRoute.page, initial: true),
+    AutoRoute(page: CreateNewPasswordRoute.page),
+    AutoRoute(page: VerificationCodeRoute.page),
   ];
 }
