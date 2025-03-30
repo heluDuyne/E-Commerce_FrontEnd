@@ -3,7 +3,7 @@ import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart'
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class LogInScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -128,7 +128,7 @@ class LogInScreen extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        // Navigate to Sign Up Screen
+                         context.router.push( SignUpRoute());
                       },
                       child: const Text(
                         "Don't have an account? Sign Up",

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 @RoutePage()
 class SignUpScreen extends StatelessWidget {
@@ -120,7 +121,7 @@ class SignUpScreen extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        // Navigate to login screen
+                        context.router.push(const LoginRoute());
                       },
                       child: const Text(
                         "Already have an account? Log In",
