@@ -14,6 +14,29 @@ import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password
     as _i1;
 import 'package:e_commerce_frontend/scr/presentation/screens/forgot_password_screen/forgot_password_screen.dart'
     as _i2;
+import 'package:e_commerce_frontend/scr/presentation/screens/login_screen/login_screen.dart'
+    as _i3;
+import 'package:e_commerce_frontend/scr/presentation/screens/sign_up_screen/sign_up_screen.dart'
+    as _i4;
+import 'package:e_commerce_frontend/scr/presentation/screens/verification_code_screen/verification_code_screen.dart'
+    as _i5;
+import 'package:flutter/material.dart' as _i7;
+
+/// generated route for
+/// [_i1.CreateNewPasswordScreen]
+class CreateNewPasswordRoute extends _i6.PageRouteInfo<void> {
+  const CreateNewPasswordRoute({List<_i6.PageRouteInfo>? children})
+    : super(CreateNewPasswordRoute.name, initialChildren: children);
+
+  static const String name = 'CreateNewPasswordRoute';
+
+  static _i6.PageInfo page = _i6.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.CreateNewPasswordScreen();
+    },
+  );
+}
 
 /// generated route for
 /// [_i2.ForgotPasswordScreen]
@@ -42,21 +65,43 @@ class LoginRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-
+      return _i3.LoginScreen();
     },
   );
 }
 
-
+/// generated route for
+/// [_i4.SignUpScreen]
+class SignUpRoute extends _i6.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({_i7.Key? key, List<_i6.PageRouteInfo>? children})
+    : super(
+        SignUpRoute.name,
+        args: SignUpRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'SignUpRoute';
 
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i4.SignUpScreen();
+      final args = data.argsAs<SignUpRouteArgs>(
+        orElse: () => const SignUpRouteArgs(),
+      );
+      return _i4.SignUpScreen(key: args.key);
     },
   );
+}
+
+class SignUpRouteArgs {
+  const SignUpRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -70,18 +115,7 @@ class VerificationCodeRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-
+      return const _i5.VerificationCodeScreen();
     },
   );
-}
-
-class SignUpRouteArgs {
-  const SignUpRouteArgs({this.key});
-
-  final _i4.Key? key;
-
-  @override
-  String toString() {
-    return 'SignUpRouteArgs{key: $key}';
-  }
 }
