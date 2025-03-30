@@ -80,9 +80,23 @@ class SignUpRoute extends _i6.PageRouteInfo<void> {
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i4.SignUpScreen();
+      final args = data.argsAs<SignUpRouteArgs>(
+        orElse: () => const SignUpRouteArgs(),
+      );
+      return _i4.SignUpScreen(key: args.key);
     },
   );
+}
+
+class SignUpRouteArgs {
+  const SignUpRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -99,15 +113,4 @@ class VerificationCodeRoute extends _i6.PageRouteInfo<void> {
       return const _i5.VerificationCodeScreen();
     },
   );
-}
-
-class SignUpRouteArgs {
-  const SignUpRouteArgs({this.key});
-
-  final _i4.Key? key;
-
-  @override
-  String toString() {
-    return 'SignUpRouteArgs{key: $key}';
-  }
 }
