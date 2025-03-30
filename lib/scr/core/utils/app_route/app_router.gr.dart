@@ -100,3 +100,14 @@ class VerificationCodeRoute extends _i6.PageRouteInfo<void> {
     },
   );
 }
+
+class SignUpRouteArgs {
+  const SignUpRouteArgs({this.key});
+
+  final _i4.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpRouteArgs{key: $key}';
+  }
+}
