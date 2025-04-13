@@ -4,13 +4,15 @@ import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart'
 
 @RoutePage()
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
+  ForgotPasswordScreen({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final isSmallScreen = screenSize.width < 600;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -28,74 +30,86 @@ class ForgotPasswordScreen extends StatelessWidget {
               horizontal: isSmallScreen ? 24.0 : screenSize.width * 0.1,
               vertical: 20.0,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Text(
-                  'Forgot password?',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  'Enter email associated with your account and we\'ll send an email with instructions to reset your password',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.black54,
-                    height: 1.5,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'enter your email here',
-                    hintStyle: const TextStyle(
-                      color: Colors.black26,
-                      fontSize: 16,
-                    ),
-                    filled: true,
-                    fillColor: Colors.grey[50],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  Text(
+                    'Forgot password?',
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  style: const TextStyle(fontSize: 16, color: Colors.black87),
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.done,
-                ),
-                const SizedBox(height: 24),
-                Center(
-                  child: SizedBox(
-                    width: 200,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.router.push(const VerificationCodeRoute());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: const StadiumBorder(),
-                        minimumSize: const Size(200, 45),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Enter email associated with your account and we\'ll send an email with instructions to reset your password',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.black54,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  TextFormField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email here',
+                      hintStyle: const TextStyle(
+                        color: Colors.black26,
+                        fontSize: 16,
                       ),
-                      child: const Text(
-                        'Send Instructions',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                      filled: true,
+                      fillColor: Colors.grey[50],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 16,
+                      ),
+                    ),
+                    style: const TextStyle(fontSize: 16, color: Colors.black87),
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.done,
+                    showCursor: false,
+                    validator:
+                        (value) =>
+                            !RegExp(r'\S+@\S+\.\S+').hasMatch(value!)
+                                ? "Enter a valid email"
+                                : null,
+                  ),
+                  const SizedBox(height: 24),
+                  Center(
+                    child: SizedBox(
+                      width: 200,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.router.push(const VerificationCodeRoute());
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: const StadiumBorder(),
+                          minimumSize: const Size(200, 45),
+                        ),
+                        child: const Text(
+                          'Send Instructions',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

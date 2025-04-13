@@ -28,12 +28,23 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
   }
 
   void _handlePasswordChange() {
-    // Add your password validation logic here
-    if (_newPasswordController.text.isNotEmpty &&
-        _newPasswordController.text == _confirmPasswordController.text) {
-      // Show success dialog
-      _showSuccessDialog();
+    if (_newPasswordController.text.isEmpty ||
+        _newPasswordController.text.length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Password must be at least 6 characters")),
+      );
+      return;
     }
+
+    if (_newPasswordController.text != _confirmPasswordController.text) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Passwords do not match")));
+      return;
+    }
+
+    // Show success dialog
+    _showSuccessDialog();
   }
 
   @override
