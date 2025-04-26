@@ -1,4 +1,5 @@
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.dart';
+<<<<<<< HEAD
 import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/app_theme.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
@@ -16,6 +17,20 @@ void main() async {
   // Load saved theme preference
   final prefs = di.locator<SharedPrefManagementHelper>();
   final isDarkMode = prefs.getKeyBool('isDarkMode');
+=======
+import 'package:e_commerce_frontend/scr/core/utils/theme/app_theme.dart';
+import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load saved theme preference
+  final prefs = await SharedPreferences.getInstance();
+  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+>>>>>>> 995a847 ( imp. Widgets)
 
   runApp(MyApp(isDarkMode: isDarkMode));
 }
@@ -31,7 +46,11 @@ class MyApp extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) {
+<<<<<<< HEAD
         final provider = ThemeProvider(sharedPreferences: di.locator<SharedPrefManagementHelper>());
+=======
+        final provider = ThemeProvider();
+>>>>>>> 995a847 ( imp. Widgets)
         if (isDarkMode) {
           provider.setDarkMode();
         } else {
@@ -41,6 +60,7 @@ class MyApp extends StatelessWidget {
       },
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, _) {
+<<<<<<< HEAD
           return MultiBlocProvider(
             providers: [
               BlocProvider(
@@ -58,6 +78,15 @@ class MyApp extends StatelessWidget {
               darkTheme: AppTheme.darkTheme,
               themeMode: themeProvider.themeMode,
             ),
+=======
+          return MaterialApp.router(
+            routerConfig: router.config(),
+            title: 'E-Commerce App',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: themeProvider.themeMode,
+>>>>>>> 995a847 ( imp. Widgets)
           );
         },
       ),

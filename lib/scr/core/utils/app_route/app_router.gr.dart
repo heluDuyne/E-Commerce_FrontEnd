@@ -9,8 +9,13 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+<<<<<<< HEAD
 import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:e_commerce_frontend/scr/presentation/screens/checkout_card_screen/checkout_card_screen.dart'
+=======
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password_screen/create_new_password_screen.dart'
+>>>>>>> 995a847 ( imp. Widgets)
     as _i1;
 import 'package:e_commerce_frontend/scr/presentation/screens/checkout_complete_screen/checkout_complete_screen.dart'
     as _i2;
@@ -20,6 +25,7 @@ import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password
     as _i4;
 import 'package:e_commerce_frontend/scr/presentation/screens/forgot_password_screen/forgot_password_screen.dart'
     as _i5;
+<<<<<<< HEAD
 import 'package:e_commerce_frontend/scr/presentation/screens/intro_screen/intro_screen.dart'
     as _i6;
 import 'package:e_commerce_frontend/scr/presentation/screens/login_screen/login_screen.dart'
@@ -53,10 +59,25 @@ import 'package:flutter/material.dart' as _i20;
 class CheckoutCardRoute extends _i19.PageRouteInfo<void> {
   const CheckoutCardRoute({List<_i19.PageRouteInfo>? children})
     : super(CheckoutCardRoute.name, initialChildren: children);
+=======
+import 'package:e_commerce_frontend/scr/presentation/screens/widget_testing_screen/widget_testing_screen.dart'
+    as _i6;
+import 'package:flutter/material.dart' as _i8;
+
+/// generated route for
+/// [_i1.CreateNewPasswordScreen]
+class CreateNewPasswordRoute extends _i7.PageRouteInfo<void> {
+  const CreateNewPasswordRoute({List<_i7.PageRouteInfo>? children})
+    : super(CreateNewPasswordRoute.name, initialChildren: children);
+>>>>>>> 995a847 ( imp. Widgets)
 
   static const String name = 'CheckoutCardRoute';
 
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
+=======
+  static _i7.PageInfo page = _i7.PageInfo(
+>>>>>>> 995a847 ( imp. Widgets)
     name,
     builder: (data) {
       return const _i1.CheckoutCardScreen();
@@ -65,6 +86,7 @@ class CheckoutCardRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
+<<<<<<< HEAD
 /// [_i2.CheckoutCompleteScreen]
 class CheckoutCompleteRoute extends _i19.PageRouteInfo<void> {
   const CheckoutCompleteRoute({List<_i19.PageRouteInfo>? children})
@@ -116,6 +138,11 @@ class CreateNewPasswordRoute extends _i19.PageRouteInfo<void> {
 /// [_i5.ForgotPasswordScreen]
 class ForgotPasswordRoute extends _i19.PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({_i20.Key? key, List<_i19.PageRouteInfo>? children})
+=======
+/// [_i2.ForgotPasswordScreen]
+class ForgotPasswordRoute extends _i7.PageRouteInfo<ForgotPasswordRouteArgs> {
+  ForgotPasswordRoute({_i8.Key? key, List<_i7.PageRouteInfo>? children})
+>>>>>>> 995a847 ( imp. Widgets)
     : super(
         ForgotPasswordRoute.name,
         args: ForgotPasswordRouteArgs(key: key),
@@ -124,7 +151,11 @@ class ForgotPasswordRoute extends _i19.PageRouteInfo<ForgotPasswordRouteArgs> {
 
   static const String name = 'ForgotPasswordRoute';
 
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
+=======
+  static _i7.PageInfo page = _i7.PageInfo(
+>>>>>>> 995a847 ( imp. Widgets)
     name,
     builder: (data) {
       final args = data.argsAs<ForgotPasswordRouteArgs>(
@@ -138,7 +169,11 @@ class ForgotPasswordRoute extends _i19.PageRouteInfo<ForgotPasswordRouteArgs> {
 class ForgotPasswordRouteArgs {
   const ForgotPasswordRouteArgs({this.key});
 
+<<<<<<< HEAD
   final _i20.Key? key;
+=======
+  final _i8.Key? key;
+>>>>>>> 995a847 ( imp. Widgets)
 
   @override
   String toString() {
@@ -157,14 +192,25 @@ class ForgotPasswordRouteArgs {
 }
 
 /// generated route for
+<<<<<<< HEAD
 /// [_i6.IntroScreen]
 class IntroRoute extends _i19.PageRouteInfo<void> {
   const IntroRoute({List<_i19.PageRouteInfo>? children})
     : super(IntroRoute.name, initialChildren: children);
+=======
+/// [_i3.LoginScreen]
+class LoginRoute extends _i7.PageRouteInfo<void> {
+  const LoginRoute({List<_i7.PageRouteInfo>? children})
+    : super(LoginRoute.name, initialChildren: children);
+>>>>>>> 995a847 ( imp. Widgets)
 
   static const String name = 'IntroRoute';
 
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
+=======
+  static _i7.PageInfo page = _i7.PageInfo(
+>>>>>>> 995a847 ( imp. Widgets)
     name,
     builder: (data) {
       return const _i6.IntroScreen();
@@ -173,6 +219,7 @@ class IntroRoute extends _i19.PageRouteInfo<void> {
 }
 
 /// generated route for
+<<<<<<< HEAD
 /// [_i7.LoginScreen]
 class LoginRoute extends _i19.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({_i20.Key? key, List<_i19.PageRouteInfo>? children})
@@ -398,6 +445,11 @@ class ProfileSettingRoute extends _i19.PageRouteInfo<void> {
 /// [_i15.SignUpScreen]
 class SignUpRoute extends _i19.PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({_i20.Key? key, List<_i19.PageRouteInfo>? children})
+=======
+/// [_i4.SignUpScreen]
+class SignUpRoute extends _i7.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({_i8.Key? key, List<_i7.PageRouteInfo>? children})
+>>>>>>> 995a847 ( imp. Widgets)
     : super(
         SignUpRoute.name,
         args: SignUpRouteArgs(key: key),
@@ -406,7 +458,11 @@ class SignUpRoute extends _i19.PageRouteInfo<SignUpRouteArgs> {
 
   static const String name = 'SignUpRoute';
 
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
+=======
+  static _i7.PageInfo page = _i7.PageInfo(
+>>>>>>> 995a847 ( imp. Widgets)
     name,
     builder: (data) {
       final args = data.argsAs<SignUpRouteArgs>(
@@ -420,7 +476,11 @@ class SignUpRoute extends _i19.PageRouteInfo<SignUpRouteArgs> {
 class SignUpRouteArgs {
   const SignUpRouteArgs({this.key});
 
+<<<<<<< HEAD
   final _i20.Key? key;
+=======
+  final _i8.Key? key;
+>>>>>>> 995a847 ( imp. Widgets)
 
   @override
   String toString() {
@@ -439,14 +499,25 @@ class SignUpRouteArgs {
 }
 
 /// generated route for
+<<<<<<< HEAD
 /// [_i16.SplashScreen]
 class SplashRoute extends _i19.PageRouteInfo<void> {
   const SplashRoute({List<_i19.PageRouteInfo>? children})
     : super(SplashRoute.name, initialChildren: children);
+=======
+/// [_i5.VerificationCodeScreen]
+class VerificationCodeRoute extends _i7.PageRouteInfo<void> {
+  const VerificationCodeRoute({List<_i7.PageRouteInfo>? children})
+    : super(VerificationCodeRoute.name, initialChildren: children);
+>>>>>>> 995a847 ( imp. Widgets)
 
   static const String name = 'SplashRoute';
 
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
+=======
+  static _i7.PageInfo page = _i7.PageInfo(
+>>>>>>> 995a847 ( imp. Widgets)
     name,
     builder: (data) {
       return const _i16.SplashScreen();
@@ -514,6 +585,22 @@ class WelcomeRoute extends _i19.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i18.WelcomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i6.WidgetTestingScreen]
+class WidgetTestingRoute extends _i7.PageRouteInfo<void> {
+  const WidgetTestingRoute({List<_i7.PageRouteInfo>? children})
+    : super(WidgetTestingRoute.name, initialChildren: children);
+
+  static const String name = 'WidgetTestingRoute';
+
+  static _i7.PageInfo page = _i7.PageInfo(
+    name,
+    builder: (data) {
+      return const _i6.WidgetTestingScreen();
     },
   );
 }
