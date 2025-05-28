@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -9,137 +12,214 @@ class LoginScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  LoginScreen({super.key});
+
   void _logIn(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       // Handle login logic
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login Successful!")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Login Successful!")));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Log into",
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  const Text(
-                    "your account",
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Email Input
-                  TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(labelText: "Email address"),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) =>
-                    !RegExp(r'\S+@\S+\.\S+').hasMatch(value!)
-                        ? "Enter a valid email"
-                        : null,
-                  ),
-                  const SizedBox(height: 10),
-
-                  // Password Input
-                  TextFormField(
-                    controller: passwordController,
-                    decoration: const InputDecoration(labelText: "Password"),
-                    obscureText: true,
-                    validator: (value) => value!.length < 6
-                        ? "Password must be at least 6 characters"
-                        : null,
-                  ),
-                  const SizedBox(height: 10),
-
-                  // Forgot Password
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        context.router.push(const ForgotPasswordRoute());
-                      },
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.grey),
+    return BlocProvider(
+      create: (context) => locator<OAuthAuthenticationBloc>(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    const Text(
+                      "Log into",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    const Text(
+                      "your account",
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
 
-                  // Log In Button
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () => _logIn(context),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black, //
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 14, horizontal: 60),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                    // Email Input
+                    TextFormField(
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                        labelText: "Email address",
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      validator:
+                          (value) =>
+                              !RegExp(r'\S+@\S+\.\S+').hasMatch(value!)
+                                  ? "Enter a valid email"
+                                  : null,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Password Input
+                    TextFormField(
+                      controller: passwordController,
+                      decoration: const InputDecoration(labelText: "Password"),
+                      obscureText: true,
+                      validator:
+                          (value) =>
+                              value!.length < 6
+                                  ? "Password must be at least 6 characters"
+                                  : null,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Forgot Password
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          context.router.push(const ForgotPasswordRoute());
+                        },
+                        child: const Text(
+                          "Forgot Password?",
+                          style: TextStyle(color: Colors.grey),
                         ),
                       ),
-                      child: const Text("LOG IN", style: TextStyle(color: Colors.white)),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
 
-                  // OR Log In With
-                  Center(
-                    child: Column(
-                      children: [
-                        const Text("or log in with"),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.apple, size: 40),
-                              onPressed: () {},
-                            ),
-                            const SizedBox(width: 10),
-                            IconButton(
-                              icon: const Icon(Icons.account_circle, size: 40),
-                              onPressed: () {},
-                            ),
-                            const SizedBox(width: 10),
-                            IconButton(
-                              icon: const Icon(Icons.facebook, size: 40),
-                              onPressed: () {},
-                            ),
-                          ],
+                    // Log In Button
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () => _logIn(context),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black, //
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 14,
+                            horizontal: 60,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Sign Up Link
-                  Center(
-                    child: TextButton(
-                      onPressed: () {
-                         context.router.push( SignUpRoute());
-                      },
-                      child: const Text(
-                        "Don't have an account? Sign Up",
-                        style: TextStyle(color: Colors.black),
+                        child: const Text(
+                          "LOG IN",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+
+                    // OR Log In With
+                    Center(
+                      child: Column(
+                        children: [
+                          const Text("or log in with"),
+                          const SizedBox(height: 10),
+                          Builder(
+                            builder: (BuildContext context) {
+                              return BlocListener<
+                                OAuthAuthenticationBloc,
+                                OAuthAuthenticationState
+                              >(
+                                listener: (context, state) {
+                                  if (state is Authenticating) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          "Logged in successfully!",
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  if (state is Authenticated) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          "Logged in successfully!",
+                                        ),
+                                      ),
+                                    );
+                                  } else if (state is Error) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(state.errorMessage),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TextButton(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/icon-google-48.png',
+                                            width: 20,
+                                          ),
+                                          const SizedBox(width: 5),
+                                          const Text("Google"),
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        context
+                                            .read<OAuthAuthenticationBloc>()
+                                            .add(AuthenticateWithGoogle());
+                                      },
+                                    ),
+                                    const SizedBox(width: 20),
+                                    TextButton(
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/icon-facebook-48.png',
+                                            width: 20,
+                                          ),
+                                          const SizedBox(width: 5),
+                                          const Text("Facebook"),
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        context
+                                            .read<OAuthAuthenticationBloc>()
+                                            .add(AuthenticateWithFacebook());
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Sign Up Link
+                    Center(
+                      child: TextButton(
+                        onPressed: () {
+                          context.router.push(SignUpRoute());
+                        },
+                        child: const Text(
+                          "Don't have an account? Sign Up",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
