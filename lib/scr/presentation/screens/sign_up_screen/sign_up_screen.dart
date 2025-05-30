@@ -122,7 +122,7 @@ class SignUpScreen extends StatelessWidget {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        context.router.push(const LoginRoute());
+                        context.router.push(LoginRoute());
                       },
                       child: const Text(
                         "Already have an account? Log In",

@@ -1,7 +1,10 @@
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.dart';
 import 'package:flutter/material.dart';
+import './injector.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
