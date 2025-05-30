@@ -1,5 +1,5 @@
-part of 'api_result_model.dart';
-
+// code 0 considers to internal exception
+import 'package:equatable/equatable.dart';
 
 class ErrorResultModel extends Equatable{
   const ErrorResultModel({this.statusCode, this.message});

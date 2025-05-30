@@ -2,7 +2,7 @@ import 'package:e_commerce_frontend/scr/core/common_domain/entities/based_api_re
 import 'package:equatable/equatable.dart';
 
 abstract class BaseParamsUsecase<Type, Request> {
-  Future<ApiResultModel<Type>> call(Request? params);
+  Future<ApiResultModel<Type>> call(Request params);
 }
 
 class NoParams extends Equatable {
