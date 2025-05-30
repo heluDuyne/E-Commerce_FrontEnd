@@ -47,6 +47,7 @@ app.*.map.json
 # Generated files
 *.g.dart
 *.freezed.dart
+*.gr.dart
 
 # Generated plugin registrant file
 generated_plugin_registrant.cc
