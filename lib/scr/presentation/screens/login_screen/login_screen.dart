@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/login_request_model.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,8 +18,6 @@ class LoginScreen extends StatelessWidget {
 
   void _logIn(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      print(emailController.text);
-      print(passwordController.text);
       context.read<LoginBloc>().add(
         SignInEvent(
           LoginRequestModel(
@@ -122,9 +122,7 @@ class LoginScreen extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                               onPressed: () {
-                                context.router.push(
-                                  const ForgotPasswordRoute(),
-                                );
+                                context.router.push(ForgotPasswordRoute());
                               },
                               child: const Text(
                                 "Forgot Password?",

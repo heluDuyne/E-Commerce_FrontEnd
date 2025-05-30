@@ -40,18 +40,46 @@ class CreateNewPasswordRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.ForgotPasswordScreen]
-class ForgotPasswordRoute extends _i6.PageRouteInfo<void> {
-  const ForgotPasswordRoute({List<_i6.PageRouteInfo>? children})
-    : super(ForgotPasswordRoute.name, initialChildren: children);
+class ForgotPasswordRoute extends _i6.PageRouteInfo<ForgotPasswordRouteArgs> {
+  ForgotPasswordRoute({_i7.Key? key, List<_i6.PageRouteInfo>? children})
+    : super(
+        ForgotPasswordRoute.name,
+        args: ForgotPasswordRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'ForgotPasswordRoute';
 
   static _i6.PageInfo page = _i6.PageInfo(
     name,
     builder: (data) {
-      return const _i2.ForgotPasswordScreen();
+      final args = data.argsAs<ForgotPasswordRouteArgs>(
+        orElse: () => const ForgotPasswordRouteArgs(),
+      );
+      return _i2.ForgotPasswordScreen(key: args.key);
     },
   );
+}
+
+class ForgotPasswordRouteArgs {
+  const ForgotPasswordRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordRouteArgs{key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ForgotPasswordRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
@@ -86,6 +114,16 @@ class LoginRouteArgs {
   String toString() {
     return 'LoginRouteArgs{key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LoginRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
@@ -120,6 +158,16 @@ class SignUpRouteArgs {
   String toString() {
     return 'SignUpRouteArgs{key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SignUpRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for
