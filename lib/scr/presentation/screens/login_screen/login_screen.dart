@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: () {
-                          context.router.push(const ForgotPasswordRoute());
+                          context.router.push(ForgotPasswordRoute());
                         },
                         child: const Text(
                           "Forgot Password?",
