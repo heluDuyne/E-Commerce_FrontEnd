@@ -14,6 +14,5 @@ class OauthRequestModel {
 
   factory OauthRequestModel.fromJson(Map<String, dynamic> json) =>
       _$OauthRequestModelFromJson(json);
-
   Map<String, dynamic> toJson() => _$OauthRequestModelToJson(this);
 }
