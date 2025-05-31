@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
-import 'package:e_commerce_frontend/scr/data/models/request/login_request_model.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Welcome to Elanza!')),
                 );
+                // context.router.replace(const HomeRoute());
               } else if (state is LoginError) {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).clearSnackBars();

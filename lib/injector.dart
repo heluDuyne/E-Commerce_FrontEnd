@@ -1,17 +1,28 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/auth_datasource/auth_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/login_repository_imp.dart';
+import 'package:e_commerce_frontend/scr/data/repositories/signup_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/login_repository.dart';
+import 'package:e_commerce_frontend/scr/domain/repositories/signup_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final locator = GetIt.instance;
 
 Future<void> init() async {
+  // Properties and helpers
+  final share = await SharedPreferences.getInstance();
+  locator.registerLazySingleton<SharedPrefManagementHelper>(
+    () => SharedPrefManagementHelper(share),
+  );
   locator.registerLazySingleton<FlutterSecureStorage>(
     () => const FlutterSecureStorage(),
   );
@@ -20,6 +31,9 @@ Future<void> init() async {
   );
   locator.registerLazySingleton<Dio>(() => Dio());
 
+
+  // Data sources, repositories, and use cases
+  // AuthDatasource, Login bloc, use case,...
   locator.registerLazySingleton<AuthDatasource>(
     () => AuthDatasource(locator()),
   );
@@ -31,4 +45,11 @@ Future<void> init() async {
     () => OAuthAuthenticationBloc(),
   );
   locator.registerFactory<LoginBloc>(() => LoginBloc(locator(), locator()));
+
+  // Register user bloc, use case,...
+  locator.registerLazySingleton<SignupRepository>(
+    () => SignupRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<SignupUsecase>(() => SignupUsecase(locator()));
+  locator.registerLazySingleton<SignupBloc>(() => SignupBloc(signupUsecase: locator(), loginUsecase: locator(), tokenManagerHelper: locator(), sharedPrefManagementHelper: locator()));
 }
