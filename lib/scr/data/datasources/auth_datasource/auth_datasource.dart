@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/email_verify_request_model/email_verify_request_model.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/user_request_model/user_request_model.dart';
 import 'package:e_commerce_frontend/scr/data/models/response/user_response_model/user_response_model.dart';
@@ -17,5 +18,15 @@ abstract class AuthDatasource {
   Future<String?> loginRequest(@Body() LoginRequestModel loginRequestModel);
 
   @POST(API.SIGNUP)
-  Future<UserResponseModel?> signUpRequest(@Body() UserRequestModel userRequestModel);
+  Future<UserResponseModel?> signUpRequest(
+    @Body() UserRequestModel userRequestModel,
+  );
+
+  @GET(API.RESEND_VERIFICATION_CODE)
+  Future<void> getVerificationCode();
+
+  //Originally it will return email and verification code
+  //but we don't use this so it's supposed to be void
+  @POST(API.VERIFY_EMAIL)
+  Future<void> verifyEmailRequest(@Body() EmailVerifyRequestModel emailVerifyRequest);
 }

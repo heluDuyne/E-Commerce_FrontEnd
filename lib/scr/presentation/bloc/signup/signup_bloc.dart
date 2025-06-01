@@ -64,8 +64,9 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
                 emit(SignupState.error("Login failed, no token received"));
                 return;
               }
-              var token = 'Token ${loginResult.data}';
-              var isSaved = await tokenManagerHelper.saveToken(token);
+              var json = loginResult.data ?? '';
+              var token = jsonDecode(json) as Map<String, dynamic>;
+              var isSaved = await tokenManagerHelper.saveToken(token['token']);
               if (!isSaved) {
                 emit(SignupState.error("Failed to save token"));
                 return;

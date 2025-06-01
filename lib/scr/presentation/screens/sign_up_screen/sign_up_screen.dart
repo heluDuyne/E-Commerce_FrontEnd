@@ -31,6 +31,7 @@ class SignUpScreen extends StatelessWidget {
         ),
       );
     }
+    // context.router.push(const VerificationCodeRoute());
   }
 
   @override
@@ -51,6 +52,9 @@ class SignUpScreen extends StatelessWidget {
                         "Sign Up Successful! Welcome ${state.userInfo.name}!",
                       ),
                     ),
+                  );
+                  context.router.push(
+                    VerificationCodeRoute(email: emailController.text),
                   );
                 case SignUpError():
                   Navigator.pop(context); // Close the loading dialog

@@ -88,7 +88,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            context.router.push(const VerificationCodeRoute());
+                            //TODO: Check the logic again, what things should do when forgot the password
+                            context.router.push(VerificationCodeRoute(email: emailController.text));
                           }
                         },
                         style: ElevatedButton.styleFrom(

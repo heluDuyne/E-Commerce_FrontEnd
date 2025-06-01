@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:e_commerce_frontend/scr/core/common_domain/entities/based_api_result/api_result_model.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
@@ -33,8 +34,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(LoginState.error("Login failed, no token received"));
           return;
         }
-        var token = 'Token ${result.data}';
-        var isSaved = await tokenManagerHelper.saveToken(token);
+        var json = result.data ?? '';
+        var token = jsonDecode(json) as Map<String, dynamic>;
+        var isSaved = await tokenManagerHelper.saveToken(token['token']);
         if (!isSaved) {
           emit(LoginState.error("Failed to save token"));
           return;
