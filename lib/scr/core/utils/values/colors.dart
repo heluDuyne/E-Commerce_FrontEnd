@@ -31,6 +31,9 @@ class ColorLight {
   static const Color chipBackground = Color(0xFFE0E0E0);
   static const Color chipText = Color(0xFF757575);
 
+  // Icon Colors
+  static const Color iconPrimary = Color(0xFF000000);
+
   //Button
   static const Color buttonText = Color(0xFFFFFFFF);
   static const Color buttonBackground = Color(0xFF000000);
@@ -53,8 +56,14 @@ class ColorLight {
   static const Color infoText = Color(0xFF000000);
   static const Color labelText = Color(0xFF757575);
 
+  // Order Status Background
+  static const Color orderStatusBackground = Color(0xFFF5F5F5);
+
   //banner
   static const Color bannerBackground = Color(0xFF575757);
+
+  // Order Section Text Color
+  static const Color orderSectionTextColor = Color(0xFFBDBDBD);
 }
 
 class ColorDark {
@@ -88,6 +97,9 @@ class ColorDark {
   static const Color chipBackground = Color(0xFF333333);
   static const Color chipText = Color(0xFFBDBDBD);
 
+  // Icon Colors
+  static const Color iconPrimary = Color(0xFFF5F5F5);
+
   //Button
   static const Color buttonText = Color(0xFF121212);
   static const Color buttonBackground = Color(0xFFE0E0E0);
@@ -111,6 +123,12 @@ class ColorDark {
   static const Color labelText = Color(0xFFBDBDBD);
   static const Color orderCardBackground = Color(0xFF353945);
 
+  // Order Status Background
+  static const Color orderStatusBackground = Color(0xFF1E1E1E);
+
   //banner
   static const Color bannerBackground = Color(0xFF424242);
+
+  // Order Section Text Color
+  static const Color orderSectionTextColor = Color(0xFFBDBDBD);
 }

@@ -9,41 +9,105 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password_screen/create_new_password_screen.dart'
+import 'package:auto_route/auto_route.dart' as _i15;
+import 'package:e_commerce_frontend/scr/presentation/screens/checkout_card_screen/checkout_card_screen.dart'
     as _i1;
-import 'package:e_commerce_frontend/scr/presentation/screens/forgot_password_screen/forgot_password_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/checkout_complete_screen/checkout_complete_screen.dart'
     as _i2;
-import 'package:e_commerce_frontend/scr/presentation/screens/login_screen/login_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/checkout_screen/checkout_screen.dart'
     as _i3;
-import 'package:e_commerce_frontend/scr/presentation/screens/sign_up_screen/sign_up_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password_screen/create_new_password_screen.dart'
     as _i4;
-import 'package:e_commerce_frontend/scr/presentation/screens/verification_code_screen/verification_code_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/forgot_password_screen/forgot_password_screen.dart'
     as _i5;
-import 'package:e_commerce_frontend/scr/presentation/screens/widget_testing_screen/widget_testing_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/login_screen/login_screen.dart'
     as _i6;
-import 'package:flutter/material.dart' as _i8;
+import 'package:e_commerce_frontend/scr/presentation/screens/my_info_screen/my_info_screen.dart'
+    as _i7;
+import 'package:e_commerce_frontend/scr/presentation/screens/my_order_screen/my_order_screen.dart'
+    as _i8;
+import 'package:e_commerce_frontend/scr/presentation/screens/my_wishlist_screen/my_wishlist_screen.dart'
+    as _i9;
+import 'package:e_commerce_frontend/scr/presentation/screens/notification_screen/notification_screen.dart'
+    as _i10;
+import 'package:e_commerce_frontend/scr/presentation/screens/order_info_delivered_screen/order_info_delivered_screen.dart'
+    as _i11;
+import 'package:e_commerce_frontend/scr/presentation/screens/order_info_screen/order_info_screen.dart'
+    as _i12;
+import 'package:e_commerce_frontend/scr/presentation/screens/sign_up_screen/sign_up_screen.dart'
+    as _i13;
+import 'package:e_commerce_frontend/scr/presentation/screens/verification_code_screen/verification_code_screen.dart'
+    as _i14;
+import 'package:flutter/material.dart' as _i16;
 
 /// generated route for
-/// [_i1.CreateNewPasswordScreen]
-class CreateNewPasswordRoute extends _i7.PageRouteInfo<void> {
-  const CreateNewPasswordRoute({List<_i7.PageRouteInfo>? children})
-    : super(CreateNewPasswordRoute.name, initialChildren: children);
+/// [_i1.CheckoutCardScreen]
+class CheckoutCardRoute extends _i15.PageRouteInfo<void> {
+  const CheckoutCardRoute({List<_i15.PageRouteInfo>? children})
+    : super(CheckoutCardRoute.name, initialChildren: children);
 
-  static const String name = 'CreateNewPasswordRoute';
+  static const String name = 'CheckoutCardRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i1.CreateNewPasswordScreen();
+      return const _i1.CheckoutCardScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i2.ForgotPasswordScreen]
-class ForgotPasswordRoute extends _i7.PageRouteInfo<ForgotPasswordRouteArgs> {
-  ForgotPasswordRoute({_i8.Key? key, List<_i7.PageRouteInfo>? children})
+/// [_i2.CheckoutCompleteScreen]
+class CheckoutCompleteRoute extends _i15.PageRouteInfo<void> {
+  const CheckoutCompleteRoute({List<_i15.PageRouteInfo>? children})
+    : super(CheckoutCompleteRoute.name, initialChildren: children);
+
+  static const String name = 'CheckoutCompleteRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.CheckoutCompleteScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i3.CheckoutScreen]
+class CheckoutRoute extends _i15.PageRouteInfo<void> {
+  const CheckoutRoute({List<_i15.PageRouteInfo>? children})
+    : super(CheckoutRoute.name, initialChildren: children);
+
+  static const String name = 'CheckoutRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i3.CheckoutScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i4.CreateNewPasswordScreen]
+class CreateNewPasswordRoute extends _i15.PageRouteInfo<void> {
+  const CreateNewPasswordRoute({List<_i15.PageRouteInfo>? children})
+    : super(CreateNewPasswordRoute.name, initialChildren: children);
+
+  static const String name = 'CreateNewPasswordRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.CreateNewPasswordScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i5.ForgotPasswordScreen]
+class ForgotPasswordRoute extends _i15.PageRouteInfo<ForgotPasswordRouteArgs> {
+  ForgotPasswordRoute({_i16.Key? key, List<_i15.PageRouteInfo>? children})
     : super(
         ForgotPasswordRoute.name,
         args: ForgotPasswordRouteArgs(key: key),
@@ -52,13 +116,13 @@ class ForgotPasswordRoute extends _i7.PageRouteInfo<ForgotPasswordRouteArgs> {
 
   static const String name = 'ForgotPasswordRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ForgotPasswordRouteArgs>(
         orElse: () => const ForgotPasswordRouteArgs(),
       );
-      return _i2.ForgotPasswordScreen(key: args.key);
+      return _i5.ForgotPasswordScreen(key: args.key);
     },
   );
 }
@@ -66,7 +130,7 @@ class ForgotPasswordRoute extends _i7.PageRouteInfo<ForgotPasswordRouteArgs> {
 class ForgotPasswordRouteArgs {
   const ForgotPasswordRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i16.Key? key;
 
   @override
   String toString() {
@@ -75,25 +139,167 @@ class ForgotPasswordRouteArgs {
 }
 
 /// generated route for
-/// [_i3.LoginScreen]
-class LoginRoute extends _i7.PageRouteInfo<void> {
-  const LoginRoute({List<_i7.PageRouteInfo>? children})
+/// [_i6.LoginScreen]
+class LoginRoute extends _i15.PageRouteInfo<void> {
+  const LoginRoute({List<_i15.PageRouteInfo>? children})
     : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i3.LoginScreen();
+      return _i6.LoginScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i4.SignUpScreen]
-class SignUpRoute extends _i7.PageRouteInfo<SignUpRouteArgs> {
-  SignUpRoute({_i8.Key? key, List<_i7.PageRouteInfo>? children})
+/// [_i7.MyInfoScreen]
+class MyInfoRoute extends _i15.PageRouteInfo<void> {
+  const MyInfoRoute({List<_i15.PageRouteInfo>? children})
+    : super(MyInfoRoute.name, initialChildren: children);
+
+  static const String name = 'MyInfoRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i7.MyInfoScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i8.MyOrderScreen]
+class MyOrderRoute extends _i15.PageRouteInfo<void> {
+  const MyOrderRoute({List<_i15.PageRouteInfo>? children})
+    : super(MyOrderRoute.name, initialChildren: children);
+
+  static const String name = 'MyOrderRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.MyOrderScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i9.MyWishlistScreen]
+class MyWishlistRoute extends _i15.PageRouteInfo<void> {
+  const MyWishlistRoute({List<_i15.PageRouteInfo>? children})
+    : super(MyWishlistRoute.name, initialChildren: children);
+
+  static const String name = 'MyWishlistRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i9.MyWishlistScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i10.NotificationScreen]
+class NotificationRoute extends _i15.PageRouteInfo<void> {
+  const NotificationRoute({List<_i15.PageRouteInfo>? children})
+    : super(NotificationRoute.name, initialChildren: children);
+
+  static const String name = 'NotificationRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i10.NotificationScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i11.OrderInfoDeliveredScreen]
+class OrderInfoDeliveredRoute
+    extends _i15.PageRouteInfo<OrderInfoDeliveredRouteArgs> {
+  OrderInfoDeliveredRoute({
+    _i16.Key? key,
+    required String orderNumber,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
+         OrderInfoDeliveredRoute.name,
+         args: OrderInfoDeliveredRouteArgs(key: key, orderNumber: orderNumber),
+         initialChildren: children,
+       );
+
+  static const String name = 'OrderInfoDeliveredRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderInfoDeliveredRouteArgs>();
+      return _i11.OrderInfoDeliveredScreen(
+        key: args.key,
+        orderNumber: args.orderNumber,
+      );
+    },
+  );
+}
+
+class OrderInfoDeliveredRouteArgs {
+  const OrderInfoDeliveredRouteArgs({this.key, required this.orderNumber});
+
+  final _i16.Key? key;
+
+  final String orderNumber;
+
+  @override
+  String toString() {
+    return 'OrderInfoDeliveredRouteArgs{key: $key, orderNumber: $orderNumber}';
+  }
+}
+
+/// generated route for
+/// [_i12.OrderInfoScreen]
+class OrderInfoRoute extends _i15.PageRouteInfo<OrderInfoRouteArgs> {
+  OrderInfoRoute({
+    _i16.Key? key,
+    required String orderNumber,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
+         OrderInfoRoute.name,
+         args: OrderInfoRouteArgs(key: key, orderNumber: orderNumber),
+         initialChildren: children,
+       );
+
+  static const String name = 'OrderInfoRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderInfoRouteArgs>();
+      return _i12.OrderInfoScreen(key: args.key, orderNumber: args.orderNumber);
+    },
+  );
+}
+
+class OrderInfoRouteArgs {
+  const OrderInfoRouteArgs({this.key, required this.orderNumber});
+
+  final _i16.Key? key;
+
+  final String orderNumber;
+
+  @override
+  String toString() {
+    return 'OrderInfoRouteArgs{key: $key, orderNumber: $orderNumber}';
+  }
+}
+
+/// generated route for
+/// [_i13.SignUpScreen]
+class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({_i16.Key? key, List<_i15.PageRouteInfo>? children})
     : super(
         SignUpRoute.name,
         args: SignUpRouteArgs(key: key),
@@ -102,13 +308,13 @@ class SignUpRoute extends _i7.PageRouteInfo<SignUpRouteArgs> {
 
   static const String name = 'SignUpRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SignUpRouteArgs>(
         orElse: () => const SignUpRouteArgs(),
       );
-      return _i4.SignUpScreen(key: args.key);
+      return _i13.SignUpScreen(key: args.key);
     },
   );
 }
@@ -116,7 +322,7 @@ class SignUpRoute extends _i7.PageRouteInfo<SignUpRouteArgs> {
 class SignUpRouteArgs {
   const SignUpRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i16.Key? key;
 
   @override
   String toString() {
@@ -125,33 +331,17 @@ class SignUpRouteArgs {
 }
 
 /// generated route for
-/// [_i5.VerificationCodeScreen]
-class VerificationCodeRoute extends _i7.PageRouteInfo<void> {
-  const VerificationCodeRoute({List<_i7.PageRouteInfo>? children})
+/// [_i14.VerificationCodeScreen]
+class VerificationCodeRoute extends _i15.PageRouteInfo<void> {
+  const VerificationCodeRoute({List<_i15.PageRouteInfo>? children})
     : super(VerificationCodeRoute.name, initialChildren: children);
 
   static const String name = 'VerificationCodeRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i5.VerificationCodeScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i6.WidgetTestingScreen]
-class WidgetTestingRoute extends _i7.PageRouteInfo<void> {
-  const WidgetTestingRoute({List<_i7.PageRouteInfo>? children})
-    : super(WidgetTestingRoute.name, initialChildren: children);
-
-  static const String name = 'WidgetTestingRoute';
-
-  static _i7.PageInfo page = _i7.PageInfo(
-    name,
-    builder: (data) {
-      return const _i6.WidgetTestingScreen();
+      return const _i14.VerificationCodeScreen();
     },
   );
 }
