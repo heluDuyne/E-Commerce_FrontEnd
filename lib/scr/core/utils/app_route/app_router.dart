@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
-import 'package:e_commerce_frontend/scr/presentation/screens/order_info_delivered_screen/order_info_delivered_screen.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {

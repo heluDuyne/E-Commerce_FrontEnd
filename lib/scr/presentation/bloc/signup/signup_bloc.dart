@@ -48,7 +48,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           emit(SignupState.error("Signup failed, no user info received"));
           return;
         } else {
-          await sharedPrefManagementHelper.saveKey(
+          await sharedPrefManagementHelper.saveKeyString(
             USER,
             json.encode(result.data!.toJson()),
           );

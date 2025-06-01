@@ -1,18 +1,18 @@
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.dart';
+import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/app_theme.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import './injector.dart' as di;
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
 
   // Load saved theme preference
-  final prefs = await SharedPreferences.getInstance();
-  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+  final prefs = di.locator<SharedPrefManagementHelper>();
+  final isDarkMode = prefs.getKeyBool('isDarkMode');
 
   runApp(MyApp(isDarkMode: isDarkMode));
 }
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) {
-        final provider = ThemeProvider();
+        final provider = ThemeProvider(sharedPreferences: di.locator<SharedPrefManagementHelper>());
         if (isDarkMode) {
           provider.setDarkMode();
         } else {

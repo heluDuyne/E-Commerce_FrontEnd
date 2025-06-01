@@ -1,8 +1,10 @@
+import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider extends ChangeNotifier {
+  final SharedPrefManagementHelper sharedPreferences;
+  ThemeProvider({required this.sharedPreferences});
   ThemeMode _themeMode = ThemeMode.light;
 
   ThemeMode get themeMode => _themeMode;
@@ -16,8 +18,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
 
     // Save theme preference
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isDarkMode', isDarkMode);
+    await sharedPreferences.saveKeyBool('isDarkMode', isDarkMode);
   }
 
   void setDarkMode() async {
@@ -26,8 +27,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
 
     // Save theme preference
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isDarkMode', true);
+    await sharedPreferences.saveKeyBool('isDarkMode', true);
   }
 
   void setLightMode() async {
@@ -36,8 +36,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
 
     // Save theme preference
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isDarkMode', false);
+    await sharedPreferences.saveKeyBool('isDarkMode', false);
   }
 
   void _updateSystemUIOverlayStyle() {

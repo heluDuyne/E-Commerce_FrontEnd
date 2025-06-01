@@ -140,18 +140,36 @@ class ForgotPasswordRouteArgs {
 
 /// generated route for
 /// [_i6.LoginScreen]
-class LoginRoute extends _i15.PageRouteInfo<void> {
-  const LoginRoute({List<_i15.PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+class LoginRoute extends _i15.PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({_i16.Key? key, List<_i15.PageRouteInfo>? children})
+    : super(
+        LoginRoute.name,
+        args: LoginRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'LoginRoute';
 
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return _i6.LoginScreen();
+      final args = data.argsAs<LoginRouteArgs>(
+        orElse: () => const LoginRouteArgs(),
+      );
+      return _i6.LoginScreen(key: args.key);
     },
   );
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key});
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -332,16 +350,38 @@ class SignUpRouteArgs {
 
 /// generated route for
 /// [_i14.VerificationCodeScreen]
-class VerificationCodeRoute extends _i15.PageRouteInfo<void> {
-  const VerificationCodeRoute({List<_i15.PageRouteInfo>? children})
-    : super(VerificationCodeRoute.name, initialChildren: children);
+class VerificationCodeRoute
+    extends _i15.PageRouteInfo<VerificationCodeRouteArgs> {
+  VerificationCodeRoute({
+    required String email,
+    _i16.Key? key,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
+         VerificationCodeRoute.name,
+         args: VerificationCodeRouteArgs(email: email, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'VerificationCodeRoute';
 
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i14.VerificationCodeScreen();
+      final args = data.argsAs<VerificationCodeRouteArgs>();
+      return _i14.VerificationCodeScreen(email: args.email, key: args.key);
     },
   );
+}
+
+class VerificationCodeRouteArgs {
+  const VerificationCodeRouteArgs({required this.email, this.key});
+
+  final String email;
+
+  final _i16.Key? key;
+
+  @override
+  String toString() {
+    return 'VerificationCodeRouteArgs{email: $email, key: $key}';
+  }
 }
