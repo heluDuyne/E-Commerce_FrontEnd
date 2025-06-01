@@ -4,11 +4,19 @@ class SharedPrefManagementHelper {
   SharedPrefManagementHelper(this.sharedPreferences);
   final SharedPreferences sharedPreferences;
 
-  Future<bool> saveKey(String key, String value) async {
+  Future<bool> saveKeyString(String key, String value) async {
     return await sharedPreferences.setString(key, value);
   }
 
-  String getKey(String key) {
+  String getKeyString(String key) {
     return sharedPreferences.getString(key) ?? '';
+  }
+
+  Future<bool> saveKeyBool(String key, bool value) async {
+    return await sharedPreferences.setBool(key, value);
+  }
+
+  bool getKeyBool(String key) {
+    return sharedPreferences.getBool(key) ?? false;
   }
 }

@@ -8,10 +8,16 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: LoginRoute.page, initial: true),
+    AutoRoute(page: LoginRoute.page),
     AutoRoute(page: SignUpRoute.page),
     AutoRoute(page: ForgotPasswordRoute.page),
     AutoRoute(page: CreateNewPasswordRoute.page),
     AutoRoute(page: VerificationCodeRoute.page),
+    AutoRoute(page: CheckoutCardRoute.page),
+    AutoRoute(page: CheckoutCompleteRoute.page),
+    AutoRoute(page: MyOrderRoute.page, initial: true),
+    AutoRoute(page: OrderInfoRoute.page),
+    AutoRoute(page: MyInfoRoute.page),
+    AutoRoute(page: OrderInfoDeliveredRoute.page),
   ];
 }
