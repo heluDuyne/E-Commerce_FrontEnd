@@ -11,6 +11,7 @@ class UserInfoEntity extends Equatable{
   final String phoneNumber;
   final DateTime birthday;
   final String image;
+  final bool isVerified;
 
   const UserInfoEntity({
     required this.email,
@@ -19,6 +20,7 @@ class UserInfoEntity extends Equatable{
     required this.phoneNumber,
     required this.birthday,
     required this.image,
+    required this.isVerified,
   });
 
   @override
@@ -29,6 +31,7 @@ class UserInfoEntity extends Equatable{
     phoneNumber,
     birthday,
     image,
+    isVerified,
   ];
 
   factory UserInfoEntity.fromJson(Map<String, dynamic> json) =>

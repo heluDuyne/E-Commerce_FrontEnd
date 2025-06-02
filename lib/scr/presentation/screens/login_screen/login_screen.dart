@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:e_commerce_frontend/scr/core/utils/constants/images.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
@@ -245,7 +246,7 @@ class _BuildLoginWithOther extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/images/icon-google-48.png',
+                              Images.googleIcon,
                               width: 20,
                             ),
                             const SizedBox(width: 5),
@@ -263,7 +264,7 @@ class _BuildLoginWithOther extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/images/icon-facebook-48.png',
+                              Images.facebookIcon,
                               width: 20,
                             ),
                             const SizedBox(width: 5),

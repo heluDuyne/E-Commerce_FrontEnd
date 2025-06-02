@@ -20,7 +20,6 @@ class AuthInterceptor extends Interceptor {
       // Get the token from the token manager
       String? token = await tokenManagerHelper.getToken();
       if (token.isNotEmpty) {
-        print('Adding token to request: $token');
         options.headers['Authorization'] = 'Token $token';
       } else {
         throw DioException(

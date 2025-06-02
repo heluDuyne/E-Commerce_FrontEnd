@@ -10,4 +10,6 @@ class API {
 
   static const VERIFY_EMAIL = '/verify/verify-email/';
   static const RESEND_VERIFICATION_CODE = '/verify/resend-verification-code/';
+
+  static const USER = '/user/me/';
 }

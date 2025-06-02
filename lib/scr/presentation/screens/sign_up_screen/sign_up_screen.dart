@@ -21,6 +21,8 @@ class SignUpScreen extends StatelessWidget {
   void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       // Handle sign-up logic
+      print('Email: ${emailController.text}');
+      print('Password: ${passwordController.text}');
       context.read<SignupBloc>().add(
         CreateUserEvent(
           UserRequestModel(
