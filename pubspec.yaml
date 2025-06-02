@@ -85,6 +85,10 @@ flutter:
     - assets/images/elanza.png
     - assets/images/elanza_icon_light.png
     - assets/images/elanza_icon_dark.png
+    - assets/images/welcome_0.png
+    - assets/images/intro_0.png
+    - assets/images/intro_1.png
+    - assets/images/intro_2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
