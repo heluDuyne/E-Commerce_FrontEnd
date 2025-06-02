@@ -14,6 +14,8 @@ class UserResponseModel extends DataMapper<UserInfoEntity> {
   final DateTime? birthday;
   @JsonKey(name: 'image')
   final String? profilePictureUrl;
+  @JsonKey(name: 'is_verified')
+  final bool? isVerified;
 
   UserResponseModel({
     this.email,
@@ -22,6 +24,7 @@ class UserResponseModel extends DataMapper<UserInfoEntity> {
     this.address,
     this.profilePictureUrl,
     this.birthday,
+    this.isVerified,
   });
 
   factory UserResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -38,6 +41,7 @@ class UserResponseModel extends DataMapper<UserInfoEntity> {
       phoneNumber: phoneNumber ?? '',
       birthday: birthday ?? DateTime.now(),
       image: profilePictureUrl ?? '',
+      isVerified: isVerified ?? false,
     );
   }
 }

@@ -12,6 +12,11 @@ class SharedPrefManagementHelper {
     return sharedPreferences.getString(key) ?? '';
   }
 
+  String deleteKeyString(String key) {
+    sharedPreferences.remove(key);
+    return key;
+  } 
+
   Future<bool> saveKeyBool(String key, bool value) async {
     return await sharedPreferences.setBool(key, value);
   }

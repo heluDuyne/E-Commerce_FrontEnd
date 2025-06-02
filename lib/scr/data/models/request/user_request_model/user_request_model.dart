@@ -13,6 +13,8 @@ class UserRequestModel {
   final DateTime? birthday;
   @JsonKey(name: 'image')
   final String? profilePictureUrl;
+  @JsonKey(name: 'is_verified')
+  final bool? isVerified;
 
   const UserRequestModel({
     this.email,
@@ -22,6 +24,7 @@ class UserRequestModel {
     this.address,
     this.birthday,
     this.profilePictureUrl,
+    this.isVerified = false,
   });
 
   factory UserRequestModel.fromJson(Map<String, dynamic> json) =>

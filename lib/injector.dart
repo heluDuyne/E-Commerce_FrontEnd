@@ -3,18 +3,25 @@ import 'package:e_commerce_frontend/scr/core/network/dio_interceptors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/auth_datasource/auth_datasource.dart';
+import 'package:e_commerce_frontend/scr/data/datasources/user_datasource/user_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/login_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/resend_verification_code_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/signup_repository_imp.dart';
+import 'package:e_commerce_frontend/scr/data/repositories/user_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/verify_email_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/login_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/resend_verification_code_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/signup_repository.dart';
+import 'package:e_commerce_frontend/scr/domain/repositories/user_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/verify_email_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/resend_verification_code_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user_info_partially_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user_info_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/verify_email_usecase.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
@@ -62,25 +69,64 @@ Future<void> init() async {
     return dio;
   });
 
-  // Data sources, repositories, and use cases
-  // AuthDatasource, Login bloc, use case,...
+  //Data sources
   locator.registerLazySingleton<AuthDatasource>(
     () => AuthDatasource(locator()),
   );
+  locator.registerLazySingleton<UserDatasource>(
+    () => UserDatasource(locator()),
+  );
+
+  // Register repositories
   locator.registerLazySingleton<LoginRepository>(
     () => LoginRepositoryImp(datasource: locator()),
   );
-  locator.registerLazySingleton<LoginUsecase>(() => LoginUsecase(locator()));
-  locator.registerFactory<OAuthAuthenticationBloc>(
-    () => OAuthAuthenticationBloc(),
-  );
-  locator.registerFactory<LoginBloc>(() => LoginBloc(locator(), locator()));
-
-  // Register user bloc, use case,...
   locator.registerLazySingleton<SignupRepository>(
     () => SignupRepositoryImp(datasource: locator()),
   );
+  locator.registerLazySingleton<VerifyEmailRepository>(
+    () => VerifyEmailRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<ResendVerificationCodeRepository>(
+    () => ResendVerificationCodeRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImp(datasource: locator()),
+  );
+
+  //Register use cases
+  locator.registerLazySingleton<LoginUsecase>(() => LoginUsecase(locator()));
   locator.registerLazySingleton<SignupUsecase>(() => SignupUsecase(locator()));
+  locator.registerLazySingleton<VerifyEmailUsecase>(
+    () => VerifyEmailUsecase(verifyEmailRepository: locator()),
+  );
+  locator.registerLazySingleton<ResendVerificationCodeUsecase>(
+    () => ResendVerificationCodeUsecase(
+      resendVerificationCodeRepository: locator(),
+    ),
+  );
+  locator.registerLazySingleton<GetUserInfoUsecase>(
+    () => GetUserInfoUsecase(userRepository: locator()),
+  );
+  locator.registerLazySingleton<UpdateUserInfoUsecase>(
+    () => UpdateUserInfoUsecase(userRepository: locator()),
+  );
+  locator.registerLazySingleton<UpdateUserInfoPartiallyUsecase>(
+    () => UpdateUserInfoPartiallyUsecase(userRepository: locator()),
+  );
+
+  // Register Blocs
+  locator.registerFactory<OAuthAuthenticationBloc>(
+    () => OAuthAuthenticationBloc(),
+  );
+  locator.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      loginUsecase: locator(),
+      getUserInfoUsecase: locator(),
+      tokenManagerHelper: locator(),
+      sharedPrefManagementHelper: locator(),
+    ),
+  );
   locator.registerFactory<SignupBloc>(
     () => SignupBloc(
       signupUsecase: locator(),
@@ -89,26 +135,17 @@ Future<void> init() async {
       sharedPrefManagementHelper: locator(),
     ),
   );
-
-  // Email verification
-  locator.registerLazySingleton<VerifyEmailRepository>(
-    () => VerifyEmailRepositoryImp(datasource: locator()),
-  );
-  locator.registerLazySingleton<VerifyEmailUsecase>(
-    () => VerifyEmailUsecase(verifyEmailRepository: locator()),
-  );
-  locator.registerLazySingleton<ResendVerificationCodeRepository>(
-    () => ResendVerificationCodeRepositoryImp(datasource: locator()),
-  );
-  locator.registerLazySingleton<ResendVerificationCodeUsecase>(
-    () => ResendVerificationCodeUsecase(
-      resendVerificationCodeRepository: locator(),
-    ),
-  );
   locator.registerFactory<EmailVerifyBloc>(
     () => EmailVerifyBloc(
       verifyEmailUsecase: locator(),
       resendVerificationCodeUsecase: locator(),
+    ),
+  );
+  locator.registerLazySingleton<AuthenticationWatcherBloc>(
+    () => AuthenticationWatcherBloc(
+      getUserInfoUsecase: locator(),
+      tokenManagementHelper: locator(),
+      sharedPrefManagementHelper: locator(),
     ),
   );
 }

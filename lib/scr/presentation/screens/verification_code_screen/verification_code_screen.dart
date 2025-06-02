@@ -5,7 +5,6 @@ import 'package:e_commerce_frontend/scr/data/models/request/email_verify_request
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -124,7 +123,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
               switch (state) {
                 case EmailVerified():
                   context.router.pop();
-                  //TODO: Navigate to the Home screen or next step
+                //TODO: Navigate to the Home screen or next step
                 case EmailVerifyError():
                   context.router.pop();
                   ScaffoldMessenger.of(context).clearSnackBars();
@@ -242,6 +241,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                     errorBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     isDense: true,
+                                    filled: true,
+                                    fillColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
                                   ),
                                   textAlignVertical: TextAlignVertical.center,
                                 ),
