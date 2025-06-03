@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:e_commerce_frontend/scr/core/utils/constants/images.dart';
+import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
@@ -39,13 +40,7 @@ class LoginScreen extends StatelessWidget {
           return BlocListener<LoginBloc, LoginState>(
             listener: (context, state) {
               if (state is LogingIn) {
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (context) {
-                    return const Center(child: CircularProgressIndicator());
-                  },
-                );
+                showLoadingDialog(context: context);
               } else if (state is LoggedIn) {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).clearSnackBars();
@@ -215,15 +210,7 @@ class _BuildLoginWithOther extends StatelessWidget {
                 >(
                   listener: (context, state) {
                     if (state is Authenticating) {
-                      showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        },
-                      );
+                      showLoadingDialog(context: context);
                     }
                     if (state is Authenticated) {
                       Navigator.of(context).pop();
@@ -245,10 +232,7 @@ class _BuildLoginWithOther extends StatelessWidget {
                       TextButton(
                         child: Row(
                           children: [
-                            Image.asset(
-                              Images.googleIcon,
-                              width: 20,
-                            ),
+                            Image.asset(Images.googleIcon, width: 20),
                             const SizedBox(width: 5),
                             const Text("Google"),
                           ],
@@ -263,10 +247,7 @@ class _BuildLoginWithOther extends StatelessWidget {
                       TextButton(
                         child: Row(
                           children: [
-                            Image.asset(
-                              Images.facebookIcon,
-                              width: 20,
-                            ),
+                            Image.asset(Images.facebookIcon, width: 20),
                             const SizedBox(width: 5),
                             const Text("Facebook"),
                           ],
