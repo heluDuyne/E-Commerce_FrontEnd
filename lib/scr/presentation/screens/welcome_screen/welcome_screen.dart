@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 
+@RoutePage()
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -10,10 +12,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset(
-            'assets/images/welcome_0.png',
-            fit: BoxFit.cover,
-          ),
+          Image.asset('assets/images/welcome_0.png', fit: BoxFit.cover),
           Container(
             color: Colors.black.withOpacity(0.35), // Overlay
           ),
@@ -26,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text(
                     "Welcome to GemStore!",
                     style: TextStyle(
-                      color: ColorLight.titleText,
+                      color: ColorLight.background,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -36,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text(
                     "The home for a fashionista",
                     style: TextStyle(
-                      color: ColorLight.subtitleText,
+                      color: ColorLight.background2,
                       fontSize: 16,
                     ),
                     textAlign: TextAlign.center,
@@ -49,21 +48,25 @@ class WelcomeScreen extends StatelessWidget {
                         // Navigate to Intro
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorLight.buttonBackground,
-                        foregroundColor: ColorLight.buttonText,
+                        side: BorderSide(color: ColorLight.buttonText),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
+                        foregroundColor: ColorLight.buttonText,
+                        backgroundColor: ColorLight.chipText,
                       ),
-                      child: const Text("Get Started"),
+                      child: const Text(
+                        "Get Started",
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 40),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

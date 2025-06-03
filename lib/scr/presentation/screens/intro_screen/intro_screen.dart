@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 
+@RoutePage()
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 
@@ -50,7 +53,10 @@ class _IntroScreenState extends State<IntroScreen> {
               itemBuilder: (context, index) {
                 final item = introData[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                    vertical: 40,
+                  ),
                   child: Column(
                     children: [
                       const SizedBox(height: 32),
@@ -76,10 +82,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       Expanded(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: Image.asset(
-                            item['image']!,
-                            fit: BoxFit.cover,
-                          ),
+                          child: Image.asset(item['image']!, fit: BoxFit.cover),
                         ),
                       ),
                     ],
@@ -92,15 +95,16 @@ class _IntroScreenState extends State<IntroScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               introData.length,
-                  (index) => Container(
+              (index) => Container(
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 width: 8,
                 height: 8,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _currentIndex == index
-                      ? ColorLight.primary
-                      : ColorLight.subtitleText.withOpacity(0.4),
+                  color:
+                      _currentIndex == index
+                          ? ColorLight.primary
+                          : ColorLight.subtitleText.withOpacity(0.4),
                 ),
               ),
             ),
@@ -112,7 +116,7 @@ class _IntroScreenState extends State<IntroScreen> {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  // Navigate to Login screen
+                  context.router.push(const WelcomeRoute());
                 },
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: ColorLight.buttonText),
@@ -121,6 +125,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   foregroundColor: ColorLight.buttonText,
+                  backgroundColor: ColorLight.chipText,
                 ),
                 child: const Text("Shopping now"),
               ),

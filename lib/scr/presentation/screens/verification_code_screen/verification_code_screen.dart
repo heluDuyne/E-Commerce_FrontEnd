@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/email_verify_request_model/email_verify_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
@@ -124,7 +125,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
               switch (state) {
                 case EmailVerified():
                   context.router.pop();
-                //TODO: Navigate to the Home screen or next step
+                  context.router.replaceAll([const IntroRoute()]);
                 case EmailVerifyError():
                   context.router.pop();
                   ScaffoldMessenger.of(context).clearSnackBars();
@@ -153,9 +154,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     ),
                   );
                 default:
-                  showLoadingDialog(
-                    context: context,
-                  );
+                  showLoadingDialog(context: context);
               }
             },
             child: Scaffold(
