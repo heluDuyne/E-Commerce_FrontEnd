@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
+import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/user_request_model/user_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,6 @@ class SignUpScreen extends StatelessWidget {
 
   void _signUp(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      // Handle sign-up logic
-      print('Email: ${emailController.text}');
-      print('Password: ${passwordController.text}');
       context.read<SignupBloc>().add(
         CreateUserEvent(
           UserRequestModel(
@@ -64,11 +62,8 @@ class SignUpScreen extends StatelessWidget {
                     SnackBar(content: Text("Sign Up Failed: ${state.message}")),
                   );
                 default:
-                  showDialog(
+                  showLoadingDialog(
                     context: context,
-                    builder: (context) {
-                      return const Center(child: CircularProgressIndicator());
-                    },
                   );
               }
             },

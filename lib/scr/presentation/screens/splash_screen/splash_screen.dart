@@ -34,9 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
         switch (state) {
           case Authenticated():
             showToast(msg: state.message, textColor: Colors.green);
-            print('User authenticated');
-          // context.router
-          //     .replace(DashboardRoute(user: authenticatedState.user!));
+            context.router.replace(const ProfileSettingRoute());
           case Unauthenticated():
             showToast(msg: state.message, textColor: Colors.red);
             context.router.replace(LoginRoute());

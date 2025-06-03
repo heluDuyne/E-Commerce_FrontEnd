@@ -26,6 +26,7 @@ import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_ver
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -146,6 +147,14 @@ Future<void> init() async {
       getUserInfoUsecase: locator(),
       tokenManagementHelper: locator(),
       sharedPrefManagementHelper: locator(),
+    ),
+  );
+  locator.registerFactory<UserProfileSettingBloc>(
+    () => UserProfileSettingBloc(
+      sharedPrefManagementHelper: locator(),
+      getUserInfoUsecase: locator(),
+      updateUserProfilePartiallyUsecase: locator(),
+      updateUserProfileUsecase: locator(),
     ),
   );
 }
