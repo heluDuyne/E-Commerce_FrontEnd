@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/injector.dart';
+import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/email_verify_request_model/email_verify_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
 import 'package:flutter/material.dart';
@@ -152,11 +153,8 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                     ),
                   );
                 default:
-                  showDialog(
+                  showLoadingDialog(
                     context: context,
-                    builder: (context) {
-                      return const Center(child: CircularProgressIndicator());
-                    },
                   );
               }
             },
@@ -245,6 +243,10 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                                     fillColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                   ),
+                                  // cursorColor: Colors.black,
+                                  // cursorHeight: 24,
+                                  // cursorWidth: 1.5,
+                                  showCursor: false,
                                   textAlignVertical: TextAlignVertical.center,
                                 ),
                               ),
