@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:auto_route/auto_route.dart' as _i19;
 import 'package:e_commerce_frontend/scr/presentation/screens/checkout_card_screen/checkout_card_screen.dart'
 =======
@@ -19,6 +20,9 @@ import 'package:e_commerce_frontend/scr/presentation/screens/create_new_password
 >>>>>>> 995a847 ( imp. Widgets)
 =======
 import 'package:auto_route/auto_route.dart' as _i15;
+=======
+import 'package:auto_route/auto_route.dart' as _i18;
+>>>>>>> 31ee4c1 ( imp. new screens)
 import 'package:e_commerce_frontend/scr/presentation/screens/checkout_card_screen/checkout_card_screen.dart'
 >>>>>>> 4ccd20e (.imp new screens)
     as _i1;
@@ -83,11 +87,17 @@ import 'package:e_commerce_frontend/scr/presentation/screens/order_info_delivere
     as _i11;
 import 'package:e_commerce_frontend/scr/presentation/screens/order_info_screen/order_info_screen.dart'
     as _i12;
-import 'package:e_commerce_frontend/scr/presentation/screens/sign_up_screen/sign_up_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/product_found_screen/product_found_screen.dart'
     as _i13;
-import 'package:e_commerce_frontend/scr/presentation/screens/verification_code_screen/verification_code_screen.dart'
+import 'package:e_commerce_frontend/scr/presentation/screens/product_full_screen/product_full_screen.dart'
     as _i14;
-import 'package:flutter/material.dart' as _i16;
+import 'package:e_commerce_frontend/scr/presentation/screens/sign_up_screen/sign_up_screen.dart'
+    as _i15;
+import 'package:e_commerce_frontend/scr/presentation/screens/verification_code_screen/verification_code_screen.dart'
+    as _i16;
+import 'package:e_commerce_frontend/scr/presentation/screens/your_cart_screen/your_cart_screen.dart'
+    as _i17;
+import 'package:flutter/material.dart' as _i19;
 
 /// generated route for
 <<<<<<< HEAD
@@ -106,14 +116,18 @@ class CreateNewPasswordRoute extends _i7.PageRouteInfo<void> {
 >>>>>>> 995a847 ( imp. Widgets)
 =======
 /// [_i1.CheckoutCardScreen]
-class CheckoutCardRoute extends _i15.PageRouteInfo<void> {
-  const CheckoutCardRoute({List<_i15.PageRouteInfo>? children})
+class CheckoutCardRoute extends _i18.PageRouteInfo<void> {
+  const CheckoutCardRoute({List<_i18.PageRouteInfo>? children})
     : super(CheckoutCardRoute.name, initialChildren: children);
 
   static const String name = 'CheckoutCardRoute';
 
+<<<<<<< HEAD
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i1.CheckoutCardScreen();
@@ -129,18 +143,27 @@ class CheckoutCompleteRoute extends _i19.PageRouteInfo<void> {
   const CheckoutCompleteRoute({List<_i19.PageRouteInfo>? children})
 =======
 /// [_i2.CheckoutCompleteScreen]
+<<<<<<< HEAD
 class CheckoutCompleteRoute extends _i15.PageRouteInfo<void> {
   const CheckoutCompleteRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class CheckoutCompleteRoute extends _i18.PageRouteInfo<void> {
+  const CheckoutCompleteRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(CheckoutCompleteRoute.name, initialChildren: children);
 
   static const String name = 'CheckoutCompleteRoute';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
 =======
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i2.CheckoutCompleteScreen();
@@ -151,21 +174,30 @@ class CheckoutCompleteRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.CheckoutScreen]
 <<<<<<< HEAD
+<<<<<<< HEAD
 class CheckoutRoute extends _i19.PageRouteInfo<void> {
   const CheckoutRoute({List<_i19.PageRouteInfo>? children})
 =======
 class CheckoutRoute extends _i15.PageRouteInfo<void> {
   const CheckoutRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class CheckoutRoute extends _i18.PageRouteInfo<void> {
+  const CheckoutRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(CheckoutRoute.name, initialChildren: children);
 
   static const String name = 'CheckoutRoute';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
 =======
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i3.CheckoutScreen();
@@ -176,21 +208,30 @@ class CheckoutRoute extends _i15.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.CreateNewPasswordScreen]
 <<<<<<< HEAD
+<<<<<<< HEAD
 class CreateNewPasswordRoute extends _i19.PageRouteInfo<void> {
   const CreateNewPasswordRoute({List<_i19.PageRouteInfo>? children})
 =======
 class CreateNewPasswordRoute extends _i15.PageRouteInfo<void> {
   const CreateNewPasswordRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class CreateNewPasswordRoute extends _i18.PageRouteInfo<void> {
+  const CreateNewPasswordRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(CreateNewPasswordRoute.name, initialChildren: children);
 
   static const String name = 'CreateNewPasswordRoute';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
 =======
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i4.CreateNewPasswordScreen();
@@ -200,6 +241,7 @@ class CreateNewPasswordRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ForgotPasswordScreen]
+<<<<<<< HEAD
 <<<<<<< HEAD
 class ForgotPasswordRoute extends _i19.PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({_i20.Key? key, List<_i19.PageRouteInfo>? children})
@@ -212,6 +254,10 @@ class ForgotPasswordRoute extends _i7.PageRouteInfo<ForgotPasswordRouteArgs> {
 class ForgotPasswordRoute extends _i15.PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({_i16.Key? key, List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class ForgotPasswordRoute extends _i18.PageRouteInfo<ForgotPasswordRouteArgs> {
+  ForgotPasswordRoute({_i19.Key? key, List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(
         ForgotPasswordRoute.name,
         args: ForgotPasswordRouteArgs(key: key),
@@ -222,6 +268,7 @@ class ForgotPasswordRoute extends _i15.PageRouteInfo<ForgotPasswordRouteArgs> {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
 =======
   static _i7.PageInfo page = _i7.PageInfo(
@@ -229,6 +276,9 @@ class ForgotPasswordRoute extends _i15.PageRouteInfo<ForgotPasswordRouteArgs> {
 =======
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       final args = data.argsAs<ForgotPasswordRouteArgs>(
@@ -244,6 +294,7 @@ class ForgotPasswordRouteArgs {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   final _i20.Key? key;
 =======
   final _i8.Key? key;
@@ -251,6 +302,9 @@ class ForgotPasswordRouteArgs {
 =======
   final _i16.Key? key;
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  final _i19.Key? key;
+>>>>>>> 31ee4c1 ( imp. new screens)
 
   @override
   String toString() {
@@ -281,14 +335,20 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
   const LoginRoute({List<_i7.PageRouteInfo>? children})
 =======
 /// [_i6.LoginScreen]
+<<<<<<< HEAD
 class LoginRoute extends _i15.PageRouteInfo<void> {
   const LoginRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class LoginRoute extends _i18.PageRouteInfo<void> {
+  const LoginRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(LoginRoute.name, initialChildren: children);
 >>>>>>> 995a847 ( imp. Widgets)
 
   static const String name = 'IntroRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
@@ -300,6 +360,9 @@ class LoginRoute extends _i15.PageRouteInfo<void> {
       return const _i6.IntroScreen();
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return _i6.LoginScreen();
@@ -360,13 +423,19 @@ class MyInfoRoute extends _i19.PageRouteInfo<void> {
   const MyInfoRoute({List<_i19.PageRouteInfo>? children})
 =======
 /// [_i7.MyInfoScreen]
+<<<<<<< HEAD
 class MyInfoRoute extends _i15.PageRouteInfo<void> {
   const MyInfoRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class MyInfoRoute extends _i18.PageRouteInfo<void> {
+  const MyInfoRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(MyInfoRoute.name, initialChildren: children);
 
   static const String name = 'MyInfoRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
@@ -374,6 +443,9 @@ class MyInfoRoute extends _i15.PageRouteInfo<void> {
       return const _i8.MyInfoScreen();
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i7.MyInfoScreen();
@@ -389,13 +461,19 @@ class MyOrderRoute extends _i19.PageRouteInfo<void> {
   const MyOrderRoute({List<_i19.PageRouteInfo>? children})
 =======
 /// [_i8.MyOrderScreen]
+<<<<<<< HEAD
 class MyOrderRoute extends _i15.PageRouteInfo<void> {
   const MyOrderRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class MyOrderRoute extends _i18.PageRouteInfo<void> {
+  const MyOrderRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(MyOrderRoute.name, initialChildren: children);
 
   static const String name = 'MyOrderRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
@@ -403,6 +481,9 @@ class MyOrderRoute extends _i15.PageRouteInfo<void> {
       return const _i9.MyOrderScreen();
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i8.MyOrderScreen();
@@ -418,13 +499,19 @@ class MyWishlistRoute extends _i19.PageRouteInfo<void> {
   const MyWishlistRoute({List<_i19.PageRouteInfo>? children})
 =======
 /// [_i9.MyWishlistScreen]
+<<<<<<< HEAD
 class MyWishlistRoute extends _i15.PageRouteInfo<void> {
   const MyWishlistRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class MyWishlistRoute extends _i18.PageRouteInfo<void> {
+  const MyWishlistRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(MyWishlistRoute.name, initialChildren: children);
 
   static const String name = 'MyWishlistRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
@@ -432,6 +519,9 @@ class MyWishlistRoute extends _i15.PageRouteInfo<void> {
       return const _i10.MyWishlistScreen();
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i9.MyWishlistScreen();
@@ -447,13 +537,19 @@ class NotificationRoute extends _i19.PageRouteInfo<void> {
   const NotificationRoute({List<_i19.PageRouteInfo>? children})
 =======
 /// [_i10.NotificationScreen]
+<<<<<<< HEAD
 class NotificationRoute extends _i15.PageRouteInfo<void> {
   const NotificationRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+class NotificationRoute extends _i18.PageRouteInfo<void> {
+  const NotificationRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(NotificationRoute.name, initialChildren: children);
 
   static const String name = 'NotificationRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
@@ -461,6 +557,9 @@ class NotificationRoute extends _i15.PageRouteInfo<void> {
       return const _i11.NotificationScreen();
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       return const _i10.NotificationScreen();
@@ -481,12 +580,16 @@ class OrderInfoDeliveredRoute
 =======
 /// [_i11.OrderInfoDeliveredScreen]
 class OrderInfoDeliveredRoute
-    extends _i15.PageRouteInfo<OrderInfoDeliveredRouteArgs> {
+    extends _i18.PageRouteInfo<OrderInfoDeliveredRouteArgs> {
   OrderInfoDeliveredRoute({
-    _i16.Key? key,
+    _i19.Key? key,
     required String orderNumber,
+<<<<<<< HEAD
     List<_i15.PageRouteInfo>? children,
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+    List<_i18.PageRouteInfo>? children,
+>>>>>>> 31ee4c1 ( imp. new screens)
   }) : super(
          OrderInfoDeliveredRoute.name,
          args: OrderInfoDeliveredRouteArgs(key: key, orderNumber: orderNumber),
@@ -496,6 +599,7 @@ class OrderInfoDeliveredRoute
   static const String name = 'OrderInfoDeliveredRoute';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
     builder: (data) {
@@ -503,6 +607,9 @@ class OrderInfoDeliveredRoute
       return _i12.OrderInfoDeliveredScreen(
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       final args = data.argsAs<OrderInfoDeliveredRouteArgs>();
@@ -519,10 +626,14 @@ class OrderInfoDeliveredRouteArgs {
   const OrderInfoDeliveredRouteArgs({this.key, required this.orderNumber});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   final _i20.Key? key;
 =======
   final _i16.Key? key;
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  final _i19.Key? key;
+>>>>>>> 31ee4c1 ( imp. new screens)
 
   final String orderNumber;
 
@@ -555,12 +666,16 @@ class OrderInfoRoute extends _i19.PageRouteInfo<OrderInfoRouteArgs> {
 
 /// generated route for
 /// [_i12.OrderInfoScreen]
-class OrderInfoRoute extends _i15.PageRouteInfo<OrderInfoRouteArgs> {
+class OrderInfoRoute extends _i18.PageRouteInfo<OrderInfoRouteArgs> {
   OrderInfoRoute({
-    _i16.Key? key,
+    _i19.Key? key,
     required String orderNumber,
+<<<<<<< HEAD
     List<_i15.PageRouteInfo>? children,
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+    List<_i18.PageRouteInfo>? children,
+>>>>>>> 31ee4c1 ( imp. new screens)
   }) : super(
          OrderInfoRoute.name,
          args: OrderInfoRouteArgs(key: key, orderNumber: orderNumber),
@@ -570,6 +685,7 @@ class OrderInfoRoute extends _i15.PageRouteInfo<OrderInfoRouteArgs> {
   static const String name = 'OrderInfoRoute';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
     builder: (data) {
@@ -577,6 +693,9 @@ class OrderInfoRoute extends _i15.PageRouteInfo<OrderInfoRouteArgs> {
       return _i13.OrderInfoScreen(key: args.key, orderNumber: args.orderNumber);
 =======
   static _i15.PageInfo page = _i15.PageInfo(
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       final args = data.argsAs<OrderInfoRouteArgs>();
@@ -590,10 +709,14 @@ class OrderInfoRouteArgs {
   const OrderInfoRouteArgs({this.key, required this.orderNumber});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   final _i20.Key? key;
 =======
   final _i16.Key? key;
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  final _i19.Key? key;
+>>>>>>> 31ee4c1 ( imp. new screens)
 
   final String orderNumber;
 
@@ -643,10 +766,48 @@ class SignUpRoute extends _i7.PageRouteInfo<SignUpRouteArgs> {
 }
 
 /// generated route for
+<<<<<<< HEAD
 /// [_i13.SignUpScreen]
 class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({_i16.Key? key, List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+/// [_i13.ProductFoundScreen]
+class ProductFoundRoute extends _i18.PageRouteInfo<void> {
+  const ProductFoundRoute({List<_i18.PageRouteInfo>? children})
+    : super(ProductFoundRoute.name, initialChildren: children);
+
+  static const String name = 'ProductFoundRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i13.ProductFoundScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i14.ProductFullScreen]
+class ProductFullRoute extends _i18.PageRouteInfo<void> {
+  const ProductFullRoute({List<_i18.PageRouteInfo>? children})
+    : super(ProductFullRoute.name, initialChildren: children);
+
+  static const String name = 'ProductFullRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i14.ProductFullScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i15.SignUpScreen]
+class SignUpRoute extends _i18.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({_i19.Key? key, List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(
         SignUpRoute.name,
         args: SignUpRouteArgs(key: key),
@@ -657,6 +818,7 @@ class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
 =======
   static _i7.PageInfo page = _i7.PageInfo(
@@ -664,16 +826,23 @@ class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
 =======
   static _i15.PageInfo page = _i15.PageInfo(
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+>>>>>>> 31ee4c1 ( imp. new screens)
     name,
     builder: (data) {
       final args = data.argsAs<SignUpRouteArgs>(
         orElse: () => const SignUpRouteArgs(),
       );
 <<<<<<< HEAD
+<<<<<<< HEAD
       return _i15.SignUpScreen(key: args.key);
 =======
       return _i13.SignUpScreen(key: args.key);
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+      return _i15.SignUpScreen(key: args.key);
+>>>>>>> 31ee4c1 ( imp. new screens)
     },
   );
 }
@@ -683,6 +852,7 @@ class SignUpRouteArgs {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   final _i20.Key? key;
 =======
   final _i8.Key? key;
@@ -690,6 +860,9 @@ class SignUpRouteArgs {
 =======
   final _i16.Key? key;
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  final _i19.Key? key;
+>>>>>>> 31ee4c1 ( imp. new screens)
 
   @override
   String toString() {
@@ -710,6 +883,7 @@ class SignUpRouteArgs {
 /// generated route for
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /// [_i16.SplashScreen]
 class SplashRoute extends _i19.PageRouteInfo<void> {
   const SplashRoute({List<_i19.PageRouteInfo>? children})
@@ -723,6 +897,11 @@ class VerificationCodeRoute extends _i7.PageRouteInfo<void> {
 class VerificationCodeRoute extends _i15.PageRouteInfo<void> {
   const VerificationCodeRoute({List<_i15.PageRouteInfo>? children})
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+/// [_i16.VerificationCodeScreen]
+class VerificationCodeRoute extends _i18.PageRouteInfo<void> {
+  const VerificationCodeRoute({List<_i18.PageRouteInfo>? children})
+>>>>>>> 31ee4c1 ( imp. new screens)
     : super(VerificationCodeRoute.name, initialChildren: children);
 >>>>>>> 995a847 ( imp. Widgets)
 
@@ -756,6 +935,7 @@ class VerificationCodeRoute
 
   static const String name = 'VerificationCodeRoute';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   static _i19.PageInfo page = _i19.PageInfo(
     name,
@@ -823,6 +1003,28 @@ class WidgetTestingRoute extends _i7.PageRouteInfo<void> {
     builder: (data) {
       return const _i14.VerificationCodeScreen();
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i16.VerificationCodeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i17.YourCartScreen]
+class YourCartRoute extends _i18.PageRouteInfo<void> {
+  const YourCartRoute({List<_i18.PageRouteInfo>? children})
+    : super(YourCartRoute.name, initialChildren: children);
+
+  static const String name = 'YourCartRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      return const _i17.YourCartScreen();
+>>>>>>> 31ee4c1 ( imp. new screens)
     },
   );
 }

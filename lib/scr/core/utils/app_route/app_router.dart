@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
-import 'package:e_commerce_frontend/scr/presentation/screens/order_info_delivered_screen/order_info_delivered_screen.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -18,6 +17,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CheckoutCardRoute.page),
     AutoRoute(page: CheckoutCompleteRoute.page),
 <<<<<<< HEAD
+<<<<<<< HEAD
     AutoRoute(page: MyOrderRoute.page),
     AutoRoute(page: OrderInfoRoute.page),
     AutoRoute(page: MyInfoRoute.page),
@@ -31,5 +31,12 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: MyInfoRoute.page),
     AutoRoute(page: OrderInfoDeliveredRoute.page),
 >>>>>>> 4ccd20e (.imp new screens)
+=======
+    AutoRoute(page: MyOrderRoute.page),
+    AutoRoute(page: OrderInfoRoute.page),
+    AutoRoute(page: MyInfoRoute.page),
+    AutoRoute(page: OrderInfoDeliveredRoute.page),
+    AutoRoute(page:ProductFoundRoute.page, initial: true )
+>>>>>>> 31ee4c1 ( imp. new screens)
   ];
 }
