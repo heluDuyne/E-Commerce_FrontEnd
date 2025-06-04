@@ -31,18 +31,9 @@ class ColorLight {
   static const Color chipBackground = Color(0xFFE0E0E0);
   static const Color chipText = Color(0xFF757575);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   // Icon Colors
   static const Color iconPrimary = Color(0xFF000000);
 
-=======
->>>>>>> 995a847 ( imp. Widgets)
-=======
-  // Icon Colors
-  static const Color iconPrimary = Color(0xFF000000);
-
->>>>>>> 4ccd20e (.imp new screens)
   //Button
   static const Color buttonText = Color(0xFFFFFFFF);
   static const Color buttonBackground = Color(0xFF000000);
@@ -106,18 +97,9 @@ class ColorDark {
   static const Color chipBackground = Color(0xFF333333);
   static const Color chipText = Color(0xFFBDBDBD);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   // Icon Colors
   static const Color iconPrimary = Color(0xFFF5F5F5);
 
-=======
->>>>>>> 995a847 ( imp. Widgets)
-=======
-  // Icon Colors
-  static const Color iconPrimary = Color(0xFFF5F5F5);
-
->>>>>>> 4ccd20e (.imp new screens)
   //Button
   static const Color buttonText = Color(0xFF121212);
   static const Color buttonBackground = Color(0xFFE0E0E0);
@@ -141,10 +123,6 @@ class ColorDark {
   static const Color labelText = Color(0xFFBDBDBD);
   static const Color orderCardBackground = Color(0xFF353945);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4ccd20e (.imp new screens)
   // Order Status Background
   static const Color orderStatusBackground = Color(0xFF1E1E1E);
 
@@ -153,11 +131,4 @@ class ColorDark {
 
   // Order Section Text Color
   static const Color orderSectionTextColor = Color(0xFFBDBDBD);
-<<<<<<< HEAD
-=======
-  //banner
-  static const Color bannerBackground = Color(0xFF424242);
->>>>>>> 995a847 ( imp. Widgets)
-=======
->>>>>>> 4ccd20e (.imp new screens)
 }

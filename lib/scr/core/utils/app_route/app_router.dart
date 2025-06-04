@@ -16,8 +16,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: VerificationCodeRoute.page),
     AutoRoute(page: CheckoutCardRoute.page),
     AutoRoute(page: CheckoutCompleteRoute.page),
-<<<<<<< HEAD
-<<<<<<< HEAD
     AutoRoute(page: MyOrderRoute.page),
     AutoRoute(page: OrderInfoRoute.page),
     AutoRoute(page: MyInfoRoute.page),
@@ -25,18 +23,5 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: OrderInfoDeliveredRoute.page),
     AutoRoute(page: WelcomeRoute.page),
     AutoRoute(page: IntroRoute.page),
-=======
-    AutoRoute(page: MyOrderRoute.page, initial: true),
-    AutoRoute(page: OrderInfoRoute.page),
-    AutoRoute(page: MyInfoRoute.page),
-    AutoRoute(page: OrderInfoDeliveredRoute.page),
->>>>>>> 4ccd20e (.imp new screens)
-=======
-    AutoRoute(page: MyOrderRoute.page),
-    AutoRoute(page: OrderInfoRoute.page),
-    AutoRoute(page: MyInfoRoute.page),
-    AutoRoute(page: OrderInfoDeliveredRoute.page),
-    AutoRoute(page:ProductFoundRoute.page, initial: true )
->>>>>>> 31ee4c1 ( imp. new screens)
   ];
 }
