@@ -91,6 +91,27 @@ flutter:
     - assets/images/intro_0.png
     - assets/images/intro_1.png
     - assets/images/intro_2.png
+    - assets/images/autumn_collection_banner.jpg
+    - assets/images/hangout_party_banner.png
+    - assets/images/product1.jpg
+    - assets/images/product2.png
+    - assets/images/product3.png
+    - assets/images/recommended1.png
+    - assets/images/recommended2.png
+    - assets/images/top1.png
+    - assets/images/top2.png
+    - assets/images/top3.png
+    - assets/images/top4.png
+    - assets/images/autumn1.png
+    - assets/images/autumn2.png
+    - assets/images/autumn3.png
+    - assets/images/autumn4.png
+    - assets/images/discover_banner_1.png # CLOTHING
+    - assets/images/discover_banner_2.png # ACCESSORIES
+    - assets/images/discover_banner_3.png # SHOES
+    - assets/images/discover_banner_4.png # COLLECTION
+    - assets/images/popular1.png
+    - assets/images/popular2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
