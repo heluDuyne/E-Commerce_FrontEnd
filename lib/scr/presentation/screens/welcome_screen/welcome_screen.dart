@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:e_commerce_frontend/scr/presentation/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 
@@ -45,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigate to Intro
+                        context.router.replaceAll([const HomeRoute()]);
                       },
                       style: ElevatedButton.styleFrom(
                         side: BorderSide(color: ColorLight.buttonText),
