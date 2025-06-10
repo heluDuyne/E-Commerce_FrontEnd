@@ -20,6 +20,7 @@ class OrderInfoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         title: Text(

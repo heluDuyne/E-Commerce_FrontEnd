@@ -105,6 +105,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor: backgroundColor,
         elevation: 0,
         leadingWidth: responsive.setWidth(55), // Reduced width

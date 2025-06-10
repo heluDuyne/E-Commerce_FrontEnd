@@ -36,6 +36,7 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
       backgroundColor:
           isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,

@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Welcome to Elanza!')),
                 );
-                // context.router.replace(const HomeRoute());
+                context.router.replace(const HomeRoute());
               } else if (state is LoginError) {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).clearSnackBars();

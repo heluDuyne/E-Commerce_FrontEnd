@@ -7,7 +7,7 @@ import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/
 
 @RoutePage()
 class YourCartScreen extends StatelessWidget {
-  const YourCartScreen({Key? key}) : super(key: key);
+  const YourCartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +57,7 @@ class YourCartScreen extends StatelessWidget {
       backgroundColor:
           isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,
@@ -79,7 +80,7 @@ class YourCartScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Container(
+          child: SizedBox(
             width: responsive.setWidth(370),
             child: Padding(
               padding: EdgeInsets.all(responsive.setWidth(0)),
@@ -173,8 +174,8 @@ class _CartItemCard extends StatelessWidget {
     required this.checked,
     required this.isDarkMode,
     required this.responsive,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -341,8 +342,8 @@ class _CartSummary extends StatelessWidget {
     required this.subtotal,
     required this.isDarkMode,
     required this.responsive,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
