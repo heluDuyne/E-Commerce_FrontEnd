@@ -66,6 +66,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     return Scaffold(
       backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         elevation: 0,
         backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
         title: Text(

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
@@ -82,10 +83,13 @@ class HomeScreen extends StatelessWidget {
     ];
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
+      backgroundColor:
+          isDarkMode ? ColorDark.background : ColorLight.background,
       drawer: const SidebarWidget(),
       appBar: AppBar(
-        backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
+        forceMaterialTransparency: true,
+        backgroundColor:
+            isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,
         title: Text(
           'Gemstore',
@@ -109,10 +113,12 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.notifications_none,
-              color: isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
+              color:
+                  isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
             ),
             onPressed: () {
-              // context.router.push(const NotificationRoute());
+              print("Notification clicked");
+              context.router.push(const NotificationRoute());
             },
           ),
         ],
@@ -123,222 +129,242 @@ class HomeScreen extends StatelessWidget {
           // handle bottom nav tap
         },
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: responsive.setWidth(16)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: responsive.setHeight(16)),
-
-            // Categories
-            SizedBox(
-              height: responsive.setHeight(80),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                separatorBuilder: (_, __) => SizedBox(width: responsive.setWidth(16)),
-                itemBuilder: (context, index) {
-                  final cat = categories[index];
-                  return CategoryButton(
-                    icon: cat['icon'] as IconData,
-                    label: cat['label']!,
-                    isSelected: index == 0,
-                    onTap: () {},
-                  );
-                },
+      body: Padding(
+        padding: EdgeInsets.all(responsive.setWidth(16)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Categories
+              SizedBox(
+                width: double.infinity,
+                height: responsive.setHeight(90),
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  separatorBuilder:
+                      (_, __) => SizedBox(width: responsive.setWidth(20)),
+                  itemBuilder: (context, index) {
+                    final cat = categories[index];
+                    return CategoryButton(
+                      icon: cat['icon'] as IconData,
+                      label: cat['label']!,
+                      isSelected: index == 0,
+                      onTap: () {},
+                    );
+                  },
+                ),
               ),
-            ),
 
-            SizedBox(height: responsive.setHeight(16)),
+              SizedBox(height: responsive.setHeight(16)),
 
-            // Banner
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Stack(
-                children: [
-                  Image.asset(
-                    'assets/images/autumn_collection_banner.png',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: responsive.setHeight(200),
-                  ),
-                  Positioned(
-                    right: 16,
-                    top: 16,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Autumn\nCollection\n2021',
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: responsive.setWidth(20),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+              // Banner
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      'assets/images/autumn_collection_banner.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: responsive.setHeight(200),
                     ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: responsive.setHeight(24)),
-
-            _buildSectionHeader('Feature Products', responsive, isDarkMode, onTap: () {}),
-            SizedBox(height: responsive.setHeight(12)),
-
-            SizedBox(
-              height: responsive.setHeight(240),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: products.length,
-                separatorBuilder: (_, __) => SizedBox(width: responsive.setWidth(16)),
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return ProductItem(
-                    imageUrl: product['image']!,
-                    title: product['title']!,
-                    price: product['price'] as double,
-                    isFavorite: false,
-                    onTap: () {},
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: responsive.setHeight(24)),
-
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Stack(
-                children: [
-                  Image.asset(
-                    'assets/images/hangout_party_banner.png',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: responsive.setHeight(180),
-                  ),
-                  Positioned(
-                    left: 16,
-                    top: 24,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '| NEW COLLECTION',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: responsive.setWidth(12),
+                    Positioned(
+                      right: 16,
+                      top: 16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Autumn\nCollection\n2021',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: responsive.setWidth(20),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'HANG OUT\n& PARTY',
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: responsive.setWidth(18),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            // Recommended Section
-            _buildSectionHeader('Recommended', responsive, isDarkMode, onTap: () {}),
-            SizedBox(height: responsive.setHeight(12)),
 
-            SizedBox(
-              height: responsive.setHeight(240),
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: recommendedProducts.length,
-                separatorBuilder: (_, __) => SizedBox(width: responsive.setWidth(16)),
-                itemBuilder: (context, index) {
-                  final product = recommendedProducts[index];
-                  return ProductItem(
-                    imageUrl: product['image'] as String,
-                    title: product['title'] as String,
-                    price: product['price'] as double,
-                    isFavorite: false,
-                    onTap: () {},
-                  );
-                },
+              SizedBox(height: responsive.setHeight(24)),
+
+              _buildSectionHeader(
+                'Feature Products',
+                responsive,
+                isDarkMode,
+                onTap: () {},
               ),
-            ),
-            SizedBox(height: responsive.setHeight(24)),
+              SizedBox(height: responsive.setHeight(12)),
 
-            // Top Collection
-            _buildSectionHeader('Top Collection', responsive, isDarkMode, onTap: () {}),
-            SizedBox(height: responsive.setHeight(12)),
+              SizedBox(
+                height: responsive.setHeight(240),
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: products.length,
+                  separatorBuilder:
+                      (_, __) => SizedBox(width: responsive.setWidth(16)),
+                  itemBuilder: (context, index) {
+                    final product = products[index];
+                    return ProductItem(
+                      imageUrl: product['image']!,
+                      title: product['title']!,
+                      price: product['price'] as double,
+                      isFavorite: false,
+                      onTap: () {},
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: responsive.setHeight(24)),
 
-            GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              crossAxisSpacing: responsive.setWidth(12),
-              mainAxisSpacing: responsive.setHeight(12),
-              physics: const NeverScrollableScrollPhysics(),
-              childAspectRatio: 0.75,
-              children: topCollections.map((collection) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Container(
-                    color: Colors.grey.shade200,
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.asset(
-                            collection['image'],
-                            fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      'assets/images/hangout_party_banner.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: responsive.setHeight(180),
+                    ),
+                    Positioned(
+                      left: 16,
+                      top: 24,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '| NEW COLLECTION',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: responsive.setWidth(12),
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 12,
-                          left: 12,
-                          right: 12,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          const SizedBox(height: 4),
+                          Text(
+                            'HANG OUT\n& PARTY',
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.bold,
+                              fontSize: responsive.setWidth(18),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Recommended Section
+              _buildSectionHeader(
+                'Recommended',
+                responsive,
+                isDarkMode,
+                onTap: () {},
+              ),
+              SizedBox(height: responsive.setHeight(12)),
+
+              SizedBox(
+                height: responsive.setHeight(240),
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: recommendedProducts.length,
+                  separatorBuilder:
+                      (_, __) => SizedBox(width: responsive.setWidth(16)),
+                  itemBuilder: (context, index) {
+                    final product = recommendedProducts[index];
+                    return ProductItem(
+                      imageUrl: product['image'] as String,
+                      title: product['title'] as String,
+                      price: product['price'] as double,
+                      isFavorite: false,
+                      onTap: () {},
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: responsive.setHeight(24)),
+
+              // Top Collection
+              _buildSectionHeader(
+                'Top Collection',
+                responsive,
+                isDarkMode,
+                onTap: () {},
+              ),
+              SizedBox(height: responsive.setHeight(12)),
+
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                crossAxisSpacing: responsive.setWidth(12),
+                mainAxisSpacing: responsive.setHeight(12),
+                physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: 0.75,
+                children:
+                    topCollections.map((collection) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Container(
+                          color: Colors.grey.shade200,
+                          child: Stack(
                             children: [
-                              if (collection['label'] != null)
-                                Text(
-                                  collection['label'],
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: responsive.setWidth(12),
-                                  ),
+                              Positioned.fill(
+                                child: Image.asset(
+                                  collection['image'],
+                                  fit: BoxFit.cover,
                                 ),
-                              Text(
-                                collection['title'],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: responsive.setWidth(14),
+                              ),
+                              Positioned(
+                                bottom: 12,
+                                left: 12,
+                                right: 12,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (collection['label'] != null)
+                                      Text(
+                                        collection['label'],
+                                        style: TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: responsive.setWidth(12),
+                                        ),
+                                      ),
+                                    Text(
+                                      collection['title'],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: responsive.setWidth(14),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
+                      );
+                    }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildSectionHeader(
-      String title,
-      ResponsiveUiConfig responsive,
-      bool isDarkMode, {
-        required VoidCallback onTap,
-      }) {
+    String title,
+    ResponsiveUiConfig responsive,
+    bool isDarkMode, {
+    required VoidCallback onTap,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -355,9 +381,10 @@ class HomeScreen extends StatelessWidget {
           child: Text(
             "Show all",
             style: TextStyle(
-              color: isDarkMode
-                  ? ColorDark.sectionActionText
-                  : ColorLight.sectionActionText,
+              color:
+                  isDarkMode
+                      ? ColorDark.sectionActionText
+                      : ColorLight.sectionActionText,
               fontSize: responsive.setWidth(14),
             ),
           ),

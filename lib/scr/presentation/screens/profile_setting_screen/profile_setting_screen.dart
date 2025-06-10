@@ -79,6 +79,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            forceMaterialTransparency: true,
             backgroundColor:
                 isDarkMode ? ColorDark.background : ColorLight.background,
             title: Text(

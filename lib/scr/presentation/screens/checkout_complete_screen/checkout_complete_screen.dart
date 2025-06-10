@@ -19,6 +19,7 @@ class CheckoutCompleteScreen extends StatelessWidget {
       backgroundColor:
           isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,
@@ -68,9 +69,9 @@ class CheckoutCompleteScreen extends StatelessWidget {
             children: [
               // Checkout stepper
               _buildCheckoutStepper(responsive, isDarkMode),
-              
+
               SizedBox(height: responsive.setHeight(40)),
-              
+
               // Order Completed title
               Text(
                 'Order Completed',
@@ -80,9 +81,9 @@ class CheckoutCompleteScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
+
               SizedBox(height: responsive.setHeight(40)),
-              
+
               // Shopping bag with checkmark icon
               Stack(
                 alignment: Alignment.bottomRight,
@@ -100,7 +101,7 @@ class CheckoutCompleteScreen extends StatelessWidget {
                       color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
                     ),
                   ),
-                  
+
                   // Checkmark in circle
                   Container(
                     width: responsive.setWidth(40),
@@ -117,9 +118,9 @@ class CheckoutCompleteScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              
+
               SizedBox(height: responsive.setHeight(40)),
-              
+
               // Thank you message
               Text(
                 'Thank you for your purchase.',
@@ -129,9 +130,9 @@ class CheckoutCompleteScreen extends StatelessWidget {
                   fontSize: responsive.setWidth(16),
                 ),
               ),
-              
+
               SizedBox(height: responsive.setHeight(8)),
-              
+
               // View order message
               Text(
                 'You can view your order in \'My Orders\' section.',
@@ -141,10 +142,10 @@ class CheckoutCompleteScreen extends StatelessWidget {
                   fontSize: responsive.setWidth(16),
                 ),
               ),
-              
+
               // Spacer to push button to bottom
               SizedBox(height: responsive.setHeight(120)),
-              
+
               // Continue shopping button
               SizedBox(
                 width: double.infinity,

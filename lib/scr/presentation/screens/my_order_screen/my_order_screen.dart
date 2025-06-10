@@ -109,6 +109,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
       backgroundColor:
           isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,

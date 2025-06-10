@@ -110,6 +110,7 @@ class _ProductFoundScreenState extends State<ProductFoundScreen> {
       backgroundColor:
           isDarkMode ? ColorDark.background : ColorLight.background,
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
         elevation: 0,

@@ -72,11 +72,8 @@ class UserProfileSettingBloc
         _tempBirthday = _userInfo!.birthday;
         emit(UserProfileLoaded(userInfo: _userInfo!));
       } catch (e) {
-        emit(
-          UserProfileError(
-            message: 'Failed to load user profile: ${e.toString()}',
-          ),
-        );
+        print('Failed to load user profile: ${e.toString()}');
+        emit(UserProfileError(message: 'Failed to load user profile'));
       }
     }
   }
