@@ -159,6 +159,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: responsive.setHeight(16)),
 
               // Banner
+              /*
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Stack(
@@ -190,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
+              */
               SizedBox(height: responsive.setHeight(24)),
 
               _buildSectionHeader(
@@ -215,7 +216,9 @@ class HomeScreen extends StatelessWidget {
                       title: product['title']!,
                       price: product['price'] as double,
                       isFavorite: false,
-                      onTap: () {},
+                      onTap: () {
+                        context.router.push(const ProductFullRoute());
+                      },
                     );
                   },
                 ),

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/responsive_ui_config.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 @RoutePage()
 class YourCartScreen extends StatelessWidget {
@@ -83,7 +84,9 @@ class YourCartScreen extends StatelessWidget {
           child: SizedBox(
             width: responsive.setWidth(370),
             child: Padding(
-              padding: EdgeInsets.all(responsive.setWidth(0)),
+              padding: EdgeInsets.symmetric(
+                horizontal: responsive.setWidth(24),
+              ), // Increased horizontal padding
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -114,7 +117,7 @@ class YourCartScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: Implement checkout navigation
+                        context.router.push(const CheckoutRoute());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
@@ -223,6 +226,8 @@ class _CartItemCard extends StatelessWidget {
                                   ? ColorDark.titleText
                                   : ColorLight.titleText,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     if (checked)
@@ -240,13 +245,20 @@ class _CartItemCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 4),
-                Text(
-                  '\$${price.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: responsive.setWidth(16),
-                    color:
-                        isDarkMode ? ColorDark.titleText : ColorLight.titleText,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '\$${price.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: responsive.setWidth(16),
+                      color:
+                          isDarkMode
+                              ? ColorDark.titleText
+                              : ColorLight.titleText,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -355,13 +367,7 @@ class _CartSummary extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _summaryRow(
-            'Product price',
-            '\${productPrice.toStringAsFixed(0)}',
-            isDarkMode,
-            responsive,
-            false,
-          ),
+          _summaryRow('Product price', '\$14', isDarkMode, responsive, false),
           _summaryRow('Shipping', 'Freeship', isDarkMode, responsive, false),
           Divider(
             color: isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,

@@ -5,6 +5,9 @@ import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/responsive_ui_config.dart';
 import 'package:e_commerce_frontend/scr/presentation/widgets/search_bar_with_filter.dart';
+import 'package:e_commerce_frontend/scr/presentation/widgets/sidebar.dart';
+import 'package:e_commerce_frontend/scr/presentation/widgets/bottom_nav_bar.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 @RoutePage()
 class DiscoverScreen extends StatefulWidget {
@@ -15,7 +18,12 @@ class DiscoverScreen extends StatefulWidget {
 }
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
-  final List<String> bannerTitles = ['CLOTHING', 'ACCESSORIES', 'SHOES', 'COLLECTION'];
+  final List<String> bannerTitles = [
+    'CLOTHING',
+    'ACCESSORIES',
+    'SHOES',
+    'COLLECTION',
+  ];
   int? expandedBannerIndex;
 
   final List<List<Map<String, dynamic>>> categories = [
@@ -29,7 +37,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         'subcategories': [
           {'title': 'Sweaters', 'count': 24},
           {'title': 'Jeans', 'count': 14},
-        ]
+        ],
       },
       {'title': 'T-Shirts', 'count': 12},
       {'title': 'Pants', 'count': 9},
@@ -64,11 +72,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     final responsive = ResponsiveUiConfig(context);
 
     return Scaffold(
-      backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
+      backgroundColor:
+          isDarkMode ? ColorDark.background : ColorLight.background,
+      drawer: const SidebarWidget(),
       appBar: AppBar(
         forceMaterialTransparency: true,
         elevation: 0,
-        backgroundColor: isDarkMode ? ColorDark.background : ColorLight.background,
+        backgroundColor:
+            isDarkMode ? ColorDark.background : ColorLight.background,
         title: Text(
           'Discover',
           style: TextStyle(
@@ -78,15 +89,28 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.menu,
-              color: isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary),
-          onPressed: () {},
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color:
+                      isDarkMode
+                          ? ColorDark.iconPrimary
+                          : ColorLight.iconPrimary,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications_none,
-                color: isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary),
+            icon: Icon(
+              Icons.notifications_none,
+              color:
+                  isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
+            ),
             onPressed: () {},
           ),
         ],
@@ -94,7 +118,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       body: ListView(
         padding: EdgeInsets.all(responsive.setWidth(16)),
         children: [
-          const SearchBarWithFilter(),
+          GestureDetector(
+            onTap: () {
+              context.router.push(const SearchRoute());
+            },
+            child: const SearchBarWithFilter(),
+          ),
 
           const SizedBox(height: 16),
 
@@ -106,7 +135,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   onTap: () {
                     setState(() {
                       expandedBannerIndex =
-                      expandedBannerIndex == index ? null : index;
+                          expandedBannerIndex == index ? null : index;
                     });
                   },
                   child: Container(
@@ -115,7 +144,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
-                        image: AssetImage('assets/images/discover_banner_${index + 1}.png'),
+                        image: AssetImage(
+                          'assets/images/discover_banner_${index + 1}.png',
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -131,66 +162,80 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                   ),
                 ),
-                if (expandedBannerIndex == index && categories[index].isNotEmpty)
+                if (expandedBannerIndex == index &&
+                    categories[index].isNotEmpty)
                   Column(
-                    children: categories[index].expand((item) {
-                      final bool hasSub = item.containsKey('subcategories');
-                      return [
-                        ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                          title: Text(
-                            item['title'],
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: isDarkMode
-                                  ? ColorDark.titleText
-                                  : ColorLight.titleText,
-                            ),
-                          ),
-                          trailing: Text(
-                            '${item['count']} items',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: isDarkMode
-                                  ? ColorDark.subtitleText
-                                  : ColorLight.subtitleText,
-                            ),
-                          ),
-                          onTap: () {},
-                        ),
-                        if (hasSub)
-                          ...List<Map<String, dynamic>>.from(item['subcategories']).map((sub) {
-                            return ListTile(
-                              contentPadding: const EdgeInsets.only(left: 40, right: 16),
+                    children:
+                        categories[index].expand((item) {
+                          final bool hasSub = item.containsKey('subcategories');
+                          return [
+                            ListTile(
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
                               title: Text(
-                                sub['title'],
+                                item['title'],
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: isDarkMode
-                                      ? ColorDark.subtitleText
-                                      : ColorLight.subtitleText,
+                                  fontWeight: FontWeight.w500,
+                                  color:
+                                      isDarkMode
+                                          ? ColorDark.titleText
+                                          : ColorLight.titleText,
                                 ),
                               ),
                               trailing: Text(
-                                '${sub['count']} items',
+                                '${item['count']} items',
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: isDarkMode
-                                      ? ColorDark.subtitleText
-                                      : ColorLight.subtitleText,
+                                  color:
+                                      isDarkMode
+                                          ? ColorDark.subtitleText
+                                          : ColorLight.subtitleText,
                                 ),
                               ),
                               onTap: () {},
-                            );
-                          }),
-                      ];
-                    }).toList(),
+                            ),
+                            if (hasSub)
+                              ...List<Map<String, dynamic>>.from(
+                                item['subcategories'],
+                              ).map((sub) {
+                                return ListTile(
+                                  contentPadding: const EdgeInsets.only(
+                                    left: 40,
+                                    right: 16,
+                                  ),
+                                  title: Text(
+                                    sub['title'],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color:
+                                          isDarkMode
+                                              ? ColorDark.subtitleText
+                                              : ColorLight.subtitleText,
+                                    ),
+                                  ),
+                                  trailing: Text(
+                                    '${sub['count']} items',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                          isDarkMode
+                                              ? ColorDark.subtitleText
+                                              : ColorLight.subtitleText,
+                                    ),
+                                  ),
+                                  onTap: () {},
+                                );
+                              }),
+                          ];
+                        }).toList(),
                   ),
               ],
             );
           }),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(currentIndex: 1, onTap: (index) {}),
     );
   }
 }
