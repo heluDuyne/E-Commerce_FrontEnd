@@ -3,6 +3,8 @@ import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/responsive_ui_config.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class BottomNavBar extends StatefulWidget {
   final int currentIndex;
@@ -65,7 +67,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         child: BottomNavigationBar(
           currentIndex: widget.currentIndex,
-          onTap: widget.onTap,
+          onTap: (index) {
+            if (index == 0) {
+              context.router.push(const HomeRoute());
+            } else if (index == 1) {
+              context.router.push(const DiscoverRoute());
+            } else if (index == 2) {
+              context.router.push(const MyOrderRoute());
+            } else if (index == 3) {
+              context.router.push(const MyInfoRoute());
+            }
+          },
           elevation: 0,
           backgroundColor: backgroundColor,
           selectedItemColor: selectedColor,

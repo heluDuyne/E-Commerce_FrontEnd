@@ -8,6 +8,7 @@ import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 class SidebarWidget extends StatefulWidget {
   const SidebarWidget({super.key});
@@ -226,6 +227,15 @@ class _SidebarWidgetState extends State<SidebarWidget> {
             setState(() {
               _selectedIndex = index;
             });
+            if (index == 0) {
+              context.router.push(const HomeRoute());
+            } else if (index == 1) {
+              context.router.push(const DiscoverRoute());
+            } else if (index == 2) {
+              context.router.push(const MyOrderRoute());
+            } else if (index == 3) {
+              context.router.push(const MyInfoRoute());
+            }
           },
           borderRadius: BorderRadius.circular(8),
           child: Ink(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/responsive_ui_config.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 @RoutePage()
 class CheckoutCompleteScreen extends StatelessWidget {
@@ -159,7 +160,6 @@ class CheckoutCompleteScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // Navigate to the home/shop screen
                     context.router.popUntil((route) => route.isFirst);
                   },
                   child: Text(
