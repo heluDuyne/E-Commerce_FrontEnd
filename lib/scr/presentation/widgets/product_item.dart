@@ -12,13 +12,13 @@ class ProductItem extends StatelessWidget {
   final bool isFavorite;
 
   const ProductItem({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.price,
     this.onTap,
     this.isFavorite = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -139,20 +139,23 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: responsive.setHeight(90),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  separatorBuilder:
-                      (_, __) => SizedBox(width: responsive.setWidth(20)),
-                  itemBuilder: (context, index) {
-                    final cat = categories[index];
-                    return CategoryButton(
-                      icon: cat['icon'] as IconData,
-                      label: cat['label']!,
-                      isSelected: index == 0,
-                      onTap: () {},
-                    );
-                  },
+                child: Center(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    separatorBuilder:
+                        (_, __) => SizedBox(width: responsive.setWidth(20)),
+                    itemBuilder: (context, index) {
+                      final cat = categories[index];
+                      return CategoryButton(
+                        icon: cat['icon'] as IconData,
+                        label: cat['label']!,
+                        isSelected: index == 0,
+                        onTap: () {},
+                      );
+                    },
+                  ),
                 ),
               ),
 

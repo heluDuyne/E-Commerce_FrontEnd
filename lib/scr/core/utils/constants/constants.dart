@@ -2,3 +2,4 @@
 
 const String ACCESS_TOKEN_KEY = 'token';
 const String USER = 'USER';
+const String NEXT_PAGE_LINK = "NEXT_PAGE_LINK";
