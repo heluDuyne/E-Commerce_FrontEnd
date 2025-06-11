@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
@@ -33,16 +35,19 @@ class HomeScreen extends StatelessWidget {
       {
         'title': 'Turtleneck Sweater',
         'price': 39.99,
+        'salePrice': 20.00,
         'image': 'assets/images/product1.png',
       },
       {
         'title': 'Long Sleeve Dress',
         'price': 45.00,
+        'salePrice': 45.00,
         'image': 'assets/images/product2.png',
       },
       {
         'title': 'Sportwear Set',
         'price': 80.00,
+        'salePrice': 60.00,
         'image': 'assets/images/product3.png',
       },
     ];
@@ -50,11 +55,13 @@ class HomeScreen extends StatelessWidget {
       {
         'title': 'White fashion hoodie',
         'price': 29.00,
+        'salePrice': 25.00,
         'image': 'assets/images/recommended1.png',
       },
       {
         'title': 'Cotton t-shirt',
         'price': 30.00,
+        'salePrice': 30.00,
         'image': 'assets/images/recommended2.png',
       },
     ];
@@ -139,20 +146,23 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: responsive.setHeight(90),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  separatorBuilder:
-                      (_, __) => SizedBox(width: responsive.setWidth(20)),
-                  itemBuilder: (context, index) {
-                    final cat = categories[index];
-                    return CategoryButton(
-                      icon: cat['icon'] as IconData,
-                      label: cat['label']!,
-                      isSelected: index == 0,
-                      onTap: () {},
-                    );
-                  },
+                child: Center(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    separatorBuilder:
+                        (_, __) => SizedBox(width: responsive.setWidth(20)),
+                    itemBuilder: (context, index) {
+                      final cat = categories[index];
+                      return CategoryButton(
+                        icon: cat['icon'] as IconData,
+                        label: cat['label']!,
+                        isSelected: index == 0,
+                        onTap: () {},
+                      );
+                    },
+                  ),
                 ),
               ),
 
@@ -204,22 +214,68 @@ class HomeScreen extends StatelessWidget {
 
               SizedBox(
                 height: responsive.setHeight(240),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: products.length,
-                  separatorBuilder:
-                      (_, __) => SizedBox(width: responsive.setWidth(16)),
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    return ProductItem(
-                      imageUrl: product['image']!,
-                      title: product['title']!,
-                      price: product['price'] as double,
-                      isFavorite: false,
-                      onTap: () {
-                        context.router.push(const ProductFullRoute());
-                      },
-                    );
+                child: BlocBuilder<GenericProductBloc, GenericProductState>(
+                  builder: (context, state) {
+                    switch (state) {
+                      case GenericProductError():
+                        return Center(
+                          child: Text(
+                            'Error loading products',
+                            style: TextStyle(
+                              color:
+                                  isDarkMode
+                                      ? ColorDark.titleText
+                                      : ColorLight.titleText,
+                              fontSize: responsive.setWidth(16),
+                            ),
+                          ),
+                        );
+                      case GenericProductSuccess():
+                        final products = state.listGenericProduct;
+                        if (products.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No products available',
+                              style: TextStyle(
+                                color:
+                                    isDarkMode
+                                        ? ColorDark.titleText
+                                        : ColorLight.titleText,
+                                fontSize: responsive.setWidth(16),
+                              ),
+                            ),
+                          );
+                        }
+                        return ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: products.length,
+                          separatorBuilder:
+                              (_, __) =>
+                                  SizedBox(width: responsive.setWidth(16)),
+                          itemBuilder: (context, index) {
+                            final product = products[index];
+                            return ProductItem(
+                              imageUrl: product.images.first.url,
+                              title: product.name,
+                              price: product.originalPrice,
+                              salePrice: product.salePrice,
+                              isFavorite: false,
+                              onTap: () {
+                                context.router.push(const ProductFullRoute());
+                              },
+                            );
+                          },
+                        );
+                      default:
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color:
+                                isDarkMode
+                                    ? ColorDark.iconPrimary
+                                    : ColorLight.iconPrimary,
+                          ),
+                        );
+                    }
                   },
                 ),
               ),
@@ -284,6 +340,7 @@ class HomeScreen extends StatelessWidget {
                     return ProductItem(
                       imageUrl: product['image'] as String,
                       title: product['title'] as String,
+                      salePrice: product['salePrice'] as double,
                       price: product['price'] as double,
                       isFavorite: false,
                       onTap: () {},

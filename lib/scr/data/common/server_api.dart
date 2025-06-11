@@ -12,4 +12,6 @@ class API {
   static const RESEND_VERIFICATION_CODE = '/verify/resend-verification-code/';
 
   static const USER = '/user/me/';
+
+  static const PRODUCT = '/product/products/generic';
 }

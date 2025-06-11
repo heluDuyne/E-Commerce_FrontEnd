@@ -4,13 +4,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/scr/presentation/widgets/bottom_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
-import 'package:e_commerce_frontend/scr/domain/entities/user_info_entity/user_info_entity.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 
 @RoutePage()
 class MyInfoScreen extends StatelessWidget {
-  const MyInfoScreen({Key? key}) : super(key: key);
+  const MyInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +76,9 @@ class MyInfoScreen extends StatelessWidget {
                             ? ColorDark.iconPrimary
                             : ColorLight.iconPrimary,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(const ProfileSettingRoute());
+                  },
                 ),
               ],
             ),

@@ -3,18 +3,22 @@ import 'package:e_commerce_frontend/scr/core/network/dio_interceptors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/auth_datasource/auth_datasource.dart';
+import 'package:e_commerce_frontend/scr/data/datasources/product_datasource/product_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/user_datasource/user_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/login_repository_imp.dart';
+import 'package:e_commerce_frontend/scr/data/repositories/product_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/resend_verification_code_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/signup_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/user_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/verify_email_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/login_repository.dart';
+import 'package:e_commerce_frontend/scr/domain/repositories/product_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/resend_verification_code_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/signup_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/user_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/verify_email_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/resend_verification_code_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
@@ -23,6 +27,7 @@ import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user
 import 'package:e_commerce_frontend/scr/domain/usecases/verify_email_usecase.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
@@ -77,6 +82,9 @@ Future<void> init() async {
   locator.registerLazySingleton<UserDatasource>(
     () => UserDatasource(locator()),
   );
+  locator.registerLazySingleton<ProductDatasource>(
+    () => ProductDatasource(locator()),
+  );
 
   // Register repositories
   locator.registerLazySingleton<LoginRepository>(
@@ -93,6 +101,9 @@ Future<void> init() async {
   );
   locator.registerLazySingleton<UserRepository>(
     () => UserRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<ProductRepository>(
+    () => ProductRepositoryImp(datasource: locator()),
   );
 
   //Register use cases
@@ -114,6 +125,9 @@ Future<void> init() async {
   );
   locator.registerLazySingleton<UpdateUserInfoPartiallyUsecase>(
     () => UpdateUserInfoPartiallyUsecase(userRepository: locator()),
+  );
+  locator.registerLazySingleton<GetListProductUsecase>(
+    () => GetListProductUsecase(productRepository: locator()),
   );
 
   // Register Blocs
@@ -156,5 +170,11 @@ Future<void> init() async {
       updateUserProfilePartiallyUsecase: locator(),
       updateUserProfileUsecase: locator(),
     ),
+  );
+  locator.registerLazySingleton<GenericProductBloc>(
+    () => GenericProductBloc(
+      getListProductUsecase: locator(),
+      sharedPrefManagementHelper: locator()
+    )
   );
 }
