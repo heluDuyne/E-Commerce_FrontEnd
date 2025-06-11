@@ -8,6 +8,7 @@ class ProductItem extends StatelessWidget {
   final String imageUrl;
   final String title;
   final double price;
+  final double salePrice;
   final VoidCallback? onTap;
   final bool isFavorite;
 
@@ -16,6 +17,7 @@ class ProductItem extends StatelessWidget {
     required this.imageUrl,
     required this.title,
     required this.price,
+    required this.salePrice,
     this.onTap,
     this.isFavorite = false,
   });
@@ -42,6 +44,7 @@ class ProductItem extends StatelessWidget {
         final imageHeight = responsive.setHeight(160).clamp(80.0, 220.0);
         final titleFontSize = responsive.setWidth(13).clamp(10.0, 18.0);
         final priceFontSize = responsive.setWidth(15).clamp(12.0, 20.0);
+        final salePriceFontSize = responsive.setWidth(10).clamp(8.0, 15.0);
         final horizontalSpacing = responsive.setWidth(12).clamp(6.0, 20.0);
         final verticalSpacing = responsive.setHeight(6).clamp(2.0, 12.0);
         final textAreaHeight = responsive.setHeight(50).clamp(30.0, 70.0);
@@ -129,14 +132,39 @@ class ProductItem extends StatelessWidget {
                           SizedBox(height: verticalSpacing / 2),
                           FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: Text(
-                              '\$ ${price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                color: titleColor,
-                                fontSize: priceFontSize,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            child:
+                                salePrice < price
+                                    ? Row(
+                                      children: [
+                                        Text(
+                                          '\$ ${price.toStringAsFixed(2)}',
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: salePriceFontSize,
+                                            fontWeight: FontWeight.w600,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                        SizedBox(width: horizontalSpacing / 2),
+                                        Text(
+                                          '\$ ${salePrice.toStringAsFixed(2)}',
+                                          style: TextStyle(
+                                            color: titleColor,
+                                            fontSize: priceFontSize,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                    : Text(
+                                      '\$ ${price.toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                        color: titleColor,
+                                        fontSize: priceFontSize,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                           ),
                         ],
                       ),

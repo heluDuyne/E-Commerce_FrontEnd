@@ -12,8 +12,8 @@ class GenericProductEntity extends Equatable {
   final String averageRating;
   final int reviewCount;
   final String price;
-  final String salePrice;
-  final String originalPrice;
+  final double salePrice;
+  final double originalPrice;
 
   const GenericProductEntity({
     required this.id,
@@ -45,8 +45,8 @@ class GenericProductEntity extends Equatable {
     String? averageRating,
     int? reviewCount,
     String? price,
-    String? salePrice,
-    String? originalPrice,
+    double? salePrice,
+    double? originalPrice,
   }) {
     return GenericProductEntity(
       id: id ?? this.id,

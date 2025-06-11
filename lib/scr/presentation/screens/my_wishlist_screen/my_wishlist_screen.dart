@@ -51,6 +51,7 @@ class MyWishlistScreen extends StatelessWidget {
                       'https://via.placeholder.com/150', // Example image URL
                   title: 'Product $index',
                   price: 29.99 + index, // Example price
+                  salePrice: 19.99 + index, // Example sale price
                   onTap: () {
                     // Handle product tap
                   },

@@ -110,6 +110,7 @@ class CollectionScreen extends StatelessWidget {
                     imageUrl: product['image'] as String,
                     title: product['title'] as String,
                     price: product['price'] as double,
+                    salePrice: product['salePrice'] as double,
                     isFavorite: false,
                     onTap: () {},
                   );

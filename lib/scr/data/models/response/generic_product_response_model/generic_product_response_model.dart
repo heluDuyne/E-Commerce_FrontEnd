@@ -16,9 +16,9 @@ class GenericProductResponseModel extends DataMapper<GenericProductEntity>{
   final int? reviewCount;
   final String? price;
   @JsonKey(name: 'sale_price')
-  final String? salePrice;
+  final double? salePrice;
   @JsonKey(name: 'original_price')
-  final String? originalPrice;
+  final double? originalPrice;
 
   GenericProductResponseModel({
         required this.id,
@@ -43,9 +43,9 @@ class GenericProductResponseModel extends DataMapper<GenericProductEntity>{
       images: images.map((image) => image.mapToEntity()).toList(),
       averageRating: averageRating ?? '0',
       reviewCount: reviewCount ?? 0,
-      price: price ?? '0',
-      salePrice: salePrice ?? '0',
-      originalPrice: originalPrice ?? '0',
+      price: price ?? "0",
+      salePrice: salePrice ?? 0,
+      originalPrice: originalPrice ?? 0,
     );
   }
 }
