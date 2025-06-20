@@ -61,6 +61,7 @@ class ColorLight {
 
   //banner
   static const Color bannerBackground = Color(0xFF575757);
+  static const Color bannerBackground1 = Color(0xFFF8F8FA);
 
   // Order Section Text Color
   static const Color orderSectionTextColor = Color(0xFFBDBDBD);
@@ -128,6 +129,11 @@ class ColorDark {
 
   //banner
   static const Color bannerBackground = Color(0xFF424242);
+  static const Color bannerBackground1 = Color(0xFF424242);
+  static const Color bannerBackgroundSearch1 = Color(0xFFA3A798);
+  static const Color bannerBackgroundSearch2 = Color(0xFF898280);
+  static const Color bannerBackgroundSearch3 = Color(0xFF44565C);
+  static const Color bannerBackgroundSearch4 = Color(0xFF9E7C71);
 
   // Order Section Text Color
   static const Color orderSectionTextColor = Color(0xFFBDBDBD);

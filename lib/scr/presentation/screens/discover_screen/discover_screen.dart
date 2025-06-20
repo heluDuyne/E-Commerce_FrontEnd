@@ -149,13 +149,22 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                         fit: BoxFit.cover,
                       ),
+                      color: switch (index) {
+                        0 => ColorDark.bannerBackgroundSearch1,
+                        1 => ColorDark.bannerBackgroundSearch2,
+                        2 => ColorDark.bannerBackgroundSearch3,
+                        _ => ColorDark.bannerBackgroundSearch3,
+                      },
                     ),
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       bannerTitles[index],
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: TextStyle(
+                        color:
+                            isDarkMode
+                                ? ColorDark.titleText
+                                : ColorLight.titleText,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),

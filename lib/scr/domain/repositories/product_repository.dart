@@ -3,6 +3,7 @@ import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/g
 
 abstract class ProductRepository {
   Future<ApiResultModel<GenericProductPaginationEntity>> getListProduct();
+  Future<ApiResultModel<GenericProductPaginationEntity>> getListProductByUrl(String url);
   // Future<Product> getProductById(String id);
   // Future<void> addProduct(Product product);
   // Future<void> updateProduct(Product product);

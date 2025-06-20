@@ -168,47 +168,16 @@ class HomeScreen extends StatelessWidget {
 
               SizedBox(height: responsive.setHeight(16)),
 
-              // Banner
-              /*
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Stack(
-                  children: [
-                    Image.asset(
-                      'assets/images/autumn_collection_banner.png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: responsive.setHeight(200),
-                    ),
-                    Positioned(
-                      right: 16,
-                      top: 16,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Autumn\nCollection\n2021',
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: responsive.setWidth(20),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              */
-              SizedBox(height: responsive.setHeight(24)),
-
-              _buildSectionHeader(
+              _BuildSectionHeader(
                 'Feature Products',
                 responsive,
                 isDarkMode,
-                onTap: () {},
+                context,
+                onTap: () {
+                  context.router.push(
+                    ProductFoundRoute(screenTitle: 'Feature Products'),
+                  );
+                },
               ),
               SizedBox(height: responsive.setHeight(12)),
 
@@ -248,7 +217,7 @@ class HomeScreen extends StatelessWidget {
                         }
                         return ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          itemCount: products.length,
+                          itemCount: 10,
                           separatorBuilder:
                               (_, __) =>
                                   SizedBox(width: responsive.setWidth(16)),
@@ -283,47 +252,65 @@ class HomeScreen extends StatelessWidget {
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child: Stack(
-                  children: [
-                    Image.asset(
-                      'assets/images/hangout_party_banner.png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: responsive.setHeight(180),
-                    ),
-                    Positioned(
-                      left: 16,
-                      top: 24,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '| NEW COLLECTION',
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontSize: responsive.setWidth(12),
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'HANG OUT\n& PARTY',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold,
-                              fontSize: responsive.setWidth(18),
-                            ),
-                          ),
-                        ],
+                child: Container(
+                  decoration: BoxDecoration(
+                    color:
+                        isDarkMode
+                            ? ColorDark.bannerBackground1
+                            : ColorLight.bannerBackground1,
+                  ),
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        'assets/images/hangout_party_banner.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: responsive.setHeight(180),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        left: 16,
+                        top: 24,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '| NEW COLLECTION',
+                              style: TextStyle(
+                                color:
+                                    isDarkMode
+                                        ? ColorDark.subtitleText
+                                        : ColorLight.subtitleText,
+                                fontSize: responsive.setWidth(12),
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'HANG OUT\n& PARTY',
+                              style: TextStyle(
+                                color:
+                                    isDarkMode
+                                        ? ColorDark.titleText
+                                        : ColorLight.titleText,
+                                fontWeight: FontWeight.bold,
+                                fontSize: responsive.setWidth(18),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+
+              SizedBox(height: responsive.setHeight(24)),
+
               // Recommended Section
-              _buildSectionHeader(
-                'Recommended',
+              _BuildSectionHeader(
+                'For you',
                 responsive,
                 isDarkMode,
+                context,
                 onTap: () {},
               ),
               SizedBox(height: responsive.setHeight(12)),
@@ -351,10 +338,11 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: responsive.setHeight(24)),
 
               // Top Collection
-              _buildSectionHeader(
+              _BuildSectionHeader(
                 'Top Collection',
                 responsive,
                 isDarkMode,
+                context,
                 onTap: () {},
               ),
               SizedBox(height: responsive.setHeight(12)),
@@ -418,13 +406,26 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildSectionHeader(
-    String title,
-    ResponsiveUiConfig responsive,
-    bool isDarkMode, {
-    required VoidCallback onTap,
-  }) {
+class _BuildSectionHeader extends StatelessWidget {
+  final String title;
+  final ResponsiveUiConfig responsive;
+  final bool isDarkMode;
+  final VoidCallback onTap;
+  final BuildContext context;
+
+  const _BuildSectionHeader(
+    this.title,
+    this.responsive,
+    this.isDarkMode,
+    this.context, {
+    required this.onTap,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

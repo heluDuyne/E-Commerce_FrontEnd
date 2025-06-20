@@ -9,5 +9,12 @@ class GenericProductState with _$GenericProductState {
     required List<GenericProductEntity> listGenericProduct,
   }) = GenericProductSuccess;
 
-  const factory GenericProductState.error(String message) = GenericProductError;
+  const factory GenericProductState.loadingMore({
+    required List<GenericProductEntity> listGenericProduct,
+  }) = GenericProductLoadingMore;
+
+  const factory GenericProductState.error(
+    String message, {
+    @Default([]) List<GenericProductEntity> listProducts,
+  }) = GenericProductError;
 }

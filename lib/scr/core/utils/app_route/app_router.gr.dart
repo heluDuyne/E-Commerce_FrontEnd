@@ -442,18 +442,67 @@ class OrderInfoRouteArgs {
 
 /// generated route for
 /// [_i17.ProductFoundScreen]
-class ProductFoundRoute extends _i26.PageRouteInfo<void> {
-  const ProductFoundRoute({List<_i26.PageRouteInfo>? children})
-    : super(ProductFoundRoute.name, initialChildren: children);
+class ProductFoundRoute extends _i26.PageRouteInfo<ProductFoundRouteArgs> {
+  ProductFoundRoute({
+    required String screenTitle,
+    bool showNumProduct = false,
+    _i27.Key? key,
+    List<_i26.PageRouteInfo>? children,
+  }) : super(
+         ProductFoundRoute.name,
+         args: ProductFoundRouteArgs(
+           screenTitle: screenTitle,
+           showNumProduct: showNumProduct,
+           key: key,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'ProductFoundRoute';
 
   static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
-      return const _i17.ProductFoundScreen();
+      final args = data.argsAs<ProductFoundRouteArgs>();
+      return _i17.ProductFoundScreen(
+        screenTitle: args.screenTitle,
+        showNumProduct: args.showNumProduct,
+        key: args.key,
+      );
     },
   );
+}
+
+class ProductFoundRouteArgs {
+  const ProductFoundRouteArgs({
+    required this.screenTitle,
+    this.showNumProduct = false,
+    this.key,
+  });
+
+  final String screenTitle;
+
+  final bool showNumProduct;
+
+  final _i27.Key? key;
+
+  @override
+  String toString() {
+    return 'ProductFoundRouteArgs{screenTitle: $screenTitle, showNumProduct: $showNumProduct, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProductFoundRouteArgs) return false;
+    return screenTitle == other.screenTitle &&
+        showNumProduct == other.showNumProduct &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode =>
+      screenTitle.hashCode ^ showNumProduct.hashCode ^ key.hashCode;
 }
 
 /// generated route for
