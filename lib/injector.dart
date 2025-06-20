@@ -18,6 +18,7 @@ import 'package:e_commerce_frontend/scr/domain/repositories/signup_repository.da
 import 'package:e_commerce_frontend/scr/domain/repositories/user_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/verify_email_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/resend_verification_code_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
@@ -129,6 +130,9 @@ Future<void> init() async {
   locator.registerLazySingleton<GetListProductUsecase>(
     () => GetListProductUsecase(productRepository: locator()),
   );
+  locator.registerLazySingleton<GetListProductByUrlUsecase>(
+    () => GetListProductByUrlUsecase(productRepository: locator()),
+  );
 
   // Register Blocs
   locator.registerFactory<OAuthAuthenticationBloc>(
@@ -171,9 +175,10 @@ Future<void> init() async {
       updateUserProfileUsecase: locator(),
     ),
   );
-  locator.registerLazySingleton<GenericProductBloc>(
+  locator.registerFactory<GenericProductBloc>(
     () => GenericProductBloc(
       getListProductUsecase: locator(),
+      getListProductByUrlUseCase: locator(),
       sharedPrefManagementHelper: locator()
     )
   );

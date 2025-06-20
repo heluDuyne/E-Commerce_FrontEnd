@@ -4,13 +4,25 @@ import 'package:e_commerce_frontend/scr/data/repositories/base_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/generic_product_pagination_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/product_repository.dart';
 
-class ProductRepositoryImp extends BaseRepository implements ProductRepository{
+class ProductRepositoryImp extends BaseRepository implements ProductRepository {
   final ProductDatasource datasource;
   ProductRepositoryImp({required this.datasource});
   @override
   Future<ApiResultModel<GenericProductPaginationEntity>> getListProduct() {
     return baseExecute(() async {
       var results = await datasource.getListProduct();
+      return results.mapToEntity();
+    });
+  }
+
+  @override
+  Future<ApiResultModel<GenericProductPaginationEntity>> getListProductByUrl(
+    String url,
+  ) {
+    return baseExecute(() async {
+      // Uri uri = Uri.parse(url);
+      // String path = uri.path.replaceAll(RegExp('^/api/'), '');
+      var results = await datasource.getListProductByUrl(url);
       return results.mapToEntity();
     });
   }

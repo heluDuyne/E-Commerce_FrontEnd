@@ -4,4 +4,5 @@ part of 'generic_product_bloc.dart';
 class GenericProductEvent with _$GenericProductEvent {
   const factory GenericProductEvent.initial() = GenericProductInitialEvent;
   const factory GenericProductEvent.fetchProducts() = FetchGenericProductsEvent;
+  const factory GenericProductEvent.loadMoreProducts() = LoadMoreProductsEvent;
 }

@@ -13,6 +13,11 @@ abstract class ProductDatasource {
   @GET(API.PRODUCT)
   Future<GenericProductPaginationResponseModel> getListProduct();
 
+  @GET("{path}")
+  Future<GenericProductPaginationResponseModel> getListProductByUrl(
+    @Path("path") String path,
+  );
+
   // @GET(API.PRODUCT)
   // Future<void> getProductByName();
 }

@@ -6,6 +6,7 @@ import 'package:e_commerce_frontend/scr/core/utils/constants/constants.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/generic_product_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/generic_product_pagination_entity.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,21 +15,28 @@ part 'generic_product_bloc.freezed.dart';
 part 'generic_product_event.dart';
 part 'generic_product_state.dart';
 
-class GenericProductBloc extends Bloc<GenericProductEvent, GenericProductState> {
+class GenericProductBloc
+    extends Bloc<GenericProductEvent, GenericProductState> {
   final List<GenericProductEntity> genericProducts = [];
   final GetListProductUsecase getListProductUsecase;
+  final GetListProductByUrlUsecase getListProductByUrlUseCase;
   final SharedPrefManagementHelper sharedPrefManagementHelper;
   GenericProductPaginationEntity? genericProductPaginationEntity;
 
   GenericProductBloc({
     required this.getListProductUsecase,
+    required this.getListProductByUrlUseCase,
     required this.sharedPrefManagementHelper,
   }) : super(const GenericProductInitial()) {
     on<GenericProductInitialEvent>(_onInitial);
     on<FetchGenericProductsEvent>(_onFetchProducts);
+    on<LoadMoreProductsEvent>(_onLoadMoreProducts);
   }
 
-  FutureOr<void> _onInitial(GenericProductInitialEvent event, Emitter<GenericProductState> emit) {
+  FutureOr<void> _onInitial(
+    GenericProductInitialEvent event,
+    Emitter<GenericProductState> emit,
+  ) {
     emit(const GenericProductInitial());
   }
 
@@ -40,13 +48,14 @@ class GenericProductBloc extends Bloc<GenericProductEvent, GenericProductState> 
     var result = await getListProductUsecase.call(NoParams());
     switch (result) {
       case Success():
-        genericProducts.clear();
         genericProductPaginationEntity = result.data;
-        if (genericProductPaginationEntity != null){
+        if (genericProductPaginationEntity != null) {
           genericProducts.addAll(genericProductPaginationEntity!.results);
           await sharedPrefManagementHelper.saveKeyString(
             NEXT_PAGE_LINK,
-            genericProductPaginationEntity!.next.isEmpty ? '' : genericProductPaginationEntity!.next,
+            genericProductPaginationEntity!.next.isEmpty
+                ? ''
+                : genericProductPaginationEntity!.next,
           );
           emit(GenericProductSuccess(listGenericProduct: genericProducts));
         } else {
@@ -58,5 +67,60 @@ class GenericProductBloc extends Bloc<GenericProductEvent, GenericProductState> 
     }
   }
 
+  FutureOr<void> _onLoadMoreProducts(
+    LoadMoreProductsEvent event,
+    Emitter<GenericProductState> emit,
+  ) async {
+    if (state is! GenericProductSuccess) {
+      // If not in success state, just fetch first page
+      add(const FetchGenericProductsEvent());
+      return;
+    }
+    final nextPageUrl = sharedPrefManagementHelper.getKeyString(NEXT_PAGE_LINK);
 
+    if (nextPageUrl.isEmpty) {
+      // No more pages to load
+      return;
+    }
+
+    // Show loading indicator while keeping current list visible
+    emit(GenericProductLoadingMore(listGenericProduct: genericProducts));
+
+    // Make API call with the next page URL
+    try {
+      // You need to create a specific method in your repository/datasource for this
+      final result = await getListProductByUrlUseCase.call(nextPageUrl);
+
+      switch (result) {
+        case Success():
+          genericProductPaginationEntity = result.data;
+          genericProducts.addAll(genericProductPaginationEntity!.results);
+
+          // Save the new next page URL
+          await sharedPrefManagementHelper.saveKeyString(
+            NEXT_PAGE_LINK,
+            genericProductPaginationEntity!.next.isEmpty
+                ? ''
+                : genericProductPaginationEntity!.next,
+          );
+
+          emit(GenericProductSuccess(listGenericProduct: genericProducts));
+
+        case Failure():
+          emit(
+            GenericProductError(
+              "Failed to load more products",
+              listProducts: genericProducts,
+            ),
+          );
+      }
+    } catch (e) {
+      emit(
+        GenericProductError(
+          "Error loading more products: ${e.toString()}",
+          listProducts: genericProducts,
+        ),
+      );
+    }
+  }
 }

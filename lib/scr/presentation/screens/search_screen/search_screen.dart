@@ -8,7 +8,6 @@ import 'package:e_commerce_frontend/scr/presentation/widgets/product_item.dart';
 import 'package:e_commerce_frontend/scr/presentation/widgets/search_bar_with_filter.dart';
 import 'package:e_commerce_frontend/scr/presentation/widgets/bottom_nav_bar.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
-import 'package:e_commerce_frontend/scr/presentation/screens/product_full_screen/product_full_screen.dart';
 
 @RoutePage()
 class SearchScreen extends StatefulWidget {
