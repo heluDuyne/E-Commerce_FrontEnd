@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -216,7 +217,11 @@ class _ProductFoundScreenState extends State<ProductFoundScreen> {
                             price: product.originalPrice,
                             salePrice: product.salePrice,
                             isFavorite: false,
-                            onTap: () {},
+                            onTap: () {
+                              context.router.push(
+                                ProductFullRoute(productId: product.id),
+                              );
+                            },
                           ),
                         );
                       },
@@ -243,7 +248,11 @@ class _ProductFoundScreenState extends State<ProductFoundScreen> {
                             price: product.originalPrice,
                             salePrice: product.salePrice,
                             isFavorite: false,
-                            onTap: () {},
+                            onTap: () {
+                              context.router.push(
+                                ProductFullRoute(productId: product.id),
+                              );
+                            },
                           ),
                         );
                       },

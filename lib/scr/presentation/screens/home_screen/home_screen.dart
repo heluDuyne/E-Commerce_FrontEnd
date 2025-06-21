@@ -230,7 +230,7 @@ class HomeScreen extends StatelessWidget {
                               salePrice: product.salePrice,
                               isFavorite: false,
                               onTap: () {
-                                context.router.push(const ProductFullRoute());
+                                context.router.push(ProductFullRoute(productId: product.id));
                               },
                             );
                           },
