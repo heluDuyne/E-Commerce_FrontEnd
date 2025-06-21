@@ -165,7 +165,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     salePrice: product['salePrice'] as double,
                     isFavorite: false,
                     onTap: () {
-                      context.router.push(const ProductFullRoute());
+                      context.router.push(ProductFullRoute(productId: 1));
                     },
                   );
                 },

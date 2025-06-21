@@ -2,6 +2,7 @@ import 'package:e_commerce_frontend/scr/core/common_domain/entities/based_api_re
 import 'package:e_commerce_frontend/scr/data/datasources/product_datasource/product_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/base_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/generic_product_pagination_entity.dart';
+import 'package:e_commerce_frontend/scr/domain/entities/product_entity/product_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/product_repository.dart';
 
 class ProductRepositoryImp extends BaseRepository implements ProductRepository {
@@ -23,6 +24,14 @@ class ProductRepositoryImp extends BaseRepository implements ProductRepository {
       // Uri uri = Uri.parse(url);
       // String path = uri.path.replaceAll(RegExp('^/api/'), '');
       var results = await datasource.getListProductByUrl(url);
+      return results.mapToEntity();
+    });
+  }
+
+  @override
+  Future<ApiResultModel<ProductEntity>> getProductById(int id) {
+    return baseExecute(() async {
+      var results = await datasource.getProductById(id);
       return results.mapToEntity();
     });
   }

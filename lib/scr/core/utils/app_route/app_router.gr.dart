@@ -507,18 +507,49 @@ class ProductFoundRouteArgs {
 
 /// generated route for
 /// [_i18.ProductFullScreen]
-class ProductFullRoute extends _i26.PageRouteInfo<void> {
-  const ProductFullRoute({List<_i26.PageRouteInfo>? children})
-    : super(ProductFullRoute.name, initialChildren: children);
+class ProductFullRoute extends _i26.PageRouteInfo<ProductFullRouteArgs> {
+  ProductFullRoute({
+    required int productId,
+    _i27.Key? key,
+    List<_i26.PageRouteInfo>? children,
+  }) : super(
+         ProductFullRoute.name,
+         args: ProductFullRouteArgs(productId: productId, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'ProductFullRoute';
 
   static _i26.PageInfo page = _i26.PageInfo(
     name,
     builder: (data) {
-      return const _i18.ProductFullScreen();
+      final args = data.argsAs<ProductFullRouteArgs>();
+      return _i18.ProductFullScreen(productId: args.productId, key: args.key);
     },
   );
+}
+
+class ProductFullRouteArgs {
+  const ProductFullRouteArgs({required this.productId, this.key});
+
+  final int productId;
+
+  final _i27.Key? key;
+
+  @override
+  String toString() {
+    return 'ProductFullRouteArgs{productId: $productId, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProductFullRouteArgs) return false;
+    return productId == other.productId && key == other.key;
+  }
+
+  @override
+  int get hashCode => productId.hashCode ^ key.hashCode;
 }
 
 /// generated route for

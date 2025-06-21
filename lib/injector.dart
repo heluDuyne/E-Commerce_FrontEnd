@@ -20,6 +20,7 @@ import 'package:e_commerce_frontend/scr/domain/repositories/verify_email_reposit
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_product_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/resend_verification_code_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
@@ -31,6 +32,7 @@ import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_ver
 import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/product/product_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -133,6 +135,9 @@ Future<void> init() async {
   locator.registerLazySingleton<GetListProductByUrlUsecase>(
     () => GetListProductByUrlUsecase(productRepository: locator()),
   );
+  locator.registerLazySingleton<GetProductUsecase>(
+    () => GetProductUsecase(productRepository: locator()),
+  );
 
   // Register Blocs
   locator.registerFactory<OAuthAuthenticationBloc>(
@@ -179,7 +184,10 @@ Future<void> init() async {
     () => GenericProductBloc(
       getListProductUsecase: locator(),
       getListProductByUrlUseCase: locator(),
-      sharedPrefManagementHelper: locator()
-    )
+      sharedPrefManagementHelper: locator(),
+    ),
+  );
+  locator.registerFactory<ProductBloc>(
+    () => ProductBloc(getProductUsecase: locator()),
   );
 }
