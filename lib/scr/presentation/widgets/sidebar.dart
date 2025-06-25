@@ -141,6 +141,12 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 ),
                 _buildMenuItem(
                   3,
+                  Icons.shopping_cart_outlined,
+                  'My Cart',
+                  isDarkMode,
+                ),
+                _buildMenuItem(
+                  4,
                   Icons.person_outline,
                   'My profile',
                   isDarkMode,
@@ -159,13 +165,13 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                   ),
                 ),
                 _buildMenuItem(
-                  4,
+                  5,
                   Icons.settings_outlined,
                   'Setting',
                   isDarkMode,
                 ),
-                _buildMenuItem(5, Icons.email_outlined, 'Support', isDarkMode),
-                _buildMenuItem(6, Icons.info_outline, 'About us', isDarkMode),
+                _buildMenuItem(6, Icons.email_outlined, 'Support', isDarkMode),
+                _buildMenuItem(7, Icons.info_outline, 'About us', isDarkMode),
 
                 const Spacer(),
 
@@ -234,6 +240,8 @@ class _SidebarWidgetState extends State<SidebarWidget> {
             } else if (index == 2) {
               context.router.push(const MyOrderRoute());
             } else if (index == 3) {
+              context.router.push(const YourCartRoute());
+            } else if (index == 4) {
               context.router.push(const MyInfoRoute());
             }
           },

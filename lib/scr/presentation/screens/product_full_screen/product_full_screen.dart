@@ -3,6 +3,10 @@ import 'package:e_commerce_frontend/injector.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/responsive_ui_config.dart';
 import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog.dart';
 import 'package:e_commerce_frontend/scr/core/utils/toast/flutter_toast.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/cart_item_request_model/cart_item_request_model.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/product_detail_resquest_model/product_detail_resquest_model.dart';
+import 'package:e_commerce_frontend/scr/data/models/request/product_variant_request_model/product_variant_request_model.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/cart/cart_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/product/product_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +28,7 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
   final PageController pageController = PageController();
   int _currentIndex = 0;
   int selectedColor = 0;
-  int selectedSize = 2;
+  int selectedSize = 0;
   bool descriptionExpanded = true;
   bool reviewsExpanded = false;
 
@@ -47,6 +51,8 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     final responsive = ResponsiveUiConfig(context);
+    String? selectedColorValue;
+    String? selectedSizeValue;
     // final Map<String, dynamic> product = {
     //   'name': 'Sportwear Set',
     //   'image':
@@ -75,28 +81,332 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
           return Scaffold(
             backgroundColor:
                 isDarkMode ? ColorDark.background : ColorLight.background,
-            bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor:
-                      isDarkMode
-                          ? ColorDark.buttonBackground
-                          : ColorLight.buttonBackground,
-                  foregroundColor:
-                      isDarkMode ? ColorDark.buttonText : ColorLight.buttonText,
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: responsive.setWidth(16),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: Text('Add to cart'),
+            bottomNavigationBar: BlocProvider(
+              create: (context) => locator<CartBloc>(),
+              child: BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is LoadedProduct) {
+                    return BlocListener<CartBloc, CartState>(
+                      listener: (context, cartState) {
+                        if (cartState is LoadingCart) {
+                          showLoadingDialog(context: context);
+                        } else if (cartState is AddedToCart) {
+                          context.router.pop();
+                          showToast(
+                            msg: 'Product added to cart',
+                            textColor:
+                                isDarkMode
+                                    ? ColorDark.success
+                                    : ColorLight.success,
+                            backgroundColor:
+                                isDarkMode
+                                    ? ColorDark.background2
+                                    : ColorLight.background2,
+                          );
+                          context.router.push(const YourCartRoute());
+                        } else if (cartState is ErrorCart) {
+                          context.router.pop();
+                          showToast(
+                            msg: cartState.message,
+                            textColor:
+                                isDarkMode ? ColorDark.error : ColorLight.error,
+                            backgroundColor:
+                                isDarkMode
+                                    ? ColorDark.background2
+                                    : ColorLight.background2,
+                          );
+                        } else {
+                          context.router.pop();
+                          showToast(
+                            msg: 'Some thing happened',
+                            textColor:
+                                isDarkMode ? ColorDark.error : ColorLight.error,
+                            backgroundColor:
+                                isDarkMode
+                                    ? ColorDark.background2
+                                    : ColorLight.background2,
+                          );
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: TextButton(
+                          onPressed: () {
+                            if (state.productEntity.colors.isEmpty &&
+                                state.productEntity.sizes.isEmpty) {
+                              context.read<CartBloc>().add(
+                                AddProductToCart(
+                                  cartItemRequestModel: CartItemRequestModel(
+                                    productDetail: ProductDetailResquestModel(
+                                      product: state.productEntity.id,
+                                      price:
+                                          state
+                                              .productEntity
+                                              .productDetails
+                                              .first
+                                              .price,
+                                      detailVariant: null,
+                                      salePrice:
+                                          state
+                                              .productEntity
+                                              .productDetails
+                                              .first
+                                              .salePrice,
+                                    ),
+                                    isChecked: false,
+                                    quantity: 1,
+                                  ),
+                                ),
+                              );
+                            } else if (state.productEntity.colors.isEmpty) {
+                              if (selectedSizeValue == null) {
+                                showToast(
+                                  msg: 'Please select a size',
+                                  textColor:
+                                      isDarkMode
+                                          ? ColorDark.error
+                                          : ColorLight.error,
+                                  backgroundColor:
+                                      isDarkMode
+                                          ? ColorDark.background2
+                                          : ColorLight.background2,
+                                );
+                                return;
+                              } else {
+                                selectedSizeValue =
+                                    state.productEntity.sizes[selectedSize];
+                                var filterSectectedProductDetail =
+                                    state.productEntity.productDetails
+                                        .where(
+                                          (productDetail) =>
+                                              productDetail
+                                                  .detailVariant
+                                                  .size ==
+                                              selectedSizeValue,
+                                        )
+                                        .toList()
+                                        .first;
+                                context.read<CartBloc>().add(
+                                  AddProductToCart(
+                                    cartItemRequestModel: CartItemRequestModel(
+                                      productDetail: ProductDetailResquestModel(
+                                        product:
+                                            filterSectectedProductDetail
+                                                .product,
+                                        price:
+                                            filterSectectedProductDetail.price,
+                                        detailVariant:
+                                            ProductVariantRequestModel(
+                                              id:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .id,
+                                              product:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .product,
+                                              color:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .color,
+                                              size:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .size,
+                                              stockQuantity:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .stockQuantity,
+                                            ),
+                                        salePrice:
+                                            filterSectectedProductDetail
+                                                .salePrice,
+                                      ),
+                                      isChecked: false,
+                                      quantity: 1,
+                                    ),
+                                  ),
+                                );
+                              }
+                            } else if (state.productEntity.sizes.isEmpty) {
+                              selectedColorValue =
+                                  state.productEntity.colors[selectedColor];
+                              if (selectedColorValue == null) {
+                                showToast(
+                                  msg: 'Please select a color',
+                                  textColor:
+                                      isDarkMode
+                                          ? ColorDark.error
+                                          : ColorLight.error,
+                                  backgroundColor:
+                                      isDarkMode
+                                          ? ColorDark.background2
+                                          : ColorLight.background2,
+                                );
+                                return;
+                              } else {
+                                var filterSectectedProductDetail =
+                                    state.productEntity.productDetails
+                                        .where(
+                                          (productDetail) =>
+                                              productDetail
+                                                  .detailVariant
+                                                  .color ==
+                                              selectedColorValue,
+                                        )
+                                        .toList()
+                                        .first;
+                                context.read<CartBloc>().add(
+                                  AddProductToCart(
+                                    cartItemRequestModel: CartItemRequestModel(
+                                      productDetail: ProductDetailResquestModel(
+                                        product:
+                                            filterSectectedProductDetail
+                                                .product,
+                                        price:
+                                            filterSectectedProductDetail.price,
+                                        detailVariant:
+                                            ProductVariantRequestModel(
+                                              id:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .id,
+                                              product:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .product,
+                                              color:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .color,
+                                              size:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .size,
+                                              stockQuantity:
+                                                  filterSectectedProductDetail
+                                                      .detailVariant
+                                                      .stockQuantity,
+                                            ),
+                                        salePrice:
+                                            filterSectectedProductDetail
+                                                .salePrice,
+                                      ),
+                                      isChecked: false,
+                                      quantity: 1,
+                                    ),
+                                  ),
+                                );
+                              }
+                            } else {
+                              selectedSizeValue =
+                                  state.productEntity.sizes[selectedSize];
+                              selectedColorValue =
+                                  state.productEntity.colors[selectedColor];
+                              var filterSectectedProductDetail =
+                                  state.productEntity.productDetails
+                                      .where(
+                                        (productDetail) =>
+                                            productDetail.detailVariant.size ==
+                                                selectedSizeValue &&
+                                            productDetail.detailVariant.color ==
+                                                selectedColorValue,
+                                      )
+                                      .toList()
+                                      .first;
+
+                              context.read<CartBloc>().add(
+                                AddProductToCart(
+                                  cartItemRequestModel: CartItemRequestModel(
+                                    productDetail: ProductDetailResquestModel(
+                                      product:
+                                          filterSectectedProductDetail.product,
+                                      price: filterSectectedProductDetail.price,
+                                      detailVariant: ProductVariantRequestModel(
+                                        id:
+                                            filterSectectedProductDetail
+                                                .detailVariant
+                                                .id,
+                                        product:
+                                            filterSectectedProductDetail
+                                                .detailVariant
+                                                .product,
+                                        color:
+                                            filterSectectedProductDetail
+                                                .detailVariant
+                                                .color,
+                                        size:
+                                            filterSectectedProductDetail
+                                                .detailVariant
+                                                .size,
+                                        stockQuantity:
+                                            filterSectectedProductDetail
+                                                .detailVariant
+                                                .stockQuantity,
+                                      ),
+                                      salePrice:
+                                          filterSectectedProductDetail
+                                              .salePrice,
+                                    ),
+                                    isChecked: false,
+                                    quantity: 1,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor:
+                                isDarkMode
+                                    ? ColorDark.buttonBackground
+                                    : ColorLight.buttonBackground,
+                            foregroundColor:
+                                isDarkMode
+                                    ? ColorDark.buttonText
+                                    : ColorLight.buttonText,
+                            textStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: responsive.setWidth(16),
+                            ),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Text('Add to cart'),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          backgroundColor:
+                              isDarkMode
+                                  ? ColorDark.buttonBackground
+                                  : ColorLight.buttonBackground,
+                          foregroundColor:
+                              isDarkMode
+                                  ? ColorDark.buttonText
+                                  : ColorLight.buttonText,
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: responsive.setWidth(16),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text('Add to cart'),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
             body: BlocConsumer<ProductBloc, ProductState>(
@@ -144,12 +454,6 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
                                       bottomRight: Radius.circular(32),
                                     ),
                                   ),
-                                  // child: Image.network(
-                                  //   product['image'],
-                                  //   fit: BoxFit.cover,
-                                  //   width: double.infinity,
-                                  //   height: screenHeight * 0.38,
-                                  // ),
                                   child: PageView.builder(
                                     controller: pageController,
                                     onPageChanged: _onPageChanged,
@@ -350,8 +654,27 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
                                                     selected:
                                                         i == selectedColor,
                                                     onSelected: (_) {
+                                                      if (product.productDetails
+                                                          .where(
+                                                            (productDetail) =>
+                                                                (productDetail
+                                                                        .detailVariant
+                                                                        .color ==
+                                                                    product
+                                                                        .colors[i]
+                                                                // && productDetail
+                                                                //         .detailVariant
+                                                                //         .stockQuantity >
+                                                                //     0
+                                                                ),
+                                                          )
+                                                          .isEmpty) {
+                                                        return;
+                                                      }
                                                       setState(() {
                                                         selectedColor = i;
+                                                        selectedColorValue =
+                                                            product.colors[i];
                                                       });
                                                     },
                                                     selectedColor:
@@ -410,8 +733,27 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
                                                     ),
                                                     selected: i == selectedSize,
                                                     onSelected: (_) {
+                                                      if (product.productDetails
+                                                          .where(
+                                                            (productDetail) =>
+                                                                (productDetail
+                                                                        .detailVariant
+                                                                        .size ==
+                                                                    product
+                                                                        .sizes[i]
+                                                                // && productDetail
+                                                                //         .detailVariant
+                                                                //         .stockQuantity >
+                                                                //     0
+                                                                ),
+                                                          )
+                                                          .isEmpty) {
+                                                        return;
+                                                      }
                                                       setState(() {
                                                         selectedSize = i;
+                                                        selectedSizeValue =
+                                                            product.sizes[i];
                                                       });
                                                     },
                                                     selectedColor:
@@ -521,7 +863,8 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
                                                     ],
                                                   ),
                                                   Text(
-                                                    product.reviewCount.toString(),
+                                                    product.reviewCount
+                                                        .toString(),
                                                     style: TextStyle(
                                                       fontSize: 14,
                                                       color:

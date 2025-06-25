@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<RecommendationBloc>().add(const FetchRecommendationEvent());
     final themeProvider = Provider.of<ThemeProvider>(context);
     final isDarkMode = themeProvider.isDarkMode;
     final responsive = ResponsiveUiConfig(context);
@@ -28,42 +30,6 @@ class HomeScreen extends StatelessWidget {
       {'label': 'Men', 'icon': Icons.male},
       {'label': 'Accessories', 'icon': Icons.watch},
       {'label': 'Beauty', 'icon': Icons.face},
-    ];
-
-    // Products
-    final List<Map<String, dynamic>> products = [
-      {
-        'title': 'Turtleneck Sweater',
-        'price': 39.99,
-        'salePrice': 20.00,
-        'image': 'assets/images/product1.png',
-      },
-      {
-        'title': 'Long Sleeve Dress',
-        'price': 45.00,
-        'salePrice': 45.00,
-        'image': 'assets/images/product2.png',
-      },
-      {
-        'title': 'Sportwear Set',
-        'price': 80.00,
-        'salePrice': 60.00,
-        'image': 'assets/images/product3.png',
-      },
-    ];
-    final List<Map<String, dynamic>> recommendedProducts = [
-      {
-        'title': 'White fashion hoodie',
-        'price': 29.00,
-        'salePrice': 25.00,
-        'image': 'assets/images/recommended1.png',
-      },
-      {
-        'title': 'Cotton t-shirt',
-        'price': 30.00,
-        'salePrice': 30.00,
-        'image': 'assets/images/recommended2.png',
-      },
     ];
 
     final List<Map<String, dynamic>> topCollections = [
@@ -230,7 +196,9 @@ class HomeScreen extends StatelessWidget {
                               salePrice: product.salePrice,
                               isFavorite: false,
                               onTap: () {
-                                context.router.push(ProductFullRoute(productId: product.id));
+                                context.router.push(
+                                  ProductFullRoute(productId: product.id),
+                                );
                               },
                             );
                           },
@@ -311,27 +279,80 @@ class HomeScreen extends StatelessWidget {
                 responsive,
                 isDarkMode,
                 context,
-                onTap: () {},
+                onTap: () {
+                  context.router.push(
+                    ProductFoundRecommendationRoute(screenTitle: "For you"),
+                  );
+                },
               ),
               SizedBox(height: responsive.setHeight(12)),
 
               SizedBox(
                 height: responsive.setHeight(240),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: recommendedProducts.length,
-                  separatorBuilder:
-                      (_, __) => SizedBox(width: responsive.setWidth(16)),
-                  itemBuilder: (context, index) {
-                    final product = recommendedProducts[index];
-                    return ProductItem(
-                      imageUrl: product['image'] as String,
-                      title: product['title'] as String,
-                      salePrice: product['salePrice'] as double,
-                      price: product['price'] as double,
-                      isFavorite: false,
-                      onTap: () {},
-                    );
+                child: BlocBuilder<RecommendationBloc, RecommendationState>(
+                  builder: (context, state) {
+                    switch (state) {
+                      case ErrorRecommendation():
+                        return Center(
+                          child: Text(
+                            'Error loading recommendations',
+                            style: TextStyle(
+                              color:
+                                  isDarkMode
+                                      ? ColorDark.titleText
+                                      : ColorLight.titleText,
+                              fontSize: responsive.setWidth(16),
+                            ),
+                          ),
+                        );
+                      case LoadedRecommendation():
+                        final products = state.listGenericProduct;
+                        if (products.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No recommendations available',
+                              style: TextStyle(
+                                color:
+                                    isDarkMode
+                                        ? ColorDark.titleText
+                                        : ColorLight.titleText,
+                                fontSize: responsive.setWidth(16),
+                              ),
+                            ),
+                          );
+                        }
+                        return ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 10,
+                          separatorBuilder:
+                              (_, __) =>
+                                  SizedBox(width: responsive.setWidth(16)),
+                          itemBuilder: (context, index) {
+                            final product = products[index];
+                            return ProductItem(
+                              imageUrl: product.images.first.url,
+                              title: product.name,
+                              price: product.originalPrice,
+                              salePrice: product.salePrice,
+                              isFavorite: false,
+                              onTap: () {
+                                context.router.push(
+                                  ProductFullRoute(productId: product.id),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      default:
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color:
+                                isDarkMode
+                                    ? ColorDark.iconPrimary
+                                    : ColorLight.iconPrimary,
+                          ),
+                        );
+                    }
                   },
                 ),
               ),

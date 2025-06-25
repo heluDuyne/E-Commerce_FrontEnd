@@ -52,7 +52,7 @@ class GenericProductBloc
         if (genericProductPaginationEntity != null) {
           genericProducts.addAll(genericProductPaginationEntity!.results);
           await sharedPrefManagementHelper.saveKeyString(
-            NEXT_PAGE_LINK,
+            PRODUCT_NEXT_PAGE_LINK,
             genericProductPaginationEntity!.next.isEmpty
                 ? ''
                 : genericProductPaginationEntity!.next,
@@ -76,7 +76,7 @@ class GenericProductBloc
       add(const FetchGenericProductsEvent());
       return;
     }
-    final nextPageUrl = sharedPrefManagementHelper.getKeyString(NEXT_PAGE_LINK);
+    final nextPageUrl = sharedPrefManagementHelper.getKeyString(PRODUCT_NEXT_PAGE_LINK);
 
     if (nextPageUrl.isEmpty) {
       // No more pages to load
@@ -98,7 +98,7 @@ class GenericProductBloc
 
           // Save the new next page URL
           await sharedPrefManagementHelper.saveKeyString(
-            NEXT_PAGE_LINK,
+            PRODUCT_NEXT_PAGE_LINK,
             genericProductPaginationEntity!.next.isEmpty
                 ? ''
                 : genericProductPaginationEntity!.next,

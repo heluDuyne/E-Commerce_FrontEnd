@@ -3,24 +3,35 @@ import 'package:e_commerce_frontend/scr/core/network/dio_interceptors.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_management_helper/shared_pref_management_helper.dart';
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/auth_datasource/auth_datasource.dart';
+import 'package:e_commerce_frontend/scr/data/datasources/cart_datasource/cart_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/product_datasource/product_datasource.dart';
+import 'package:e_commerce_frontend/scr/data/datasources/recommendation_datasource/recommendation_datasource.dart';
 import 'package:e_commerce_frontend/scr/data/datasources/user_datasource/user_datasource.dart';
+import 'package:e_commerce_frontend/scr/data/repositories/cart_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/login_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/product_repository_imp.dart';
+import 'package:e_commerce_frontend/scr/data/repositories/recommendation_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/resend_verification_code_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/signup_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/user_repository_imp.dart';
 import 'package:e_commerce_frontend/scr/data/repositories/verify_email_repository_imp.dart';
+import 'package:e_commerce_frontend/scr/domain/repositories/cart_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/login_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/product_repository.dart';
+import 'package:e_commerce_frontend/scr/domain/repositories/recommendation_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/resend_verification_code_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/signup_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/user_repository.dart';
 import 'package:e_commerce_frontend/scr/domain/repositories/verify_email_repository.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/add_product_to_cart_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/get_list_cart_item_by_url_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/get_list_cart_item_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/update_cart_item_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_product_usecase.dart';
+import 'package:e_commerce_frontend/scr/domain/usecases/recommendation_usecase/recommendation_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/resend_verification_code_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/signup_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
@@ -28,11 +39,13 @@ import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user_info_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/verify_email_usecase.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/cart/cart_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/email_verify/email_verify_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/product/product_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/signup/signup_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -88,6 +101,12 @@ Future<void> init() async {
   locator.registerLazySingleton<ProductDatasource>(
     () => ProductDatasource(locator()),
   );
+  locator.registerLazySingleton<CartDatasource>(
+    () => CartDatasource(locator()),
+  );
+  locator.registerLazySingleton<RecommendationDatasource>(
+    () => RecommendationDatasource(locator()),
+  );
 
   // Register repositories
   locator.registerLazySingleton<LoginRepository>(
@@ -107,6 +126,12 @@ Future<void> init() async {
   );
   locator.registerLazySingleton<ProductRepository>(
     () => ProductRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<CartRepository>(
+    () => CartRepositoryImp(datasource: locator()),
+  );
+  locator.registerLazySingleton<RecommendationRepository>(
+    () => RecommendationRepositoryImp(datasource: locator()),
   );
 
   //Register use cases
@@ -137,6 +162,21 @@ Future<void> init() async {
   );
   locator.registerLazySingleton<GetProductUsecase>(
     () => GetProductUsecase(productRepository: locator()),
+  );
+  locator.registerLazySingleton<GetListCartItemUsecase>(
+    () => GetListCartItemUsecase(repository: locator()),
+  );
+  locator.registerLazySingleton<GetListCartItemByUrlUsecase>(
+    () => GetListCartItemByUrlUsecase(repository: locator()),
+  );
+  locator.registerLazySingleton<AddProductToCartUsecase>(
+    () => AddProductToCartUsecase(repository: locator()),
+  );
+  locator.registerLazySingleton<UpdateCartItemUsecase>(
+    () => UpdateCartItemUsecase(repository: locator()),
+  );
+  locator.registerLazySingleton<RecommendationUsecase>(
+    () => RecommendationUsecase(repository: locator()),
   );
 
   // Register Blocs
@@ -189,5 +229,19 @@ Future<void> init() async {
   );
   locator.registerFactory<ProductBloc>(
     () => ProductBloc(getProductUsecase: locator()),
+  );
+  locator.registerFactory<CartBloc>(
+    () => CartBloc(
+      getListCartItemUsecase: locator(),
+      getListCartItemByUrlUsecase: locator(),
+      addProductToCartUsecase: locator(),
+      updateCartItemUsecase: locator(),
+      sharePrefManagementHepler: locator(),
+    ),
+  );
+  locator.registerFactory<RecommendationBloc>(
+    () => RecommendationBloc(
+      recommendationUsecase: locator(),
+    ),
   );
 }

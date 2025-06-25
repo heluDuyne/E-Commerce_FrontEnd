@@ -15,4 +15,8 @@ class API {
   static const USER = '/user/me/';
 
   static const PRODUCT = '/product/products/generic';
+
+  static const CART = '/cart/cart-item/';
+
+  static const RECOMMENDATION = '/recommendation/recommended-products/';
 }

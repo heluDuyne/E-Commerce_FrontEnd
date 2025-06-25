@@ -4,6 +4,7 @@ import 'package:e_commerce_frontend/scr/core/utils/theme/app_theme.dart';
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/generic_product/generic_product_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +53,10 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (context) => di.locator<GenericProductBloc>()..add(const GenericProductEvent.fetchProducts()),
-              )
+              ),
+              BlocProvider(
+                create: (context) => di.locator<RecommendationBloc>(),
+              ),
             ],
             child: MaterialApp.router(
               routerConfig: router.config(),

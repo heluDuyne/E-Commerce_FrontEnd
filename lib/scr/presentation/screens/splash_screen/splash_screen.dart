@@ -5,6 +5,7 @@ import 'package:e_commerce_frontend/scr/core/utils/helpers/responsive_ui_helper/
 import 'package:e_commerce_frontend/scr/core/utils/theme/theme_provider.dart';
 import 'package:e_commerce_frontend/scr/core/utils/toast/flutter_toast.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/authentication_watcher/authentication_watcher_bloc.dart';
+import 'package:e_commerce_frontend/scr/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,10 @@ class _SplashScreenState extends State<SplashScreen> {
       listener: (context, state) {
         switch (state) {
           case Authenticated():
+            print("Authenticate again");
+            context.read<RecommendationBloc>().add(
+              const FetchRecommendationEvent(),
+            );
             showToast(msg: state.message, textColor: Colors.green);
             context.router.replace(const HomeRoute());
           case Unauthenticated():
