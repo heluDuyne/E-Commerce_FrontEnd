@@ -116,8 +116,8 @@ class MyInfoScreen extends StatelessWidget {
                     const SizedBox(height: 12.0),
                     _buildProfileOption(
                       context,
-                      icon: Icons.favorite_border,
-                      label: 'My Wishlist',
+                      icon: Icons.shopping_cart_outlined,
+                      label: 'My Cart',
                       isDarkMode: isDarkMode,
                     ),
                     const SizedBox(height: 12.0),
@@ -177,6 +177,9 @@ class MyInfoScreen extends StatelessWidget {
             // Sign out logic: clear user info and navigate to login
             context.read<AuthenticationWatcherBloc>().add(const SignOut());
             context.router.replaceAll([LoginRoute()]);
+          }
+          if (label == 'My Cart') {
+            context.router.push(const YourCartRoute());
           }
         },
         borderRadius: BorderRadius.circular(12.0),
