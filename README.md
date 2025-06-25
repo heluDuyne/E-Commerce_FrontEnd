@@ -15,29 +15,31 @@ A modern, feature-rich e-commerce mobile application built with Flutter that pro
 ## UI
 
 - **Light mode**:
-  <img src="screenshots/home_screen.png" alt="Home Screen" width="300" />
-  <img src="screenshots/product_full.png" alt="Product Full Screen" width="300" />
-  <img src="screenshots/product_full_image_slide.png" alt="Product Full Screen Image slide" width="300" />
-  <img src="screenshots/description_review.png" alt="Description & Review" width="300" />
-  <img src="screenshots/cart_screen.png" alt="Cart Screen" width="300" />
-  <img src="screenshots/check_out_1.png" alt="Check out 1" width="300" />
-  <img src="screenshots/check_out_2.png" alt="Check out 2" width="300" />
-  <img src="screenshots/order_screen.png" alt="Order Screen" width="300" />
-  <img src="screenshots/search_screen.png" alt="Search Screen" width="300" />
-  <img src="screenshots/categories.png" alt="Categories" width="300" />
-  <img src="screenshots/sidebar.png" alt="Sidebar" width="300" />
-  <img src="screenshots/user_setting.png" alt="User setting" width="300" />
-  <img src="screenshots/user_profile.png" alt="User Profile" width="300" />
+
+  <img src="screenshots/home_screen.png" alt="Home Screen" width="150" />
+  <img src="screenshots/product_full.png" alt="Product Full Screen" width="150" />
+  <img src="screenshots/product_full_image_slide.png" alt="Product Full Screen Image slide" width="150" />
+  <img src="screenshots/description_review.png" alt="Description & Review" width="150" />
+  <img src="screenshots/cart_screen.png" alt="Cart Screen" width="150" />
+  <img src="screenshots/check_out_1.png" alt="Check out 1" width="150" />
+  <img src="screenshots/check_out_2.png" alt="Check out 2" width="150" />
+  <img src="screenshots/order_screen.png" alt="Order Screen" width="150" />
+  <img src="screenshots/search_screen.png" alt="Search Screen" width="150" />
+  <img src="screenshots/categories.png" alt="Categories" width="150" />
+  <img src="screenshots/sidebar.png" alt="Sidebar" width="150" />
+  <img src="screenshots/user_setting.png" alt="User setting" width="150" />
+  <img src="screenshots/user_profile.png" alt="User Profile" width="150" />
 
 - **Dark mode**:
-  <img src="screenshots/home_screen_darkmode.png" alt="Home screen" width="300" />
-  <img src="screenshots/product_full_darkmode.png" alt="Product Full Screen" width="300" />
-  <img src="screenshots/cart_screen_darkmode.png" alt="Cart Screen" width="300" />
-  <img src="screenshots/check_out_1_darkmode.png" alt="Check out 1" width="300" />
-  <img src="screenshots/check_out_2_darkmode.png" alt="Check out 1" width="300" />
-  <img src="screenshots/order_darkmode.png" alt="Order Screen" width="300" />
-  <img src="screenshots/search_screen_darkmode.png" alt="Search Screen" width="300" />
-  <img src="screenshots/sidebar_darkmode.png" alt="Sidebar" width="300" />
+
+  <img src="screenshots/home_screen_darkmode.png" alt="Home screen" width="150" />
+  <img src="screenshots/product_full_darkmode.png" alt="Product Full Screen" width="150" />
+  <img src="screenshots/cart_screen_darkmode.png" alt="Cart Screen" width="150" />
+  <img src="screenshots/check_out_1_darkmode.png" alt="Check out 1" width="150" />
+  <img src="screenshots/check_out_2_darkmode.png" alt="Check out 1" width="150" />
+  <img src="screenshots/order_darkmode.png" alt="Order Screen" width="150" />
+  <img src="screenshots/search_screen_darkmode.png" alt="Search Screen" width="150" />
+  <img src="screenshots/sidebar_darkmode.png" alt="Sidebar" width="150" />
 
 ## Technology Stack
 
