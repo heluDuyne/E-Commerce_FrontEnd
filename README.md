@@ -12,6 +12,13 @@ A modern, feature-rich e-commerce mobile application built with Flutter that pro
 - **Order History - TODO**: Track and view past orders
 - **User Profiles**: Manage personal information and preferences
 
+## Technology Stack
+
+- **Frontend**: Flutter
+- **State Management**: BLoC pattern
+- **Navigation**: Auto Route
+- **API Client**: Retrofit, Dio
+
 ## UI
 
 - **Light mode**:
@@ -41,13 +48,6 @@ A modern, feature-rich e-commerce mobile application built with Flutter that pro
   <img src="screenshots/search_screen_darkmode.png" alt="Search Screen" width="150" />
   <img src="screenshots/sidebar_darkmode.png" alt="Sidebar" width="150" />
 
-## Technology Stack
-
-- **Frontend**: Flutter
-- **State Management**: BLoC pattern
-- **Navigation**: Auto Route
-- **API Client**: Retrofit, Dio
-
 ## Getting Started
 
 ### Prerequisites
@@ -72,7 +72,12 @@ cd E-Commerce_FrontEnd
 flutter pub get
 ```
 
-3. Run the application:
+3. Clone backend and run backend as its instruction
+```bash
+git clone https://github.com/HudsonBui/E-commerce_Backend.git
+```
+
+4. Run the application:
 
 ```bash
 flutter run
@@ -105,24 +110,3 @@ The application starts with a welcome screen that guides users to the main shopp
 4. Add products to cart and manage cart items
 5. Complete purchases through a streamlined checkout process
 6. View order history and track current orders
-
-## Known Issues and Solutions
-
-- **Recommendation refresh**: When signing in with different accounts, recommendations might not update automatically. This is being addressed in upcoming updates.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add some amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a pull request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgements
-
-- Flutter team for the amazing framework
-- Contributors who have participated in
