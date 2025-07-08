@@ -40,13 +40,13 @@ class _ProductFoundScreenState extends State<ProductFoundScreen> {
   }
 
   void _onScroll() {
-    print("Scroll position: ${_scrollController.position.pixels}");
+    debugPrint("Scroll position: ${_scrollController.position.pixels}");
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 100) {
       final bloc = context.read<GenericProductBloc>();
       final state = bloc.state;
 
-      print('Scroll reach the linmit!');
+      debugPrint('Scroll reach the linmit!');
 
       // Check if we're not already loading and have more items
       final nextPageUrl = bloc.genericProductPaginationEntity?.next ?? '';

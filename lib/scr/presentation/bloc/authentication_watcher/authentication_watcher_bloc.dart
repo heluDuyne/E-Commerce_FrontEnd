@@ -8,6 +8,7 @@ import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_managemen
 import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_helper/token_management_helper.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/user_info_entity/user_info_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -41,11 +42,11 @@ class AuthenticationWatcherBloc
         var userInfoJson = json.decode(userInfoString) as Map<String, dynamic>;
         var userInfo = UserInfoEntity.fromJson(userInfoJson);
         if (userInfo.email.isEmpty || userInfo.name.isEmpty) {
-          _getUser(event, emit, userInfo);
+          _getUser(event, emit, userInfo: userInfo);
           return;
         } else {
           if (userInfo.isVerified == false) {
-            print('User is not verified: ${userInfo.email}');
+            debugPrint('User is not verified: ${userInfo.email}');
             emit(
               IsNotVerified(
                 message: 'Please verify your email to continue!',
@@ -58,9 +59,7 @@ class AuthenticationWatcherBloc
           return;
         }
       } else {
-        var userInfoJson = json.decode(userInfoString) as Map<String, dynamic>;
-        var userInfo = UserInfoEntity.fromJson(userInfoJson);
-        _getUser(event, emit, userInfo);
+        await _getUser(event, emit);
         return;
       }
     } else {
@@ -83,9 +82,9 @@ class AuthenticationWatcherBloc
 
   Future<void> _getUser(
     AuthCheckRequest event,
-    Emitter<AuthenticationWatcherState> emit,
-    UserInfoEntity userInfo,
-  ) async {
+    Emitter<AuthenticationWatcherState> emit, {
+    UserInfoEntity? userInfo,
+  }) async {
     var result = await getUserInfoUsecase.call(NoParams());
     switch (result) {
       case Success():
@@ -95,7 +94,7 @@ class AuthenticationWatcherBloc
           json.encode(userInfo.toJson()),
         );
         if (userInfo.isVerified == false) {
-          print('User is not verified: ${userInfo.email}');
+          debugPrint('User is not verified: ${userInfo.email}');
           emit(
             IsNotVerified(
               message: 'Please verify your email to continue!',
@@ -106,7 +105,7 @@ class AuthenticationWatcherBloc
         }
         emit(Authenticated(userInfo, 'Welcome back ${userInfo.name}!'));
       case Failure():
-        print('Failed to fetch user info: ${result.errorResultModel.message}');
+        debugPrint('Failed to fetch user info: ${result.errorResultModel.message}');
         emit(AuthenticationWatcherError('Failed to fetch user info'));
     }
   }

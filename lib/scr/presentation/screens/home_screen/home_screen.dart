@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                   isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
             ),
             onPressed: () {
-              print("Notification clicked");
+              debugPrint("Notification clicked");
               context.router.push(const NotificationRoute());
             },
           ),

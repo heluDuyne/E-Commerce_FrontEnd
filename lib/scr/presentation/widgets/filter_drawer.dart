@@ -11,7 +11,7 @@ class _FilterDrawerState extends State<FilterDrawer> {
   double _priceValue = 80;
   int _selectedRating = 5;
   String _selectedCategory = 'Crop Tops';
-  List<String> _selectedDiscounts = ['50% off', '40% off'];
+  final List<String> _selectedDiscounts = ['50% off', '40% off'];
   final List<Color> _colors = [
     Colors.amber,
     Colors.red,

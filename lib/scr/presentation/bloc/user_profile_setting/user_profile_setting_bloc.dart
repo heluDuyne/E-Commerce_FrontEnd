@@ -11,6 +11,7 @@ import 'package:e_commerce_frontend/scr/domain/entities/user_info_entity/user_in
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user_info_partially_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/update_user_info_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -72,7 +73,7 @@ class UserProfileSettingBloc
         _tempBirthday = _userInfo!.birthday;
         emit(UserProfileLoaded(userInfo: _userInfo!));
       } catch (e) {
-        print('Failed to load user profile: ${e.toString()}');
+        debugPrint('Failed to load user profile: ${e.toString()}');
         emit(UserProfileError(message: 'Failed to load user profile'));
       }
     }

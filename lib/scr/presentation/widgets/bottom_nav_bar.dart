@@ -10,8 +10,7 @@ class BottomNavBar extends StatefulWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const BottomNavBar({Key? key, this.currentIndex = 0, required this.onTap})
-    : super(key: key);
+  const BottomNavBar({super.key, this.currentIndex = 0, required this.onTap});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -52,7 +51,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             spreadRadius: 0,
             offset: const Offset(0, -5),

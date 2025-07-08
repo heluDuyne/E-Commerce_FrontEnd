@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
       listener: (context, state) {
         switch (state) {
           case Authenticated():
-            print("Authenticate again");
+            debugPrint("Authenticate again");
             context.read<RecommendationBloc>().add(
               const FetchRecommendationEvent(),
             );

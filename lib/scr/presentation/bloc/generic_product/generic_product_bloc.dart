@@ -8,6 +8,7 @@ import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/g
 import 'package:e_commerce_frontend/scr/domain/entities/generic_product_entity/generic_product_pagination_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_list_product_usecase.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -62,7 +63,7 @@ class GenericProductBloc
           emit(const GenericProductError('Fail to return data'));
         }
       case Failure():
-        print('Failed to fetch porducts: ${result.errorResultModel.message}');
+        debugPrint('Failed to fetch porducts: ${result.errorResultModel.message}');
         emit(const GenericProductError("Failed to fetch products"));
     }
   }

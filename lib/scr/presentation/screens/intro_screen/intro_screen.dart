@@ -104,7 +104,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   color:
                       _currentIndex == index
                           ? ColorLight.primary
-                          : ColorLight.subtitleText.withOpacity(0.4),
+                          : ColorLight.subtitleText.withValues(alpha: 0.4),
                 ),
               ),
             ),

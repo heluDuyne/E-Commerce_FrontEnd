@@ -6,7 +6,6 @@ import 'package:e_commerce_frontend/scr/core/utils/loading_dialog/loading_dialog
 import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/login/login_bloc.dart';
 import 'package:e_commerce_frontend/scr/presentation/bloc/oauth_authentication/oauth_bloc.dart';
-import 'package:e_commerce_frontend/scr/presentation/bloc/recommendation/recommendation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

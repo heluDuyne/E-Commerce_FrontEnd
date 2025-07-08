@@ -17,7 +17,7 @@ class OrderCard extends StatelessWidget {
   final VoidCallback onDetailsPressed;
 
   const OrderCard({
-    Key? key,
+    super.key,
     required this.orderNumber,
     required this.trackingNumber,
     required this.quantity,
@@ -25,7 +25,7 @@ class OrderCard extends StatelessWidget {
     required this.orderDate,
     required this.status,
     required this.onDetailsPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +146,7 @@ class OrderCard extends StatelessWidget {
                     vertical: responsive.setHeight(6),
                   ),
                   decoration: BoxDecoration(
-                    color: statusColor.withOpacity(0.15),
+                    color: statusColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(responsive.setWidth(4)),
                   ),
                   child: Text(

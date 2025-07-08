@@ -7,11 +7,11 @@ import 'package:e_commerce_frontend/scr/core/utils/helpers/shared_pref_managemen
 import 'package:e_commerce_frontend/scr/data/models/request/cart_item_request_model/cart_item_request_model.dart';
 import 'package:e_commerce_frontend/scr/data/models/request/update_cart_item_request_model/update_cart_item_request_model.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/cart_entity/cart_item_entity.dart';
-import 'package:e_commerce_frontend/scr/domain/entities/product_detail_entity/product_detail_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/add_product_to_cart_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/get_list_cart_item_by_url_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/get_list_cart_item_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/cart_usecase/update_cart_item_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -56,7 +56,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         );
         emit(LoadedCart(cartItems: List.from(cartItems)));
       case Failure():
-        print("Error fetching cart items: ${result.errorResultModel.message}");
+        debugPrint("Error fetching cart items: ${result.errorResultModel.message}");
         emit(const ErrorCart("Error fetching cart items"));
     }
   }
@@ -91,7 +91,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
           emit(LoadedCart(cartItems: List.from(cartItems)));
         case Failure():
-          print(
+          debugPrint(
             "Error loading more cart items: ${result.errorResultModel.message}",
           );
           emit(
@@ -99,7 +99,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
       }
     } catch (e) {
-      print("Exception while loading more cart items: $e");
+      debugPrint("Exception while loading more cart items: $e");
       emit(
         ErrorCart(
           "Exception while loading more cart items",
@@ -117,10 +117,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     var result = await addProductToCartUsecase.call(event.cartItemRequestModel);
     switch (result) {
       case Success():
-        print("Successfully added product to cart");
+        debugPrint("Successfully added product to cart");
         emit(const AddedToCart());
       case Failure():
-        print(
+        debugPrint(
           "Error adding product to cart: ${result.errorResultModel.message}",
         );
         emit(ErrorCart("Error adding product to cart", cartItems: cartItems));
@@ -138,18 +138,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cartItem: event.cartItemRequestModel,
       ),
     );
-    print(event.cartItemRequestModel.toJson());
-    print("Check: ${event.id}");
-    print("Check: ${event.cartItemRequestModel.productDetail.toJson()}");
-    print(
+    debugPrint(event.cartItemRequestModel.toJson().toString());
+    debugPrint("Check: ${event.id}");
+    debugPrint("Check: ${event.cartItemRequestModel.productDetail.toJson()}");
+    debugPrint(
       "Check: ${event.cartItemRequestModel.productDetail.detailVariant?.toJson()}",
     );
-    print("Check: ${event.cartItemRequestModel.isChecked}");
-    print("Check: ${event.cartItemRequestModel.quantity}");
+    debugPrint("Check: ${event.cartItemRequestModel.isChecked}");
+    debugPrint("Check: ${event.cartItemRequestModel.quantity}");
     switch (result) {
       case Success():
         // Create a new list to ensure immutability
-        print("Before update: ${cartItems.map((item) => 'id: ${item.id}, isChecked: ${item.isChecked}').toList()}");
+        debugPrint("Before update: ${cartItems.map((item) => 'id: ${item.id}, isChecked: ${item.isChecked}').toList()}");
         final updatedCartItems =
             cartItems.map((item) {
               if (item.id == event.id &&
@@ -166,14 +166,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
               }
               return item;
             }).toList();
-        print("After update: ${updatedCartItems.map((item) => 'id: ${item.id}, isChecked: ${item.isChecked}').toList()}");
+        debugPrint("After update: ${updatedCartItems.map((item) => 'id: ${item.id}, isChecked: ${item.isChecked}').toList()}");
         // Update the cartItems list with the new list
         cartItems.clear();
         cartItems.addAll(updatedCartItems);
 
         emit(LoadedCart(cartItems: List.from(cartItems)));
       case Failure():
-        print("Error updating cart item: ${result.errorResultModel.message}");
+        debugPrint("Error updating cart item: ${result.errorResultModel.message}");
         emit(ErrorCart("Error updating cart item", cartItems: cartItems));
     }
   }

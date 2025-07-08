@@ -14,7 +14,7 @@ class SearchBarWithFilter extends StatefulWidget {
   final bool readOnly;
 
   const SearchBarWithFilter({
-    Key? key,
+    super.key,
     this.hintText = "Search",
     this.onSearchChanged,
     this.onSearchTap,
@@ -22,7 +22,7 @@ class SearchBarWithFilter extends StatefulWidget {
     this.searchController,
     this.searchFocusNode,
     this.readOnly = false,
-  }) : super(key: key);
+  });
 
   @override
   State<SearchBarWithFilter> createState() => _SearchBarWithFilterState();
@@ -80,7 +80,7 @@ class _SearchBarWithFilterState extends State<SearchBarWithFilter> {
 
     final boxShadow = [
       BoxShadow(
-        color: Colors.black.withOpacity(0.1),
+        color: Colors.black.withValues(alpha: 0.1),
         blurRadius: 8,
         spreadRadius: 0,
         offset: const Offset(0, 2),
@@ -151,7 +151,7 @@ class _SearchBarWithFilterState extends State<SearchBarWithFilter> {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(filterBorderRadius),
           elevation: 2,
-          shadowColor: Colors.black.withOpacity(0.1),
+          shadowColor: Colors.black.withValues(alpha: 0.1),
           child: InkWell(
             onTap: widget.onFilterTap,
             borderRadius: BorderRadius.circular(filterBorderRadius),

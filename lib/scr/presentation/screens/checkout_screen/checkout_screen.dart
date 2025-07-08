@@ -8,7 +8,7 @@ import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart'
 
 @RoutePage()
 class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({Key? key}) : super(key: key);
+  const CheckoutScreen({super.key});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -566,7 +566,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             // Explicitly removing any elevation or shadow
             disabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: labelColor.withOpacity(0.5),
+                color: labelColor.withValues(alpha: 0.5),
                 width: 1.0,
               ),
             ),
