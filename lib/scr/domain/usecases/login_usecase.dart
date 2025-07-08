@@ -7,6 +7,7 @@ class LoginUsecase implements BaseParamsUsecase<String?, LoginRequestModel> {
   final LoginRepository _loginRepository;
   const LoginUsecase(this._loginRepository);
 
+  @override
   Future<ApiResultModel<String?>> call(LoginRequestModel loginRequestModel) {
     return _loginRepository.login(loginRequestModel);
   }

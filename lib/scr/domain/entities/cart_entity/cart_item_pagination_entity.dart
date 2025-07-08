@@ -7,7 +7,7 @@ class CartItemPaginationEntity extends Equatable {
   final String previous;
   final List<CartItemEntity> results;
 
-  CartItemPaginationEntity({
+  const CartItemPaginationEntity({
     required this.count,
     required this.next,
     required this.previous,

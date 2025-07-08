@@ -4,7 +4,7 @@ import '../../widgets/notification_item.dart';
 
 @RoutePage()
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({Key? key}) : super(key: key);
+  const NotificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

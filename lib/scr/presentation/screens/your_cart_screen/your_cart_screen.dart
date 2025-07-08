@@ -71,7 +71,7 @@ class YourCartScreen extends StatelessWidget {
           child: BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
               if (state is LoadedCart) {
-                print("LoadedCart state: ${state.cartItems.length}");
+                debugPrint("LoadedCart state: ${state.cartItems.length}");
                 final productPrice = state.cartItems
                     .where((item) => item.isChecked)
                     .fold(
@@ -85,7 +85,7 @@ class YourCartScreen extends StatelessWidget {
                               : (item.genericProductInfo.originalPrice *
                                   item.quantity)),
                     );
-                print("Product price: $productPrice");
+                debugPrint("Product price: $productPrice");
                 final shipping = 0.0;
                 final subtotal = productPrice + shipping;
                 return Column(
@@ -134,7 +134,7 @@ class YourCartScreen extends StatelessWidget {
                   ],
                 );
               } else if (state is LoadedMoreCart) {
-                print("LoadedCart state: ${state.cartItems.length}");
+                debugPrint("LoadedCart state: ${state.cartItems.length}");
                 final productPrice = state.cartItems
                     .where((item) => item.isChecked)
                     .fold(

@@ -9,6 +9,7 @@ import 'package:e_commerce_frontend/scr/core/utils/helpers/token_management_help
 import 'package:e_commerce_frontend/scr/data/models/request/login_request_model/login_request_model.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/login_usecase.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/user_usecase/get_user_info_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -64,7 +65,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               json.encode(userInfoResult.data.toJson()),
             );
           case Failure():
-            print(userInfoResult.errorResultModel.message);
+            debugPrint(userInfoResult.errorResultModel.message);
             emit(LoginState.error("Failed to retrieve user info"));
             return;
         }

@@ -530,7 +530,7 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.04),
+                                      color: Colors.black.withValues(alpha: 0.04),
                                       blurRadius: 12,
                                       offset: const Offset(0, -2),
                                     ),
@@ -1001,65 +1001,65 @@ class _ProductFullScreenState extends State<ProductFullScreen> {
     );
   }
 
-  Widget _buildSimilarProductCard({
-    required String image,
-    required String name,
-    required double price,
-    required bool isDarkMode,
-    double cardWidth = 110,
-    double imageHeight = 60,
-  }) {
-    return Container(
-      width: cardWidth,
-      margin: const EdgeInsets.only(right: 12),
-      decoration: BoxDecoration(
-        color: isDarkMode ? ColorDark.background2 : ColorLight.background2,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-            child: Image.network(
-              image,
-              height: imageHeight,
-              width: cardWidth,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(height: cardWidth * 0.07),
-          Text(
-            name,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: cardWidth * 0.12,
-              color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(height: cardWidth * 0.04),
-          Text(
-            ' 24${price.toStringAsFixed(2)}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: cardWidth * 0.12,
-              color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildSimilarProductCard({
+  //   required String image,
+  //   required String name,
+  //   required double price,
+  //   required bool isDarkMode,
+  //   double cardWidth = 110,
+  //   double imageHeight = 60,
+  // }) {
+  //   return Container(
+  //     width: cardWidth,
+  //     margin: const EdgeInsets.only(right: 12),
+  //     decoration: BoxDecoration(
+  //       color: isDarkMode ? ColorDark.background2 : ColorLight.background2,
+  //       borderRadius: BorderRadius.circular(16),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black.withOpacity(0.04),
+  //           blurRadius: 8,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         ClipRRect(
+  //           borderRadius: const BorderRadius.only(
+  //             topLeft: Radius.circular(16),
+  //             topRight: Radius.circular(16),
+  //           ),
+  //           child: Image.network(
+  //             image,
+  //             height: imageHeight,
+  //             width: cardWidth,
+  //             fit: BoxFit.cover,
+  //           ),
+  //         ),
+  //         SizedBox(height: cardWidth * 0.07),
+  //         Text(
+  //           name,
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.w500,
+  //             fontSize: cardWidth * 0.12,
+  //             color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
+  //           ),
+  //           maxLines: 1,
+  //           overflow: TextOverflow.ellipsis,
+  //         ),
+  //         SizedBox(height: cardWidth * 0.04),
+  //         Text(
+  //           ' 24${price.toStringAsFixed(2)}',
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.bold,
+  //             fontSize: cardWidth * 0.12,
+  //             color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

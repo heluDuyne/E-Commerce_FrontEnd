@@ -28,11 +28,11 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     required this.tokenManagerHelper,
     required this.sharedPrefManagementHelper,
   }) : super(SignupState.initial()) {
-    on<Initial>(_InitialEvent);
+    on<Initial>(_initialEvent);
     on<CreateUserEvent>(_onSignupEvent);
   }
 
-  FutureOr<void> _InitialEvent(Initial event, Emitter<SignupState> emit) {
+  FutureOr<void> _initialEvent(Initial event, Emitter<SignupState> emit) {
     emit(const SignupState.initial());
   }
 
@@ -48,10 +48,6 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           emit(SignupState.error("Signup failed, no user info received"));
           return;
         } else {
-          await sharedPrefManagementHelper.saveKeyString(
-            USER,
-            json.encode(result.data!.toJson()),
-          );
           var loginResult = await loginUsecase.call(
             LoginRequestModel(
               email: result.data?.email,
@@ -64,13 +60,21 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
                 emit(SignupState.error("Login failed, no token received"));
                 return;
               }
-              var json = loginResult.data ?? '';
-              var token = jsonDecode(json) as Map<String, dynamic>;
+              var tokenJson = loginResult.data ?? '';
+              var token = jsonDecode(tokenJson) as Map<String, dynamic>;
               var isSaved = await tokenManagerHelper.saveToken(token['token']);
               if (!isSaved) {
                 emit(SignupState.error("Failed to save token"));
                 return;
               }
+              UserInfoEntity userInfoResult = result.data!;
+              userInfoResult.copyWith(
+                isVerified: true,
+              );
+              await sharedPrefManagementHelper.saveKeyString(
+                USER,
+                json.encode(userInfoResult.toJson()),
+              );
               emit(SignupState.success(userInfo: result.data!));
             case Failure():
               emit(

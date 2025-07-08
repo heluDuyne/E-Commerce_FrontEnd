@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:e_commerce_frontend/scr/core/common_domain/entities/based_api_result/api_result_model.dart';
 import 'package:e_commerce_frontend/scr/domain/entities/product_entity/product_entity.dart';
 import 'package:e_commerce_frontend/scr/domain/usecases/product_usecase/get_product_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -28,7 +29,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         final productEntity = result.data;
         emit(LoadedProduct(productEntity: productEntity));
       case Failure():
-        print("Error while fetching product detail: ${result.errorResultModel.message}");
+        debugPrint("Error while fetching product detail: ${result.errorResultModel.message}");
         emit(const ErrorProduct("Error while fetching product."));
     }
   }

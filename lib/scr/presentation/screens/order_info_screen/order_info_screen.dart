@@ -9,8 +9,7 @@ import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 class OrderInfoScreen extends StatelessWidget {
   final String orderNumber;
 
-  const OrderInfoScreen({Key? key, required this.orderNumber})
-    : super(key: key);
+  const OrderInfoScreen({super.key, required this.orderNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class OrderInfoScreen extends StatelessWidget {
           isDarkMode ? ColorDark.background : ColorLight.background,
       body: SingleChildScrollView(
         child: Center(
-          child: Container(
+          child: SizedBox(
             width: responsive.setWidth(
               350,
             ), // Ensures consistent width for all sections
@@ -214,7 +213,7 @@ class OrderInfoScreen extends StatelessWidget {
               const SizedBox(height: 8),
             ],
           );
-        }).toList(),
+        }),
         _buildSummaryRow('Sub Total', '\$120.00', responsive, isDarkMode),
         const SizedBox(height: 8),
         _buildSummaryRow('Shipping', '\$0.00', responsive, isDarkMode),

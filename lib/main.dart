@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) {
-        final provider = ThemeProvider(sharedPreferences: di.locator<SharedPrefManagementHelper>());
+        final provider = ThemeProvider(
+          sharedPreferences: di.locator<SharedPrefManagementHelper>(),
+        );
         if (isDarkMode) {
           provider.setDarkMode();
         } else {
@@ -46,13 +48,19 @@ class MyApp extends StatelessWidget {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => di.locator<AuthenticationWatcherBloc>()..add(const AuthCheckRequest()),
+                create:
+                    (context) =>
+                        di.locator<AuthenticationWatcherBloc>()
+                          ..add(const AuthCheckRequest()),
               ),
               BlocProvider(
                 create: (context) => di.locator<UserProfileSettingBloc>(),
               ),
               BlocProvider(
-                create: (context) => di.locator<GenericProductBloc>()..add(const GenericProductEvent.fetchProducts()),
+                create:
+                    (context) =>
+                        di.locator<GenericProductBloc>()
+                          ..add(const GenericProductEvent.fetchProducts()),
               ),
               BlocProvider(
                 create: (context) => di.locator<RecommendationBloc>(),

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:oauth2_client/access_token_response.dart';
@@ -52,7 +53,7 @@ class OAuthAuthenticationBloc
     if (response != null &&
         response.accessToken != null &&
         response.accessToken!.isNotEmpty) {
-      print('Access token: ${response.accessToken}');
+      debugPrint('Access token: ${response.accessToken}');
       emit(const OAuthAuthenticationState.authenticated());
     } else {
       emit(
@@ -95,7 +96,7 @@ class OAuthAuthenticationBloc
         );
       }
     } catch (e) {
-      print('Error initializing Facebook OAuth2 client: $e');
+      debugPrint('Error initializing Facebook OAuth2 client: $e');
       emit(
         const OAuthAuthenticationState.error(
           'Error initializing Facebook OAuth2 client',

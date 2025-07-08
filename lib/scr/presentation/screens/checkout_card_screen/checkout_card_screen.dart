@@ -8,7 +8,7 @@ import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart'
 
 @RoutePage()
 class CheckoutCardScreen extends StatefulWidget {
-  const CheckoutCardScreen({Key? key}) : super(key: key);
+  const CheckoutCardScreen({super.key});
 
   @override
   State<CheckoutCardScreen> createState() => _CheckoutCardScreenState();
@@ -424,7 +424,7 @@ class _CheckoutCardScreenState extends State<CheckoutCardScreen> {
                   Text(
                     'CARDHOLDER',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       fontSize: responsive.setWidth(10),
                     ),
                   ),
@@ -445,7 +445,7 @@ class _CheckoutCardScreenState extends State<CheckoutCardScreen> {
                   Text(
                     'EXPIRES',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                       fontSize: responsive.setWidth(10),
                     ),
                   ),
@@ -521,8 +521,8 @@ class _CheckoutCardScreenState extends State<CheckoutCardScreen> {
           borderSide: BorderSide(
             color:
                 isDarkMode
-                    ? ColorDark.inputLabel.withOpacity(0.5)
-                    : ColorLight.inputLabel.withOpacity(0.5),
+                    ? ColorDark.inputLabel.withValues(alpha: 0.5)
+                    : ColorLight.inputLabel.withValues(alpha: 0.5),
           ),
         ),
         focusedBorder: OutlineInputBorder(

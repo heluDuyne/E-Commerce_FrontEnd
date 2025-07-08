@@ -11,7 +11,7 @@ class GenericProductPaginationEntity extends Equatable {
   final String previous;
   final List<GenericProductEntity> results;
 
-  GenericProductPaginationEntity({
+  const GenericProductPaginationEntity({
     required this.count,
     required this.next,
     required this.previous,

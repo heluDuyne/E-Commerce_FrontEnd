@@ -11,7 +11,7 @@ import 'package:e_commerce_frontend/scr/core/utils/app_route/app_router.gr.dart'
 
 @RoutePage()
 class MyOrderScreen extends StatefulWidget {
-  const MyOrderScreen({Key? key}) : super(key: key);
+  const MyOrderScreen({super.key});
 
   @override
   State<MyOrderScreen> createState() => _MyOrderScreenState();

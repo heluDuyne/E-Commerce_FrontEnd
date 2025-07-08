@@ -7,11 +7,11 @@ class NotificationItem extends StatelessWidget {
   final IconData? icon;
 
   const NotificationItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     this.icon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 
 @RoutePage()
 class MyWishlistScreen extends StatelessWidget {
-  const MyWishlistScreen({Key? key}) : super(key: key);
+  const MyWishlistScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 
-/**
- * This class is used to check the connectivity of the device.
- */
+/// This class is used to check the connectivity of the device.
 
 class ConnectivityHelper {
-  Future<bool> CheckConnectivity() async {
+  Future<bool> checkConnectivity() async {
     final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return _handleResult(connectivityResult);
   }
