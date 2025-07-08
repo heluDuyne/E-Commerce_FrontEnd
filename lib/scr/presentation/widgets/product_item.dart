@@ -66,7 +66,6 @@ class ProductItem extends StatelessWidget {
                 minHeight: cardHeight,
                 maxHeight: imageHeight + textAreaHeight + 16,
               ),
-              margin: EdgeInsets.only(right: horizontalSpacing),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(16),
