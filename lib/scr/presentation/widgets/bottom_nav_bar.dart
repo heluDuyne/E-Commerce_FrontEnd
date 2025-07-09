@@ -1,3 +1,4 @@
+import 'package:e_commerce_frontend/scr/presentation/bloc/user_profile_setting/user_profile_setting_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce_frontend/scr/core/utils/values/colors.dart';
 import 'package:provider/provider.dart';
@@ -68,13 +69,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
           currentIndex: widget.currentIndex,
           onTap: (index) {
             if (index == 0) {
-              context.router.push(const HomeRoute());
+              context.router.replace(const HomeRoute());
             } else if (index == 1) {
-              context.router.push(const DiscoverRoute());
+              context.router.replace(const DiscoverRoute());
             } else if (index == 2) {
-              context.router.push(const MyOrderRoute());
+              context.router.replace(const MyOrderRoute());
             } else if (index == 3) {
-              context.router.push(const MyInfoRoute());
+              context.read<UserProfileSettingBloc>().add(const LoadUser());
+              context.router.replace(const MyInfoRoute());
             }
           },
           elevation: 0,

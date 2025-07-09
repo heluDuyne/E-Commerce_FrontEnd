@@ -24,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "Welcome to GemStore!",
+                    "Welcome to Elanza!",
                     style: TextStyle(
                       color: ColorLight.background,
                       fontSize: 28,

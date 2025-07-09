@@ -64,205 +64,208 @@ class _ProductFoundScreenState extends State<ProductFoundScreen> {
     final isDarkMode = themeProvider.isDarkMode;
     final responsive = ResponsiveUiConfig(context);
 
-    return Scaffold(
-      backgroundColor:
-          isDarkMode ? ColorDark.background : ColorLight.background,
-      appBar: AppBar(
-        forceMaterialTransparency: true,
+    return SafeArea(
+      child: Scaffold(
         backgroundColor:
             isDarkMode ? ColorDark.background : ColorLight.background,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+          backgroundColor:
+              isDarkMode ? ColorDark.background : ColorLight.background,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color:
+                  isDarkMode ? ColorDark.iconPrimary : ColorLight.iconPrimary,
+            ),
+            onPressed: () => context.router.pop(),
           ),
-          onPressed: () => context.router.pop(),
-        ),
-        title: Text(
-          widget.screenTitle,
-          style: TextStyle(
-            color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
-            fontWeight: FontWeight.bold,
-            fontSize: responsive.setWidth(18),
+          title: Text(
+            widget.screenTitle,
+            style: TextStyle(
+              color: isDarkMode ? ColorDark.titleText : ColorLight.titleText,
+              fontWeight: FontWeight.bold,
+              fontSize: responsive.setWidth(18),
+            ),
           ),
+          centerTitle: false,
         ),
-        centerTitle: false,
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: responsive.setWidth(16)),
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: responsive.setHeight(8)),
-              widget.showNumProduct
-                  ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Found',
-                            style: TextStyle(
-                              color:
-                                  isDarkMode
-                                      ? ColorDark.titleText
-                                      : ColorLight.titleText,
-                              fontWeight: FontWeight.bold,
-                              fontSize: responsive.setWidth(20),
-                            ),
-                          ),
-                          SizedBox(height: 2),
-                          Text(
-                            '152 Results',
-                            style: TextStyle(
-                              color:
-                                  isDarkMode
-                                      ? ColorDark.subtitleText
-                                      : ColorLight.subtitleText,
-                              fontSize: responsive.setWidth(15),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 4,
-                        ), // Align filter button with first text line
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                isDarkMode
-                                    ? ColorDark.background2
-                                    : ColorLight.background2,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24),
-                              side: BorderSide(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: responsive.setWidth(16)),
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: responsive.setHeight(8)),
+                widget.showNumProduct
+                    ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Found',
+                              style: TextStyle(
                                 color:
                                     isDarkMode
-                                        ? ColorDark.iconSecondary
-                                        : ColorLight.iconSecondary,
+                                        ? ColorDark.titleText
+                                        : ColorLight.titleText,
+                                fontWeight: FontWeight.bold,
+                                fontSize: responsive.setWidth(20),
                               ),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 0,
+                            SizedBox(height: 2),
+                            Text(
+                              '152 Results',
+                              style: TextStyle(
+                                color:
+                                    isDarkMode
+                                        ? ColorDark.subtitleText
+                                        : ColorLight.subtitleText,
+                                fontSize: responsive.setWidth(15),
+                              ),
                             ),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Text(
-                                'Filter',
-                                style: TextStyle(
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 4,
+                          ), // Align filter button with first text line
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  isDarkMode
+                                      ? ColorDark.background2
+                                      : ColorLight.background2,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                                side: BorderSide(
                                   color:
                                       isDarkMode
-                                          ? ColorDark.titleText
-                                          : ColorLight.titleText,
-                                  fontWeight: FontWeight.w500,
+                                          ? ColorDark.iconSecondary
+                                          : ColorLight.iconSecondary,
                                 ),
                               ),
-                              Icon(
-                                Icons.keyboard_arrow_down,
-                                color:
-                                    isDarkMode
-                                        ? ColorDark.iconPrimary
-                                        : ColorLight.iconPrimary,
-                                size: 20,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 18,
+                                vertical: 0,
                               ),
-                            ],
+                            ),
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Filter',
+                                  style: TextStyle(
+                                    color:
+                                        isDarkMode
+                                            ? ColorDark.titleText
+                                            : ColorLight.titleText,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color:
+                                      isDarkMode
+                                          ? ColorDark.iconPrimary
+                                          : ColorLight.iconPrimary,
+                                  size: 20,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                  : Container(),
-              widget.showNumProduct ? SizedBox(height: 12) : Container(),
-              BlocConsumer<GenericProductBloc, GenericProductState>(
-                listener: (context, state) {
-                  if (state is GenericProductError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  if (state is GenericProductSuccess) {
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.only(bottom: 24),
-                      itemCount: state.listGenericProduct.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 0.7,
-                      ),
-                      itemBuilder: (context, index) {
-                        final product = state.listGenericProduct[index];
-                        return Align(
-                          alignment: Alignment.topCenter,
-                          child: ProductItem(
-                            imageUrl: product.images.first.url,
-                            title: product.name,
-                            price: product.originalPrice,
-                            salePrice: product.salePrice,
-                            isFavorite: false,
-                            onTap: () {
-                              context.router.push(
-                                ProductFullRoute(productId: product.id),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  } else if (state is GenericProductLoadingMore) {
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.only(bottom: 24),
-                      itemCount: state.listGenericProduct.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 0.7,
-                      ),
-                      itemBuilder: (context, index) {
-                        final product = state.listGenericProduct[index];
-                        return Align(
-                          alignment: Alignment.topCenter,
-                          child: ProductItem(
-                            imageUrl: product.images.first.url,
-                            title: product.name,
-                            price: product.originalPrice,
-                            salePrice: product.salePrice,
-                            isFavorite: false,
-                            onTap: () {
-                              context.router.push(
-                                ProductFullRoute(productId: product.id),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
-              ),
-            ],
+                      ],
+                    )
+                    : Container(),
+                widget.showNumProduct ? SizedBox(height: 12) : Container(),
+                BlocConsumer<GenericProductBloc, GenericProductState>(
+                  listener: (context, state) {
+                    if (state is GenericProductError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.message),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is GenericProductSuccess) {
+                      return GridView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.only(bottom: 24),
+                        itemCount: state.listGenericProduct.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.7,
+                        ),
+                        itemBuilder: (context, index) {
+                          final product = state.listGenericProduct[index];
+                          return Align(
+                            alignment: Alignment.topCenter,
+                            child: ProductItem(
+                              imageUrl: product.images.first.url,
+                              title: product.name,
+                              price: product.originalPrice,
+                              salePrice: product.salePrice,
+                              isFavorite: false,
+                              onTap: () {
+                                context.router.push(
+                                  ProductFullRoute(productId: product.id),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    } else if (state is GenericProductLoadingMore) {
+                      return GridView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.only(bottom: 24),
+                        itemCount: state.listGenericProduct.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.7,
+                        ),
+                        itemBuilder: (context, index) {
+                          final product = state.listGenericProduct[index];
+                          return Align(
+                            alignment: Alignment.topCenter,
+                            child: ProductItem(
+                              imageUrl: product.images.first.url,
+                              title: product.name,
+                              price: product.originalPrice,
+                              salePrice: product.salePrice,
+                              isFavorite: false,
+                              onTap: () {
+                                context.router.push(
+                                  ProductFullRoute(productId: product.id),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

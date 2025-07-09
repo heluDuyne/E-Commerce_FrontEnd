@@ -23,6 +23,10 @@ class MyInfoScreen extends StatelessWidget {
           name = state.userInfo.name;
           email = state.userInfo.email;
         }
+        if (state is UserProfileUpdated) {
+          name = state.userInfo.name;
+          email = state.userInfo.email;
+        }
         return Scaffold(
           appBar: AppBar(
             forceMaterialTransparency: true,
